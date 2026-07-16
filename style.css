@@ -205,6 +205,513 @@ h3 { font-size: 28px; }
     border-bottom-color:#7f543b;
 }
 
+/* Explore */
+
+.explore-section {
+  display: block;
+
+  padding: 120px 0 110px;
+
+  border-top: 1px solid var(--line);
+}
+
+
+/* Explore introduction */
+
+.explore-intro {
+  max-width: 820px;
+  min-height: calc(100vh - 190px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-bottom: 12vh;
+  margin-bottom: 0;
+}
+
+.explore-intro h2 {
+  max-width: 780px;
+  margin-top: 24px;
+
+  font-size: clamp(58px, 6vw, 92px);
+  line-height: 0.96;
+}
+
+.explore-intro h2 em {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.explore-copy {
+  max-width: 620px;
+  margin: 38px 0 0;
+
+  color: var(--muted);
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+
+/* Explore list */
+
+.explore-list {
+  border-top: 1px solid rgba(31, 27, 24, 0.3);
+}
+
+.explore-item {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 54px minmax(260px, 1fr) 260px 40px;
+  align-items: center;
+  gap: 24px;
+
+  min-height: 148px;
+  padding: 0px 8px;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  border-bottom: 1px solid var(--line);
+
+  overflow: hidden;
+
+  transition:
+    padding 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.explore-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 28% 50%,
+      rgba(155, 95, 68, 0.09) 0%,
+      rgba(181, 135, 102, 0.045) 38%,
+      transparent 72%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 250, 243, 0.28),
+      rgba(234, 220, 204, 0.12),
+      transparent 82%
+    );
+
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.explore-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 250, 243, 0.62) 0%,
+      rgba(247, 238, 228, 0.48) 48%,
+      rgba(248, 243, 236, 0.18) 100%
+    );
+
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.explore-item:hover::before {
+  opacity: 1;
+}
+
+/* Number */
+
+.explore-number {
+  position: relative;
+  z-index: 2;
+  align-self: start;
+
+  padding-top: 18px;
+
+  color: var(--accent);
+
+  font-size: 11px;
+  letter-spacing: 0.14em;
+
+  opacity: 0.48;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    letter-spacing 0.4s ease;
+}
+
+.explore-item:hover .explore-number {
+  opacity: 1;
+  transform: translateY(-3px);
+  letter-spacing: 0.22em;
+}
+
+
+/* Title */
+
+.explore-title {
+  position: relative;
+  z-index: 2;
+
+  transition: transform 0.4s ease;
+}
+
+.explore-title h3 {
+  font-size: clamp(36px, 3.3vw, 52px);
+  font-weight: 500;
+
+  transition:
+    letter-spacing 0.45s ease,
+    transform 0.45s ease;
+}
+
+.explore-item:hover .explore-title h3 {
+  letter-spacing: 0.018em;
+  transform: translateY(-2px);
+}
+
+.explore-title p {
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  transition: color 0.4s ease;
+}
+
+
+/* Preview image */
+
+.explore-preview {
+  position: relative;
+  z-index: 2;
+  align-self: stretch;
+
+  width: 300px;
+  height: 100%;
+  min-height: 148px;
+
+  overflow: visible;
+
+  opacity: 0;
+  transform:
+    translateX(46px)
+    translateY(4px)
+    rotate(-1.5deg)
+    scale(0.96);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.explore-preview img {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: block;
+
+  width: auto;
+  max-width: none;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter: saturate(0.72) contrast(0.94);
+
+  transition:
+    transform 0.7s ease,
+    filter 0.5s ease;
+}
+
+
+/* Arrow */
+
+.explore-arrow {
+  position: relative;
+  z-index: 2;
+
+  justify-self: end;
+
+  color: var(--accent);
+
+  font-family: "Inter", sans-serif;
+  font-size: 25px;
+  font-weight: 300;
+
+  transition: transform 0.4s ease;
+}
+
+
+/* Hover */
+.explore-item:hover {
+  padding-left: 18px;
+  padding-right: 18px;
+
+  color: var(--accent);
+
+  background: rgba(234, 220, 204, 0.22);
+}
+
+.explore-item:hover .explore-title {
+  transform: translateX(6px);
+}
+
+.explore-item:hover .explore-preview {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.explore-item:hover .explore-preview img {
+  transform: scale(1.05);
+
+  filter: saturate(0.9) contrast(0.98);
+}
+
+.explore-item:hover .explore-arrow {
+  transform: translate(6px, -6px) rotate(8deg);
+}
+
+/* 进入 Explore 后，在用户真正移动鼠标前强制保持默认状态 */
+.explore-section.explore-entering .explore-item:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+  color: var(--ink);
+  background: transparent;
+}
+
+.explore-section.explore-entering .explore-item:hover::before {
+  opacity: 0;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-title {
+  transform: none;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-title h3 {
+  letter-spacing: normal;
+  transform: none;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-number {
+  opacity: 0.48;
+  transform: none;
+  letter-spacing: 0.14em;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-preview {
+  opacity: 0;
+  transform:
+    translateX(46px)
+    translateY(4px)
+    rotate(-1.5deg)
+    scale(0.96);
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-preview img {
+  transform: none;
+  filter: saturate(0.72) contrast(0.94);
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-arrow {
+  transform: none;
+}
+
+/* ========================================
+   HERO → EXPLORE TRANSITION
+======================================== */
+
+#explore {
+  scroll-margin-top: 86px;
+}
+
+/* ----------------------------------------
+   INTRO REVEAL
+---------------------------------------- */
+.explore-reveal {
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate3d(0, 18px, 0);
+
+  will-change: opacity, transform;
+
+  transition:
+    opacity 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 1.15s;
+}
+
+.explore-section.intro-reset .explore-reveal {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translate3d(0, 10px, 0) !important;
+
+  transition: none !important;
+}
+
+.explore-section.intro-visible .explore-reveal {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translate3d(0, 0, 0);
+
+  transition:
+    opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s;
+}
+
+.explore-section.intro-visible .explore-reveal-1 {
+  transition-delay: 0.04s;
+}
+
+.explore-section.intro-visible .explore-reveal-2 {
+  transition-delay: 0.14s;
+}
+
+.explore-section.intro-visible .explore-reveal-3 {
+  transition-delay: 0.32s;
+}
+
+/* ----------------------------------------
+   LIST REVEAL
+---------------------------------------- */
+
+.explore-item {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0);
+
+  will-change: opacity, transform;
+
+  transition:
+    opacity 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.15s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.4s ease,
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.explore-item.item-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+
+/* ----------------------------------------
+   LOCK ACCIDENTAL HOVER
+---------------------------------------- */
+
+.explore-section.explore-entering .explore-item {
+  pointer-events: none;
+}
+
+.explore-section.explore-entering .explore-item:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  color: var(--ink);
+  background: transparent;
+}
+
+.explore-section.explore-entering .explore-item:hover::before {
+  opacity: 0;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-title {
+  transform: none;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-title h3 {
+  letter-spacing: normal;
+  transform: none;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-number {
+  opacity: 0.48;
+  transform: none;
+  letter-spacing: 0.14em;
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-preview {
+  opacity: 0;
+  filter: blur(2px);
+
+  transform:
+    translateX(46px)
+    translateY(4px)
+    rotate(-1.5deg)
+    scale(0.96);
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-preview img {
+  transform: none;
+  filter: saturate(0.72) contrast(0.94);
+}
+
+.explore-section.explore-entering .explore-item:hover .explore-arrow {
+  transform: none;
+}
+
+
+/* ----------------------------------------
+   PREVIEW IMAGE REVEAL
+---------------------------------------- */
+
+.explore-preview {
+  filter: blur(2px);
+
+  transition:
+    opacity 0.65s ease 0.06s,
+    transform 0.76s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.65s ease 0.06s;
+}
+
+.explore-item:hover .explore-preview {
+  opacity: 1;
+  filter: blur(0);
+
+  transform:
+    translateX(0)
+    translateY(0)
+    rotate(0)
+    scale(1);
+}
+
+
+/* ----------------------------------------
+   ACCESSIBILITY
+---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .explore-reveal,
+  .explore-item,
+  .explore-preview {
+    transition-duration: 0.01ms;
+    transition-delay: 0s;
+  }
+}
+
 .section, .split-section, .contact {
   padding: 90px 0;
   border-top: 1px solid var(--line);
@@ -313,11 +820,150 @@ footer {
   border-top: 1px solid var(--line);
 }
 
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.gallery-item {
+  margin: 0;
+}
+
+.gallery-item-large {
+  grid-row: span 2;
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  filter: saturate(0.82);
+}
+
+.gallery-item-large img {
+  height: 720px;
+  border-radius: 0 0 0 90px;
+}
+
+.gallery-item:not(.gallery-item-large) img {
+  border-radius: 0 0 45px 0;
+}
+
+.gallery-item figcaption {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.gallery-item figcaption span {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
 @media (max-width: 760px) {
-  .nav { align-items: flex-start; }
-  .nav nav { display: none; }
-  .split-section, .map-card, .three, .two { grid-template-columns: 1fr; }
-  .map-card { min-height: auto; }
-  .map-visual { min-height: 360px; }
-  h1 { font-size: 72px; }
+
+  .nav {
+    align-items: flex-start;
+  }
+
+  .nav nav {
+    display: none;
+  }
+
+  .split-section,
+  .map-card,
+  .three,
+  .two {
+    grid-template-columns: 1fr;
+  }
+
+  .map-card {
+    min-height: auto;
+  }
+
+  .map-visual {
+    min-height: 360px;
+  }
+
+  h1 {
+    font-size: 72px;
+  }
+
+
+  /* Explore mobile */
+
+  .explore-section {
+    padding: 90px 0;
+  }
+
+  .explore-intro {
+    margin-bottom: 55px;
+  }
+
+  .explore-intro h2 {
+    font-size: 54px;
+  }
+
+  .explore-copy {
+    max-width: 34rem;
+    margin-top: 28px;
+  }
+
+  .explore-item {
+    grid-template-columns: 36px 1fr 30px;
+    gap: 12px;
+
+    min-height: 116px;
+    padding: 18px 4px;
+  }
+
+  .explore-title h3 {
+    font-size: 36px;
+  }
+
+  .explore-title p {
+    max-width: 230px;
+
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .explore-preview {
+    display: none;
+  }
+
+  .explore-item:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .explore-item:hover .explore-title {
+    transform: none;
+  }
+
+
+  /* Gallery mobile */
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item-large {
+    grid-row: auto;
+  }
+
+  .gallery-item img,
+  .gallery-item-large img {
+    height: 440px;
+
+    border-radius: 0 0 0 55px;
+  }
+
 }

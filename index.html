@@ -14,13 +14,12 @@
 
   <header class="nav">
     <div class="logo">EW</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#map">Map</a>
-      <a href="#discoveries">Discoveries</a>
-      <a href="#essays">Essays</a>
-      <a href="#contact">Contact</a>
-    </nav>
+   <nav>
+  <a href="#explore">Explore</a>
+  <a href="#projects">Projects</a>
+  <a href="#about-me">About</a>
+  <a href="#contact">Contact</a>
+</nav>
   </header>
 
   <main>
@@ -38,7 +37,7 @@ and being human.
 </p>
     </p>
 
-    <a href="#map" class="button primary">Begin </a>
+    <a href="#explore" class="button primary begin-button">Begin</a>
   </div>
 
   <div class="hero-right">
@@ -48,38 +47,168 @@ and being human.
   </div>
 </section>
 
-    <section id="about" class="split-section">
-      <div>
-        <p class="section-label">About</p>
-        <h2>A website for the things I notice.</h2>
+<section id="explore" class="explore-section">
+
+<div class="explore-intro">
+  <p class="section-label explore-reveal explore-reveal-1">
+    Explore
+  </p>
+  <h2 class="explore-reveal explore-reveal-2">
+    The Art of<br>
+    <em>Noticing.</em>
+  </h2>
+  <p class="explore-copy explore-reveal explore-reveal-3">
+    Where curiosity branches.
+  </p>
+</div>
+
+
+  <div class="explore-list">
+
+    <!-- Map -->
+
+    <a class="explore-item" href="#map">
+
+      <span class="explore-number">01</span>
+
+      <div class="explore-title">
+        <h3>Map</h3>
+        <p>Places, distance, and belonging</p>
       </div>
+
+      <div class="explore-preview" aria-hidden="true">
+        <img src="images/EMap.png" alt="">
+      </div>
+
+      <span class="explore-arrow" aria-hidden="true">↗</span>
+
+    </a>
+
+
+    <!-- Essays -->
+
+    <a class="explore-item" href="#essays">
+
+      <span class="explore-number">02</span>
+
+      <div class="explore-title">
+        <h3>Essays</h3>
+        <p>Thoughts worth revisiting</p>
+      </div>
+
+      <div class="explore-preview" aria-hidden="true">
+        <img src="images/EEssay.png" alt="">
+      </div>
+
+      <span class="explore-arrow" aria-hidden="true">↗</span>
+
+    </a>
+
+
+    <!-- Field Notes -->
+
+    <a class="explore-item" href="#discoveries">
+
+      <span class="explore-number">03</span>
+
+      <div class="explore-title">
+        <h3>Field Notes</h3>
+        <p>Science, care, and small observations</p>
+      </div>
+
+      <div class="explore-preview" aria-hidden="true">
+        <img src="images/EField.png" alt="">
+      </div>
+
+      <span class="explore-arrow" aria-hidden="true">↗</span>
+
+    </a>
+
+
+    <!-- Gallery -->
+
+    <a class="explore-item" href="#gallery">
+
+      <span class="explore-number">04</span>
+
+      <div class="explore-title">
+        <h3>Gallery</h3>
+        <p>Images, drawings, and fragments</p>
+      </div>
+
+      <div class="explore-preview" aria-hidden="true">
+        <img src="images/EGallery.png" alt="">
+      </div>
+
+      <span class="explore-arrow" aria-hidden="true">↗</span>
+
+    </a>
+  </div>
+</section>
+
+<!-- Travel Map -->
+
+<section id="map" class="section map-section">
+
+  <div class="section-heading">
+    <p class="section-label">Travel Map</p>
+    <h2>Places that stayed with me.</h2>
+  </div>
+
+  <div class="map-card">
+
+    <div class="map-visual" aria-label="Interactive travel map">
+
+      <button
+        class="pin sydney"
+        type="button"
+        data-place="Sydney"
+        aria-label="View note about Sydney">
+        Sydney
+      </button>
+
+      <button
+        class="pin lux"
+        type="button"
+        data-place="Luxembourg"
+        aria-label="View note about Luxembourg">
+        Luxembourg
+      </button>
+
+      <button
+        class="pin uk"
+        type="button"
+        data-place="Derbyshire"
+        aria-label="View note about Derbyshire">
+        Derbyshire
+      </button>
+
+      <button
+        class="pin denmark"
+        type="button"
+        data-place="Denmark"
+        aria-label="View note about Denmark">
+        Denmark
+      </button>
+
+    </div>
+
+    <div class="map-note" id="mapNote">
+      <p class="section-label">A Map of Curiosity</p>
+
+      <h3>Sydney</h3>
+
       <p>
-        This is a personal archive of ideas, places, projects, and questions.
-        Some notes are academic, some are poetic, and some are tiny travel
-        discoveries that would otherwise disappear after one afternoon.
+        Where I learned that independence can be both lonely
+        and beautiful.
       </p>
-    </section>
 
-    <section id="map" class="section">
-      <div class="section-heading">
-        <p class="section-label">Map of Curiosities</p>
-        <h2>Places that taught me something.</h2>
-      </div>
-
-      <div class="map-card">
-        <div class="map-visual">
-          <button class="pin sydney" data-place="Sydney">Sydney</button>
-          <button class="pin lux" data-place="Luxembourg">Luxembourg</button>
-          <button class="pin uk" data-place="Derbyshire">Derbyshire</button>
-          <button class="pin denmark" data-place="Denmark">Denmark</button>
-        </div>
-        <div class="map-note" id="mapNote">
-          <h3>Sydney</h3>
-          <p>Where I learned that independence can be both lonely and beautiful.</p>
-          <a href="#" class="text-link">Read travel note →</a>
-        </div>
-      </div>
-    </section>
+      <a href="#" class="text-link">
+        Read travel note →
+      </a>
+    </div>
+  </div>
+</section>
 
     <section id="discoveries" class="section">
       <div class="section-heading">
@@ -135,6 +264,42 @@ and being human.
       </div>
     </section>
 
+    <section id="gallery" class="section gallery-section">
+
+  <div class="section-heading">
+    <p class="section-label">Gallery</p>
+    <h2>Images, drawings,<br>and fragments.</h2>
+  </div>
+
+  <div class="gallery-grid">
+
+    <figure class="gallery-item gallery-item-large">
+      <img src="images/gallery-01.jpg" alt="Travel photograph">
+      <figcaption>
+        <span>01</span>
+        Somewhere worth remembering
+      </figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="images/gallery-02.jpg" alt="A quiet observation">
+      <figcaption>
+        <span>02</span>
+        A quiet observation
+      </figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="images/gallery-03.jpg" alt="Drawing or visual study">
+      <figcaption>
+        <span>03</span>
+        Study in light and form
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="projects" class="section projects"></section>
     <section class="section projects">
       <div class="section-heading">
         <p class="section-label">Projects</p>
@@ -152,6 +317,41 @@ and being human.
       </div>
     </section>
 
+    <section id="about-me" class="about-me">
+  <div class="about-me-heading">
+    <p class="section-label">About Me</p>
+    <h2>
+      The person<br>
+      behind the <em>notes.</em>
+    </h2>
+  </div>
+  <div class="about-me-content">
+    <div class="about-me-photo">
+      <img src="images/about-me.jpg" alt="Portrait of Elvira Wang">
+    </div>
+    <div class="about-me-bio">
+      <p class="about-me-introduction">
+        I’m Elvira—an oral health student, writer, illustrator,
+        and collector of quiet observations, currently living in Sydney.
+      </p>
+      <p>
+        My interests move between healthcare and the humanities:
+        from clinical care and human behaviour to places, images,
+        and the small details that make everyday life meaningful.
+      </p>
+      <a href="#" class="text-link">More about me →</a>
+    </div>
+    <div class="about-me-currently">
+      <p class="section-label">Currently</p>
+      <ul>
+        <li>Finishing my Oral Health degree</li>
+        <li>Writing about care and uncertainty</li>
+        <li>Collecting notes from places</li>
+        <li>Learning to build this website</li>
+      </ul>
+    </div>
+  </div>
+</section>
     <section id="contact" class="contact">
       <p class="section-label">Contact</p>
       <h2>For ideas, collaborations, or quiet conversations.</h2>
