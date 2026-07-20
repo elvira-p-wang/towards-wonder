@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Drawings | Towards Wonder
+  </title>
+
+  <meta
+    name="description"
+    content="Ways of seeing beyond the camera — sketches, illustrations, comics and visual thoughts."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+
+<body class="gallery-page">
+
+  <!-- Subtle site texture -->
+
+  <div class="grain"></div>
+
+
+  <!-- Navigation -->
+
+  <header class="nav gallery-page-nav">
+
+    <a
+      href="../index.html"
+      class="logo"
+      aria-label="Return to the Towards Wonder homepage"
+    >
+      <img src="../images/logo.png" alt="Towards Wonder">
+    </a>
+
+    <nav aria-label="Gallery page navigation">
+      <a href="../index.html#gallery">Gallery</a>
+      <a href="../index.html#explore">Explore</a>
+      <a href="../index.html#about-me">About</a>
+    </nav>
+
+  </header>
+
+
+  <!-- Exhibition -->
+
+  <main class="gallery-exhibition">
+
+    <header class="exhibit-header exhibit-header--rooms">
+
+      <a href="../index.html#gallery" class="exhibit-back">
+        ← Back to gallery
+      </a>
+
+      <h1>Drawings.</h1>
+
+    </header>
+
+    <!--
+      Same room-switcher as photographs.html — one collection at a
+      time, switched horizontally. See CLAUDE.md → "Gallery
+      architecture" → "Room switcher". Only the grid mode differs
+      ("editorial" instead of "masonry"), so the artwork keeps its
+      natural proportions instead of the photography masonry crop.
+    -->
+    <nav class="room-nav" aria-label="Drawing collections"></nav>
+
+    <div class="room-stage" id="room-stage"></div>
+
+  </main>
+
+
+  <!-- Footer -->
+
+  <footer class="article-footer">
+
+    <a href="../index.html#gallery">
+      ← Return to the gallery
+    </a>
+
+    <p>© 2026 Elvira Wang.</p>
+
+  </footer>
+
+
+  <script src="data/drawings-data.js"></script>
+  <script src="gallery.js"></script>
+  <script src="rooms.js"></script>
+  <script>
+    TowardsWonderGallery.initRooms(
+      window.DRAWINGS_DATA,
+      ["sketches", "illustrations", "comics", "visual-thoughts"],
+      ".room-nav",
+      "#room-stage",
+      "editorial"
+    );
+  </script>
+
+</body>
+
+</html>
