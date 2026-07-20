@@ -67,31 +67,11 @@ and being human.
 
   <div class="explore-list">
 
-    <!-- Map -->
-
-    <a class="explore-item" href="#map">
-
-      <span class="explore-number">01</span>
-
-      <div class="explore-title">
-        <h3>Map</h3>
-        <p>Places, distance, and belonging</p>
-      </div>
-
-      <div class="explore-preview" aria-hidden="true">
-        <img src="images/EMap.png" alt="">
-      </div>
-
-      <span class="explore-arrow" aria-hidden="true">↗</span>
-
-    </a>
-
-
     <!-- Essays -->
 
     <a class="explore-item" href="#essays">
 
-      <span class="explore-number">02</span>
+      <span class="explore-number">01</span>
 
       <div class="explore-title">
         <h3>Essays</h3>
@@ -111,7 +91,7 @@ and being human.
 
     <a class="explore-item" href="#discoveries">
 
-      <span class="explore-number">03</span>
+      <span class="explore-number">02</span>
 
       <div class="explore-title">
         <h3>Field Notes</h3>
@@ -120,6 +100,26 @@ and being human.
 
       <div class="explore-preview" aria-hidden="true">
         <img src="images/EField.png" alt="">
+      </div>
+
+      <span class="explore-arrow" aria-hidden="true">↗</span>
+
+    </a>
+
+
+    <!-- Map -->
+
+    <a class="explore-item" href="#map">
+
+      <span class="explore-number">03</span>
+
+      <div class="explore-title">
+        <h3>Map</h3>
+        <p>Places, distance, and belonging</p>
+      </div>
+
+      <div class="explore-preview" aria-hidden="true">
+        <img src="images/EMap.png" alt="">
       </div>
 
       <span class="explore-arrow" aria-hidden="true">↗</span>
@@ -147,94 +147,6 @@ and being human.
     </a>
   </div>
 </section>
-
-<!-- Travel Map -->
-
-<section id="map" class="section map-section">
-
-  <div class="section-heading">
-    <p class="section-label">Travel Map</p>
-    <h2>Places that stayed with me.</h2>
-  </div>
-
-  <div class="map-card">
-
-    <div class="map-visual" aria-label="Interactive travel map">
-
-      <button
-        class="pin sydney"
-        type="button"
-        data-place="Sydney"
-        aria-label="View note about Sydney">
-        Sydney
-      </button>
-
-      <button
-        class="pin lux"
-        type="button"
-        data-place="Luxembourg"
-        aria-label="View note about Luxembourg">
-        Luxembourg
-      </button>
-
-      <button
-        class="pin uk"
-        type="button"
-        data-place="Derbyshire"
-        aria-label="View note about Derbyshire">
-        Derbyshire
-      </button>
-
-      <button
-        class="pin denmark"
-        type="button"
-        data-place="Denmark"
-        aria-label="View note about Denmark">
-        Denmark
-      </button>
-
-    </div>
-
-    <div class="map-note" id="mapNote">
-      <p class="section-label">A Map of Curiosity</p>
-
-      <h3>Sydney</h3>
-
-      <p>
-        Where I learned that independence can be both lonely
-        and beautiful.
-      </p>
-
-      <a href="#" class="text-link">
-        Read travel note →
-      </a>
-    </div>
-  </div>
-</section>
-
-    <section id="discoveries" class="section">
-      <div class="section-heading">
-        <p class="section-label">Tiny Discoveries</p>
-        <h2>Small things worth keeping.</h2>
-      </div>
-      <div class="cards three">
-        <article class="card">
-          <span>01</span>
-          <h3>On trains</h3>
-          <p>I sometimes study better when the world is moving around me.</p>
-        </article>
-        <article class="card">
-          <span>02</span>
-          <h3>On love</h3>
-          <p>Some misunderstandings come from standing in different time dimensions.</p>
-        </article>
-        <article class="card">
-          <span>03</span>
-          <h3>On nature</h3>
-          <p>A good walk can make a complicated life feel briefly solvable.</p>
-        </article>
-      </div>
-    </section>
 
 <section id="essays" class="section essays-section">
 
@@ -312,6 +224,283 @@ and being human.
   <div class="essays-ending">
     <span class="essays-ending-line"></span>
     <p>Still growing.</p>
+  </div>
+</section>
+
+    <section id="discoveries" class="section field-notes-section">
+      <div class="section-heading">
+        <p class="section-label">Field Notes</p>
+        <h2>Small things worth keeping.</h2>
+        <p class="field-notes-copy">Unfinished thoughts, kept as they were written.</p>
+      </div>
+
+      <!--
+        Field Notes ordering rules (see CLAUDE.md for full spec):
+        - Numbers are continuous starting at 001, oldest note = 001.
+        - Cards are laid out newest → oldest, left → right (largest number first).
+        - Whenever a new note is added, renumber + reorder the entire set by date.
+      -->
+      <div class="field-notes-row" tabindex="0" aria-label="Field notes — scroll horizontally to browse">
+
+        <a href="field-notes/the-shape-of-home.html" class="field-note-card">
+          <span class="field-note-number">013</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">The Shape of Home</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“I was searching for a way of living.”</p>
+              <span class="field-note-read" aria-hidden="true">5 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Belonging</span>
+            <span class="field-note-date">Jul 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/a-finite-life.html" class="field-note-card">
+          <span class="field-note-number">012</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">A Finite Life</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“Perhaps meaning begins where forever ends.”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Meaning</span>
+            <span class="field-note-date">Jul 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/two-ways-of-loving-beauty.html" class="field-note-card">
+          <span class="field-note-number">011</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Two Ways of Loving Beauty</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What kind of future does beauty ask us to build?”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Art</span>
+            <span class="field-note-date">Jul 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/the-parts-we-almost-throw-away.html" class="field-note-card">
+          <span class="field-note-number">010</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">The Parts We Almost Throw Away</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What if the most precious parts of us are the ones we almost throw away?”</p>
+              <span class="field-note-read" aria-hidden="true">2 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Identity</span>
+            <span class="field-note-date">Jun 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/long-live-initiative.html" class="field-note-card">
+          <span class="field-note-number">009</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Long Live Initiative</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What if the most beautiful kind of initiative comes from freedom, not fear?”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Relationships</span>
+            <span class="field-note-date">Jun 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/before-we-eat.html" class="field-note-card">
+          <span class="field-note-number">008</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Before We Eat</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What do we owe a life after it has ended?”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Ethics</span>
+            <span class="field-note-date">Jun 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/the-loneliness-of-being-special.html" class="field-note-card">
+          <span class="field-note-number">007</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">The Loneliness of Being Special</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What if arrogance is sometimes just fear wearing beautiful clothes?”</p>
+              <span class="field-note-read" aria-hidden="true">3 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Identity</span>
+            <span class="field-note-date">May 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/the-first-time.html" class="field-note-card">
+          <span class="field-note-number">006</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">The First Time</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“There are many first times that no one notices.”</p>
+              <span class="field-note-read" aria-hidden="true">3 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Growth</span>
+            <span class="field-note-date">May 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/your-eyes.html" class="field-note-card">
+          <span class="field-note-number">005</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Your Eyes</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“Perhaps understanding changes what we see.”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Perception</span>
+            <span class="field-note-date">May 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/until-you-meet-it-differently.html" class="field-note-card">
+          <span class="field-note-number">004</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Until You Meet It Differently</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“What doesn’t kill you mutates, and tries again.. But why?”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Growth</span>
+            <span class="field-note-date">May 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/to-want-not-to-need.html" class="field-note-card">
+          <span class="field-note-number">003</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">To Want, Not to Need</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“Love is freely choosing them, again and again.”</p>
+              <span class="field-note-read" aria-hidden="true">2 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Relationships</span>
+            <span class="field-note-date">Apr 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/a-quiet-morning.html" class="field-note-card">
+          <span class="field-note-number">002</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">A Quiet Morning</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“Peace is not certainty. It is knowing you can hold yourself.”</p>
+              <span class="field-note-read" aria-hidden="true">1 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Presence</span>
+            <span class="field-note-date">Apr 2026</span>
+          </div>
+        </a>
+
+        <a href="field-notes/only-they-know-me.html" class="field-note-card">
+          <span class="field-note-number">001</span>
+          <div class="field-note-face">
+            <h3 class="field-note-title">Only They Know Me</h3>
+            <div class="field-note-reveal">
+              <p class="field-note-hook">“Sometimes healing goes both ways.”</p>
+              <span class="field-note-read" aria-hidden="true">2 min →</span>
+            </div>
+          </div>
+          <div class="field-note-meta">
+            <span class="field-note-tags">Dentistry</span>
+            <span class="field-note-date">Apr 2025</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+<!-- Travel Map -->
+
+<section id="map" class="section map-section">
+
+  <div class="section-heading">
+    <p class="section-label">Travel Map</p>
+    <h2>Places that stayed with me.</h2>
+  </div>
+
+  <div class="map-card">
+
+    <div class="map-visual" aria-label="Interactive travel map">
+
+      <button
+        class="pin sydney"
+        type="button"
+        data-place="Sydney"
+        aria-label="View note about Sydney">
+        Sydney
+      </button>
+
+      <button
+        class="pin lux"
+        type="button"
+        data-place="Luxembourg"
+        aria-label="View note about Luxembourg">
+        Luxembourg
+      </button>
+
+      <button
+        class="pin uk"
+        type="button"
+        data-place="Derbyshire"
+        aria-label="View note about Derbyshire">
+        Derbyshire
+      </button>
+
+      <button
+        class="pin denmark"
+        type="button"
+        data-place="Denmark"
+        aria-label="View note about Denmark">
+        Denmark
+      </button>
+
+    </div>
+
+    <div class="map-note" id="mapNote">
+      <p class="section-label">A Map of Curiosity</p>
+
+      <h3>Sydney</h3>
+
+      <p>
+        Where I learned that independence can be both lonely
+        and beautiful.
+      </p>
+
+      <a href="#" class="text-link">
+        Read travel note →
+      </a>
+    </div>
   </div>
 </section>
 

@@ -797,6 +797,275 @@ h3 { font-size: 28px; }
 .large { min-height: 260px; }
 
 /* ========================================
+   FIELD NOTES — SCATTERED ARCHIVE
+======================================== */
+
+.field-notes-section {
+  overflow: hidden;
+}
+
+.field-notes-copy {
+  max-width: 420px;
+  margin: 18px 0 0;
+
+  color: var(--muted);
+
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+
+/* Horizontal row */
+
+.field-notes-row {
+  display: flex;
+  gap: 30px;
+
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-top: 54px;
+  padding: 10px 7vw 34px;
+
+  overflow-x: auto;
+  overflow-y: visible;
+
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 95, 68, 0.28) transparent;
+}
+
+.field-notes-row::-webkit-scrollbar {
+  height: 3px;
+}
+
+.field-notes-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.field-notes-row::-webkit-scrollbar-thumb {
+  background: rgba(155, 95, 68, 0.28);
+  border-radius: 999px;
+}
+
+
+/* Card */
+
+.field-note-card {
+  position: relative;
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 258px;
+  min-height: 232px;
+  padding: 26px 26px 22px;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+
+  box-shadow: 0 1px 0 rgba(31, 27, 24, 0.02);
+
+  transform: translateY(0) rotate(0deg);
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s ease,
+    border-color 0.4s ease;
+}
+
+.field-note-card:nth-child(3n+1) { transform: rotate(-0.6deg); }
+.field-note-card:nth-child(3n+2) { transform: rotate(0.5deg); }
+.field-note-card:nth-child(3n)   { transform: rotate(-0.3deg); }
+
+.field-note-card:hover,
+.field-note-card:focus-visible {
+  transform: translateY(-6px) rotate(0deg);
+
+  border-color: rgba(155, 95, 68, 0.3);
+
+  box-shadow:
+    0 18px 34px rgba(31, 27, 24, 0.07),
+    0 4px 10px rgba(31, 27, 24, 0.04);
+}
+
+.field-note-card:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+
+/* Number */
+
+.field-note-number {
+  display: block;
+
+  margin-bottom: 20px;
+
+  color: var(--accent);
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+
+  opacity: 0.55;
+
+  transition: opacity 0.4s ease;
+}
+
+.field-note-card:hover .field-note-number {
+  opacity: 0.9;
+}
+
+
+/* Title / hook crossfade */
+
+.field-note-face {
+  position: relative;
+  display: grid;
+
+  flex: 1;
+  align-content: start;
+}
+
+.field-note-title,
+.field-note-reveal {
+  grid-area: 1 / 1;
+}
+
+.field-note-title {
+  margin: 0;
+
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.22;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.field-note-reveal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  opacity: 0;
+  transform: translateY(6px);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.field-note-hook {
+  margin: 0;
+
+  color: #8d5942;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.field-note-read {
+  color: var(--accent);
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field-note-card:hover .field-note-title,
+.field-note-card:focus-visible .field-note-title {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.field-note-card:hover .field-note-reveal,
+.field-note-card:focus-visible .field-note-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Meta */
+
+.field-note-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+
+  margin-top: 20px;
+  padding-top: 16px;
+
+  border-top: 1px solid var(--line);
+}
+
+.field-note-tags,
+.field-note-date {
+  color: var(--muted);
+
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.field-note-tags {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-notes-row {
+    scroll-behavior: auto;
+  }
+
+  .field-note-card,
+  .field-note-title,
+  .field-note-reveal {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (max-width: 760px) {
+  .field-notes-row {
+    gap: 18px;
+    margin-top: 40px;
+    padding: 8px 6vw 26px;
+  }
+
+  .field-note-card {
+    width: 218px;
+    min-height: 208px;
+    padding: 22px 22px 18px;
+  }
+
+  .field-note-title {
+    font-size: 22px;
+  }
+
+  .field-note-hook {
+    font-size: 19px;
+  }
+}
+
+/* ========================================
    ESSAYS — BOOK SPINE
 ======================================== */
 
@@ -1441,7 +1710,8 @@ footer {
    PAGE STRUCTURE
 ---------------------------------------- */
 
-.essay-page {
+.essay-page,
+.field-note-page {
   background: var(--bg);
 }
 
@@ -1949,7 +2219,8 @@ footer {
    SELECTION
 ---------------------------------------- */
 
-.essay-page ::selection {
+.essay-page ::selection,
+.field-note-page ::selection {
   color: var(--ink);
   background: rgba(155, 95, 68, 0.18);
 }
@@ -2173,6 +2444,81 @@ footer {
   .article-back,
   .article-footer a {
     transition: none;
+  }
+
+}
+
+
+/* ========================================
+   FIELD NOTE — INTIMATE READING PAGE
+   Shares the longform article system above
+   (typography, width, grain, nav, body
+   treatment) but with a shorter, quieter
+   header — closer to a private notebook
+   than a formal publication.
+======================================== */
+
+.field-note-page-nav .logo {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.field-note-page .article-back {
+  margin-bottom: 44px;
+}
+
+.field-note-page .article-header {
+  padding: 54px 0 58px;
+}
+
+.field-note-page .article-header h1 {
+  max-width: 700px;
+
+  font-size: clamp(32px, 3.4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.14;
+}
+
+.field-note-page .article-meta {
+  margin-top: 20px;
+}
+
+
+/* Dialogue speaker label — used on notes written as conversation */
+
+.field-note-page .dialogue-speaker {
+  display: inline-block;
+
+  margin-right: 10px;
+
+  color: var(--accent);
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+
+  .field-note-page .article-back {
+    margin-bottom: 34px;
+  }
+
+  .field-note-page .article-header {
+    padding: 46px 0 50px;
+  }
+
+  .field-note-page .article-header h1 {
+    font-size: clamp(28px, 8.6vw, 38px);
+    letter-spacing: -0.008em;
+    line-height: 1.18;
+  }
+
+  .field-note-page .article-meta {
+    margin-top: 16px;
   }
 
 }
