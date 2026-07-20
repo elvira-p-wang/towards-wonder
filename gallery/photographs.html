@@ -80,8 +80,9 @@
     <!--
       One room per collection, switched horizontally — see
       CLAUDE.md → "Gallery architecture" → "Room switcher".
-      Editor's Selection is intentionally not part of this rotation;
-      its data stays in photographs-data.js if it's ever needed again.
+      Editor's Selection and Details are intentionally not part of
+      this rotation; their data stays in photographs-data.js if
+      they're ever needed again.
     -->
     <nav class="room-nav" aria-label="Photograph collections"></nav>
 
@@ -103,13 +104,14 @@
   </footer>
 
 
+  <script src="data/photographs-rooms.js"></script>
   <script src="data/photographs-data.js"></script>
   <script src="gallery.js"></script>
   <script src="rooms.js"></script>
   <script>
     TowardsWonderGallery.initRooms(
       window.PHOTOGRAPHS_DATA,
-      ["stillness", "light", "human-traces", "landscapes", "details"],
+      window.PHOTOGRAPHS_ROOM_ORDER,
       ".room-nav",
       "#room-stage",
       "masonry"

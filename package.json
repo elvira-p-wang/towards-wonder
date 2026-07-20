@@ -1,0 +1,16 @@
+{
+  "name": "towards-wonder-gallery-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Dev-only tooling for the Towards Wonder gallery (images/gallery/{photographs,drawings,concerts}). The site itself remains plain static HTML/CSS/JS with no build step — these scripts only prepare gallery image files and gallery/data/*.js before you preview or deploy.",
+  "scripts": {
+    "optimise-gallery": "node scripts/optimise-gallery-images.js",
+    "generate-gallery": "node scripts/generate-gallery-data.js",
+    "prepare-gallery": "npm run optimise-gallery && npm run generate-gallery",
+    "watch-gallery": "node scripts/watch-gallery-images.js",
+    "prebuild": "npm run prepare-gallery"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

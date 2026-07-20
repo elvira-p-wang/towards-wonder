@@ -1,8 +1,9 @@
 /*
-  Shared behaviour for the Gallery exhibition pages (photographs.html
-  and drawings.html): renders collections from a data file, batches
-  images in as the visitor scrolls (infinite scroll + lazy loading),
-  and drives a shared fullscreen lightbox with keyboard navigation.
+  Shared behaviour for the Gallery exhibition pages (photographs.html,
+  drawings.html and concerts.html): renders collections from a data
+  file, batches images in as the visitor scrolls (infinite scroll +
+  lazy loading), and drives a shared fullscreen lightbox with
+  keyboard navigation.
 
   Deliberately framework-free, consistent with the rest of the site.
   See CLAUDE.md → "Gallery architecture" for the overall shape.
@@ -54,6 +55,18 @@
       tile.style.aspectRatio = image.aspectRatio || "4 / 5";
     } else {
       tile.className = "exhibit-tile exhibit-tile--" + image.aspect;
+
+      // Real photographs (see generate-gallery-data.js) carry their
+      // own measured aspectRatio — set inline so it overrides the
+      // fixed-ratio keyword class above, sizing the tile to the
+      // photo's true proportions instead of a preset crop box.
+      // Collections still on placeholders have no aspectRatio field,
+      // so they're completely unaffected and keep the keyword-cycled
+      // masonry rhythm as before.
+      if (image.aspectRatio) {
+        tile.classList.add("exhibit-tile--natural");
+        tile.style.aspectRatio = image.aspectRatio;
+      }
     }
 
     tile.setAttribute("data-collection", collectionId);
@@ -122,12 +135,12 @@
      buildCollectionSection() builds and wires up one collection
      (intro + grid + infinite scroll) but does NOT attach it anywhere
      — the caller decides where it lives. renderCollection() is the
-     simple case (append straight into a root); nothing calls it today
-     since both gallery pages use the room-switcher, but it's kept as
-     the plain-vertical-stack option for a future page that wants one.
-     rooms.js calls buildCollectionSection() directly, once per room
-     panel, for both photographs.html ("masonry" mode) and
-     drawings.html ("editorial" mode).
+     simple case (append straight into a root) — concerts.html uses
+     this path via renderCollections(), since it has a single
+     collection and no room switcher. rooms.js calls
+     buildCollectionSection() directly, once per room panel, for
+     photographs.html ("masonry" mode) and drawings.html ("editorial"
+     mode).
   ---------------------------------------- */
 
   function buildCollectionSection(collection, mode) {
@@ -137,32 +150,38 @@
       (collection.featured ? " exhibit-collection--featured" : "");
     section.id = "collection-" + collection.id;
 
-    var intro = document.createElement("div");
-    intro.className = "exhibit-collection-intro";
+    // Collections with no title skip the intro block entirely — used
+    // by single-collection pages (Concerts) whose title/subtitle are
+    // already shown once in the page's own .exhibit-header, so the
+    // grid doesn't repeat them a second time.
+    if (collection.title) {
+      var intro = document.createElement("div");
+      intro.className = "exhibit-collection-intro";
 
-    var title = document.createElement("h2");
-    title.className = "exhibit-collection-title";
-    title.textContent = collection.title;
+      var title = document.createElement("h2");
+      title.className = "exhibit-collection-title";
+      title.textContent = collection.title;
 
-    var sentence = document.createElement("p");
-    sentence.className = "exhibit-collection-sentence";
-    sentence.textContent = collection.sentence;
+      var sentence = document.createElement("p");
+      sentence.className = "exhibit-collection-sentence";
+      sentence.textContent = collection.sentence;
 
-    intro.appendChild(title);
-    intro.appendChild(sentence);
+      intro.appendChild(title);
+      intro.appendChild(sentence);
 
-    // Artwork count — editorial (Drawings) collections only, so the
-    // Photographs masonry header is untouched.
-    if (mode === "editorial" && collection.images && collection.images.length) {
-      var count = document.createElement("p");
-      count.className = "exhibit-collection-count";
-      count.textContent =
-        collection.images.length +
-        (collection.images.length === 1 ? " work" : " works");
-      intro.appendChild(count);
+      // Artwork count — editorial (Drawings) collections only, so the
+      // Photographs masonry header is untouched.
+      if (mode === "editorial" && collection.images && collection.images.length) {
+        var count = document.createElement("p");
+        count.className = "exhibit-collection-count";
+        count.textContent =
+          collection.images.length +
+          (collection.images.length === 1 ? " work" : " works");
+        intro.appendChild(count);
+      }
+
+      section.appendChild(intro);
     }
-
-    section.appendChild(intro);
 
     if (collection.comingSoon || !collection.images.length) {
       var soon = document.createElement("p");
@@ -373,9 +392,9 @@
 
   window.TowardsWonderGallery = {
     // Vertical stack of every collection in `data`, all appended into
-    // one root. Not used by either gallery page today (both use the
-    // room switcher) — kept available for a future page that wants a
-    // plain scrolling list instead of rooms.
+    // one root. Used by concerts.html, which has no subcategories and
+    // so needs no room switcher — just its one collection's grid.
+    // Photographs and Drawings still use the room switcher instead.
     renderCollections: function (data, rootSelector, mode) {
       var rootEl = document.querySelector(rootSelector);
       if (!rootEl || !data || !data.collections) return;

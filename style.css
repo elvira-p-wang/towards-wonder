@@ -2483,7 +2483,7 @@ footer {
 
 .gallery-entrance {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
 
   margin-top: 64px;
@@ -2862,6 +2862,16 @@ footer {
   filter: saturate(0.85);
 
   transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+}
+
+/* Real photographs (see .exhibit-tile--natural in gallery.js) sit in
+   a tile already sized to their own measured aspect ratio, so
+   object-fit: contain here fills the box exactly with zero
+   letterboxing — this is a safety net against ever cropping real
+   content, not a visual change from `cover`, since the two produce
+   an identical result once the box ratio equals the image ratio. */
+.exhibit-tile--natural img {
+  object-fit: contain;
 }
 
 .exhibit-tile:hover img,
@@ -3320,6 +3330,14 @@ body.lightbox-open {
 ---------------------------------------- */
 
 @media (max-width: 960px) {
+
+  .gallery-entrance {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-entrance .gallery-panel:nth-child(3) {
+    grid-column: 1 / -1;
+  }
 
   .exhibit-grid--masonry {
     column-count: 2;
@@ -3809,4 +3827,8 @@ html.custom-cursor-active [contenteditable] {
     max-width: 140px;
     font-size: 13px;
   }
+}
+.about-photo {
+    width: 420px;
+    height: auto;
 }

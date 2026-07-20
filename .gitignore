@@ -1,1 +1,12 @@
 .DS_Store
+
+# Local-only backup of original gallery photos, made by
+# scripts/optimise-gallery-images.js before any lossy edit. Large and
+# not meant to be committed or deployed — keep it somewhere durable
+# yourself (external drive, cloud backup) since it's the only copy of
+# the untouched originals.
+/gallery-originals-backup/
+
+# Dev tooling for the gallery scripts (see package.json) — not part
+# of the deployed static site.
+/node_modules/

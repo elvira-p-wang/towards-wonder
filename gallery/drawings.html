@@ -15,7 +15,7 @@
 
   <meta
     name="description"
-    content="Ways of seeing beyond the camera — sketches, illustrations, comics and visual thoughts."
+    content="Ways of seeing beyond the camera — sketches, illustrations, comics and graphic designs."
   >
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,13 +104,14 @@
   </footer>
 
 
+  <script src="data/drawings-rooms.js"></script>
   <script src="data/drawings-data.js"></script>
   <script src="gallery.js"></script>
   <script src="rooms.js"></script>
   <script>
     TowardsWonderGallery.initRooms(
       window.DRAWINGS_DATA,
-      ["sketches", "illustrations", "comics", "visual-thoughts"],
+      window.DRAWINGS_ROOM_ORDER,
       ".room-nav",
       "#room-stage",
       "editorial"
