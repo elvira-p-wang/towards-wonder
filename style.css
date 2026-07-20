@@ -3466,3 +3466,347 @@ body.lightbox-open {
   }
 
 }
+
+
+/* ========================================
+   CUSTOM CURSOR
+
+   Site-wide (see cursor.js — included on every page). Reuses the
+   existing palette (--accent) rather than inventing a new colour;
+   the values below are the only things cursor.js expects to find
+   here, and are the ones to tune first.
+======================================== */
+
+/* EDIT POINT — size, colour, opacity and easing.
+   --cursor-rest-scale is --cursor-size ÷ --cursor-hover-size, kept
+   as a plain number because CSS calc() cannot divide two lengths —
+   update it together with either size if you change them. */
+:root {
+  --cursor-size: 11px;
+  --cursor-hover-size: 32px;
+  --cursor-rest-scale: 0.25;
+
+  --cursor-color-rgb: 155, 95, 68; /* matches --accent (#9b5f44) */
+  --cursor-rest-opacity: 0.6;
+  --cursor-hover-opacity: 0.38;
+  --cursor-press-scale: 0.7;
+
+  --cursor-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cursor-ease-duration: 0.5s;
+}
+
+/* Applied to <html> by cursor.js only once it has confirmed a fine
+   pointer with hover support — never on touch devices, and never if
+   the script fails to load, so the native cursor is always the safe
+   fallback. !important is deliberate here: it overrides the many
+   individual `cursor: pointer` declarations across the site's
+   buttons, links and tiles without hunting each one down. */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* The site has no text inputs today, but kept for robustness if one
+   is ever added — typing still gets a normal caret. */
+html.custom-cursor-active input,
+html.custom-cursor-active textarea,
+html.custom-cursor-active [contenteditable] {
+  cursor: text !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  z-index: 9999;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  will-change: transform;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: var(--cursor-hover-size);
+  height: var(--cursor-hover-size);
+
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--cursor-color-rgb), 0.95) 0%,
+    rgba(var(--cursor-color-rgb), 0.55) 55%,
+    rgba(var(--cursor-color-rgb), 0) 100%
+  );
+  filter: blur(0.3px);
+
+  opacity: var(--cursor-rest-opacity);
+  transform: translate(-50%, -50%) scale(var(--cursor-rest-scale));
+
+  transition: transform var(--cursor-ease-duration) var(--cursor-ease),
+    opacity var(--cursor-ease-duration) var(--cursor-ease),
+    border-radius var(--cursor-ease-duration) var(--cursor-ease);
+}
+
+.custom-cursor-dot.is-hover {
+  opacity: var(--cursor-hover-opacity);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Brief shrink on press — quicker than the hover/rest transition so
+   it reads as a small "tap" rather than a slow resize. */
+.custom-cursor-dot.is-pressed {
+  transition: transform 0.14s ease;
+}
+
+.custom-cursor-dot.is-hover.is-pressed {
+  transform: translate(-50%, -50%) scale(0.72);
+}
+
+.custom-cursor-dot.is-pressed:not(.is-hover) {
+  transform: translate(-50%, -50%)
+    scale(calc(var(--cursor-rest-scale) * var(--cursor-press-scale)));
+}
+
+/* Long-form reading pages (essays, field notes) — a smaller, quieter
+   hover state so the cursor never competes with body text. */
+.custom-cursor--restrained .custom-cursor-dot.is-hover {
+  opacity: calc(var(--cursor-hover-opacity) * 0.7);
+  transform: translate(-50%, -50%) scale(0.68);
+}
+
+/* Optional detail — the cursor visually resembles a seed while near
+   the corner plant (see corner-plant.js): a slightly organic,
+   asymmetric outline instead of a perfect circle. */
+.custom-cursor-dot.is-seed {
+  border-radius: 42% 58% 55% 45% / 55% 45% 58% 42%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor-dot {
+    transition-duration: 0.01ms;
+  }
+}
+
+
+/* ========================================
+   EASTER EGG — CORNER PLANT (homepage only)
+
+   Markup is built entirely by corner-plant.js (included only on
+   index.html); nothing to add in index.html itself. Reuses --muted
+   and --accent rather than introducing new colours.
+======================================== */
+
+/* EDIT POINT — size and stroke weight. */
+:root {
+  --plant-width: 64px;
+  --plant-height: 88px;
+  --plant-stroke: 1.3px;
+
+  /* EDIT POINT — bud growth reveal duration (~700–900ms per spec). */
+  --plant-bud-grow-duration: 0.8s;
+
+  /* EDIT POINT — the halo's blur radius at full strength (~6–9px per
+     spec). A fixed value, not JS-driven — only the halo's opacity
+     changes dynamically (see corner-plant.js), which keeps this
+     effect simple and doesn't depend on animating `filter` itself. */
+  --bud-glow-blur: 7px;
+}
+
+.corner-plant {
+  position: fixed;
+  right: 30px;
+  bottom: 24px;
+
+  width: var(--plant-width);
+  height: var(--plant-height);
+
+  z-index: 6;
+  cursor: pointer;
+
+  /* Fixed positioning, out of document flow — causes no layout
+     shift on any existing section. */
+}
+
+.corner-plant-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Clicks and hover always land on the .corner-plant container, not
+   individual stroke-only paths (inconsistent hit-testing across
+   browsers otherwise). */
+.corner-plant-svg,
+.corner-plant-svg * {
+  pointer-events: none;
+}
+
+.plant-stem,
+.plant-leaf {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: var(--plant-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plant-leaf {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The dwell-growth bud — a tiny circular growth point at the stem's
+   apical tip, not a third leaf. Hidden until .is-grown is added
+   directly to it (see corner-plant.js growBud()).
+
+   transform-box: view-box + an explicit pixel transform-origin
+   (rather than the fill-box/bottom-center keyword .plant-leaf uses)
+   because this group now has two differently-sized concentric
+   circles (the dot and its larger halo) — their combined bounding
+   box's "bottom center" would shift depending on the halo's radius,
+   which isn't precise enough here. Referencing the SVG's own
+   viewBox coordinates directly instead always anchors on (32, 24) —
+   exactly the stem path's own top endpoint above — regardless of
+   either circle's size. */
+.plant-bud {
+  transform-box: view-box;
+  transform-origin: 32px 24px;
+  transform: scale(0);
+  opacity: 0;
+
+  transition: transform var(--plant-bud-grow-duration)
+      cubic-bezier(0.22, 1, 0.36, 1),
+    opacity var(--plant-bud-grow-duration) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.plant-bud.is-grown {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* The visible growth point — warm accent fill (not the stroke-only
+   --muted the rest of the plant uses), matching the "existing warm
+   brown accent colour" spec. Opacity (rest → slightly brighter on
+   approach) is set directly by corner-plant.js; the transition here
+   is what makes that change — and the asymmetric enter/exit speed,
+   via corner-plant.js toggling transition-duration — feel smooth. No
+   scale/size change ever happens here, so it never reads as
+   enlarging. */
+.plant-bud-dot {
+  fill: var(--accent);
+  opacity: 0.85;
+  transition: opacity 0.6s ease;
+}
+
+/* The halo — a separate, softly blurred circle sitting behind the
+   dot (same markup order in corner-plant.js — SVG paints in document
+   order, so the halo drawn first sits visually underneath). A plain
+   blurred fill circle rather than filter: drop-shadow on the dot
+   itself: simpler to reason about (opacity and scale are the only
+   moving parts; the blur radius is a fixed value, not something
+   being animated) and renders identically between Safari and
+   Chrome, where drop-shadow's colour-interpolation edge cases
+   sometimes don't. transform-box: fill-box + transform-origin:
+   center scales it from its own centre (which is also the dot's
+   centre) rather than the SVG viewport's origin. It both brightens
+   and visibly grows with proximity (see corner-plant.js) so "near"
+   and "very near" read as distinctly different amounts of glow. */
+.plant-bud-halo {
+  fill: var(--accent);
+  filter: blur(var(--bud-glow-blur));
+  opacity: 0;
+
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.6);
+
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.corner-plant.is-near .plant-stem {
+  stroke: var(--accent);
+  transition: stroke 1.4s ease;
+}
+
+.corner-plant-message {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+
+  margin: 0 0 10px;
+  padding: 7px 14px;
+
+  width: max-content;
+  max-width: 150px;
+
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+
+  transition: opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.corner-plant-message.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plant-leaf,
+  .plant-bud,
+  .plant-bud-dot,
+  .plant-bud-halo,
+  .corner-plant-message {
+    transition-duration: 0.01ms;
+  }
+
+  /* The bud still grows in (corner-plant.js's dwell timer isn't
+     motion-gated), just without an animated reveal — it appears
+     instantly via the 0.01ms override above, at rest opacity. The
+     halo glow is skipped entirely under reduced motion (see
+     corner-plant.js's !reduceMotion guards) and never engages, so
+     the dot's own resting accent-coloured fill is the only thing
+     marking it as grown — no separate static highlight needed. */
+}
+
+@media (max-width: 760px) {
+  .corner-plant {
+    right: 16px;
+    bottom: 16px;
+
+    --plant-width: 44px;
+    --plant-height: 60px;
+  }
+
+  .corner-plant-message {
+    max-width: 140px;
+    font-size: 13px;
+  }
+}
