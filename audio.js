@@ -7,9 +7,10 @@
    button; nothing needs to be hand-written into any page for it.
 
    Behaviour, deliberately conservative:
-   - Never autoplays. The <audio> element isn't even created until
-     the first click — true opt-in, and zero network cost for anyone
-     who never touches the button.
+   - Never autoplays on a visitor's first touch of the site. The
+     <audio> element isn't even created until the first click — true
+     opt-in, and zero network cost for anyone who never touches the
+     button.
    - Click toggles play/pause. Both directions fade the volume
      (rather than snapping on/off), so starting or stopping the music
      never interrupts the page with a hard audio edge.
@@ -19,6 +20,12 @@
      see the button's own quiet "breathing" pulse while playing,
      which echoes the same slow-breathing language used in the
      hero's entrance and the scroll reveals elsewhere on the site.
+   - Once started, playback is remembered across page navigations
+     (sessionStorage) and each new page tries to auto-resume it, so
+     clicking into an essay or the gallery doesn't cut the music —
+     only clicking the button again does. This is best-effort, not
+     guaranteed: see "CROSS-PAGE CONTINUITY" below for why it can't
+     be 100% gapless on a static multi-page site.
 
    EDIT POINTS:
    - TARGET_VOLUME              resting volume once faded in (0–1).
@@ -157,6 +164,47 @@
 
   var AudioContextCtor = window.AudioContext || window.webkitAudioContext;
 
+  // ----------------------------------------
+  // CROSS-PAGE CONTINUITY (best-effort)
+  //
+  // Towards Wonder is a static multi-page site with no shared JS
+  // runtime across navigations (see CLAUDE.md) — every new page gets
+  // a fresh, silent audio.js instance, so true gapless playback isn't
+  // achievable without rewriting navigation itself to swap page
+  // content via JS instead of a real page load (a much larger change
+  // touching every page). Instead, play state is remembered in
+  // sessionStorage and each new page attempts one auto-resume on
+  // load, so "keep playing until I click again" holds across essays,
+  // gallery pages, etc. in the common case.
+  //
+  // This is explicitly best-effort: browsers generally require a
+  // fresh user gesture per document before allowing audio playback,
+  // so an auto-resume attempt can be silently blocked (most likely on
+  // Safari/Firefox, or on a browser with little prior play history on
+  // this site) — when that happens the button just quietly settles
+  // back to "paused" rather than pretending to play silently, and the
+  // visitor clicks once more to continue.
+  // ----------------------------------------
+
+  var STORAGE_KEY = "towardsWonderMusicPlaying";
+
+  function rememberPlaying(playing) {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, playing ? "1" : "0");
+    } catch (e) {
+      // Private-browsing storage restrictions, etc. — not fatal, it
+      // just means continuity won't carry to the next page.
+    }
+  }
+
+  function wasPlayingLastPage() {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
   function ensureAudio() {
     if (audio) return audio;
 
@@ -257,11 +305,16 @@
     var el = ensureAudio();
     isPlaying = true;
     setUiState(true);
+    rememberPlaying(true);
 
     // iOS/Safari (and Chrome's autoplay policy generally) start a
     // new AudioContext "suspended" until a user gesture resumes it —
     // this click is that gesture, so resume synchronously here
-    // rather than waiting on the promise elsewhere in the flow.
+    // rather than waiting on the promise elsewhere in the flow. On an
+    // auto-resume attempt (see wasPlayingLastPage() below) there is
+    // no fresh gesture, so this resume() (and the play() call below)
+    // can itself be blocked — handled the same way as any other
+    // blocked playback, via the .catch() below.
     if (audioCtx && audioCtx.state === "suspended") {
       audioCtx.resume();
     }
@@ -270,9 +323,12 @@
     if (playPromise && playPromise.catch) {
       playPromise.catch(function () {
         // Playback was blocked or interrupted — reflect that
-        // honestly in the button rather than pretending it's on.
+        // honestly in the button rather than pretending it's on, and
+        // don't keep retrying silently on future pages until the
+        // visitor explicitly presses play again.
         isPlaying = false;
         setUiState(false);
+        rememberPlaying(false);
       });
     }
 
@@ -284,6 +340,7 @@
 
     isPlaying = false;
     setUiState(false);
+    rememberPlaying(false);
 
     fadeVolumeTo(0, FADE_OUT_MS, function () {
       if (audio) audio.pause();
@@ -299,9 +356,32 @@
   });
 
   // Stop cleanly rather than leaving a fade hanging if someone
-  // navigates away mid-fade.
+  // navigates away mid-fade. Note this does NOT call rememberPlaying
+  // (false) — sessionStorage should keep reflecting the visitor's
+  // actual intent ("I pressed play") so the next page's auto-resume
+  // still fires; this only silences the outgoing page's own <audio>
+  // element so a bfcache-preserved copy of it can't keep sounding in
+  // the background once the new page has (attempted to) start its own.
   window.addEventListener("pagehide", function () {
     cancelFade();
     if (audio) audio.pause();
   });
+
+  // If a bfcache-restored page comes back with our own pagehide pause
+  // above already applied, isPlaying/the button would otherwise still
+  // claim "playing" while the audio is actually silent. Resync, then
+  // try to pick it back up exactly like a fresh page load would.
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted && isPlaying) {
+      isPlaying = false;
+      setUiState(false);
+      if (wasPlayingLastPage()) play();
+    }
+  });
+
+  // Best-effort auto-resume for a genuinely fresh page load — see
+  // "CROSS-PAGE CONTINUITY" above.
+  if (wasPlayingLastPage()) {
+    play();
+  }
 })();

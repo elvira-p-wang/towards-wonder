@@ -43,7 +43,7 @@
   }
 
   window.DRAWINGS_DATA = {
-    totalCount: 45,
+    totalCount: 50,
     collections: [
       {
         id: "sketches",
@@ -113,9 +113,14 @@
         title: "Graphic Designs",
         sentence: "Thinking in visuals.",
         images: [
-        { id: "graphic-designs-001", src: "../images/gallery/drawings/graphic design/graphic designs1.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1050 / 1498" },
+        { id: "graphic-designs-004", src: "../images/gallery/drawings/graphic design/graphic designs4.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-005", src: "../images/gallery/drawings/graphic design/graphic designs5.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-006", src: "../images/gallery/drawings/graphic design/graphic designs6.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-007", src: "../images/gallery/drawings/graphic design/graphic designs7.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-008", src: "../images/gallery/drawings/graphic design/graphic designs8.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-003", src: "../images/gallery/drawings/graphic design/graphic designs3.jpeg", alt: "", category: "graphic-designs", aspectRatio: "3000 / 1954" },
         { id: "graphic-designs-002", src: "../images/gallery/drawings/graphic design/graphic designs2.jpeg", alt: "", category: "graphic-designs", aspectRatio: "2121 / 3000" },
-        { id: "graphic-designs-003", src: "../images/gallery/drawings/graphic design/graphic designs3.jpeg", alt: "", category: "graphic-designs", aspectRatio: "3000 / 1954" }
+        { id: "graphic-designs-001", src: "../images/gallery/drawings/graphic design/graphic designs1.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1050 / 1498" }
       ]
       }
     ]

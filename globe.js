@@ -903,9 +903,22 @@ const RAW_CONTINENTS = [
       ? `<a href="${location.link}" class="text-link">Read travel note →</a>`
       : '';
 
+    // Prev/next arrows sit either side of the name inside one flex
+    // row (.map-note-heading, align-items: center) rather than being
+    // positioned separately — that's what keeps their centerline
+    // genuinely aligned with the name's, since flexbox centers both
+    // against the row's actual content height, not a guessed offset.
     noteEl.innerHTML = `
       <p class="section-label">A Map of Curiosity</p>
-      <h3>${location.name}</h3>
+      <div class="map-note-heading">
+        <button type="button" class="map-note-arrow map-note-arrow--prev" aria-label="Previous place, west">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="11 6 5 12 11 18"/></svg>
+        </button>
+        <h3>${location.name}</h3>
+        <button type="button" class="map-note-arrow map-note-arrow--next" aria-label="Next place, east">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </button>
+      </div>
       ${metaHTML}
       <p>${location.sentence}</p>
       ${linkHTML}
@@ -965,6 +978,41 @@ const RAW_CONTINENTS = [
     mode = 'focusing';
   }
 
+  // Selects, displays and rotates to face a place in one call — the
+  // shared "go here" action behind both a marker click and the note
+  // panel's prev/next arrows below.
+  function goToLocation(location) {
+    selectLocation(location.id);
+    showLocation(location.id);
+    focusLocation(location);
+  }
+
+  /* ----------------------------------------
+     PREV/NEXT BY LONGITUDE — the note panel's arrows step through
+     GLOBE_LOCATIONS ordered west-to-east (ascending longitude) rather
+     than in authoring order, so "left"/"right" matches where each
+     place actually sits on the globe. Cyclic, same wraparound as the
+     Gallery's room switcher: past the last (easternmost) place wraps
+     back to the first (westernmost), and vice versa.
+  ---------------------------------------- */
+  const LOCATIONS_BY_LON = GLOBE_LOCATIONS.slice().sort((a, b) => a.lon - b.lon);
+
+  function adjacentLocation(id, direction) {
+    const index = LOCATIONS_BY_LON.findIndex(location => location.id === id);
+    const from = index === -1 ? 0 : index;
+    const nextIndex = (from + direction + LOCATIONS_BY_LON.length) % LOCATIONS_BY_LON.length;
+    return LOCATIONS_BY_LON[nextIndex];
+  }
+
+  // Delegated (not bound per-render) since renderNote() replaces the
+  // arrows' own DOM every time it runs — this survives that.
+  noteEl.addEventListener('click', e => {
+    const arrow = e.target.closest('.map-note-arrow');
+    if (!arrow) return;
+    const direction = arrow.classList.contains('map-note-arrow--prev') ? -1 : 1;
+    goToLocation(adjacentLocation(selectedId, direction));
+  });
+
   /* ----------------------------------------
      MARKER CONSTRUCTION
   ---------------------------------------- */
@@ -985,11 +1033,7 @@ const RAW_CONTINENTS = [
     el.addEventListener('focus', preview);
     el.addEventListener('blur', unpreview);
 
-    el.addEventListener('click', () => {
-      selectLocation(location.id);
-      showLocation(location.id);
-      focusLocation(location);
-    });
+    el.addEventListener('click', () => goToLocation(location));
   }
 
   GLOBE_LOCATIONS.forEach(location => {

@@ -1356,9 +1356,66 @@ h3 { font-size: 28px; }
 }
 
 .map-note h3 {
-  margin-top: 14px;
-
   font-size: clamp(34px, 4vw, 50px);
+}
+
+/* Wraps the place name together with the prev/next arrows, so
+   align-items: center vertically centers the arrows against the
+   *visible text*, not against some guessed offset — this is what
+   keeps their centerline genuinely on the same line as the name's,
+   regardless of font metrics. Carries the top margin that used to
+   live on h3 itself (moved here rather than left on h3, since a
+   margin on a flex item would have thrown its own centering off). */
+.map-note-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-top: 14px;
+}
+
+.map-note-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  color: var(--accent);
+  opacity: 0.42;
+  cursor: pointer;
+
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.map-note-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.map-note-arrow:hover,
+.map-note-arrow:focus-visible {
+  opacity: 0.9;
+}
+
+.map-note-arrow--prev:hover {
+  transform: translateX(-3px);
+}
+
+.map-note-arrow--next:hover {
+  transform: translateX(3px);
+}
+
+.map-note-arrow:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 3px;
 }
 
 .map-note-meta {
@@ -1387,7 +1444,8 @@ h3 { font-size: 28px; }
 @media (prefers-reduced-motion: reduce) {
   .globe-marker-dot,
   .globe-marker-label,
-  .map-note {
+  .map-note,
+  .map-note-arrow {
     transition-duration: 0.01ms;
   }
 }
@@ -2232,6 +2290,21 @@ footer {
 
   .map-note {
     padding: 40px 28px;
+  }
+
+  /* Same reasoning as .globe-marker just above: fingers are less
+     precise than a cursor, so the tappable box grows even though the
+     arrow glyph itself stays visually about the same size. */
+  .map-note-arrow {
+    width: 34px;
+    height: 34px;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .map-note-heading {
+    gap: 6px;
   }
 
   h1 {
