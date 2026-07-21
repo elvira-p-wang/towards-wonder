@@ -16,7 +16,7 @@ Towards Wonder wasn't built to impress.
 
 It was built to slow people down.
 
-I wanted to create a website that feels calm, thoughtful, and quietly playful—where design supports stories instead of competing with them.
+I wanted to create a website that feels calm, thoughtful, and quietly playful - where design supports stories instead of competing with them.
 
 Every page is designed around one idea:
 
@@ -30,11 +30,9 @@ Every page is designed around one idea:
 
 ### ✦ Essays
 
-Long-form writing on science, design, travel, books, and the questions that stay with me.
+Long-form reflections on identity, science, creativity, travel, and the quiet questions that stay with us.
 
 ### ✦ Field Notes
-
-**Small things worth keeping.**
 
 Tiny observations, unfinished thoughts, and moments that quietly stayed with me.
 
@@ -52,9 +50,9 @@ Small details that reward curiosity.
 
 Including:
 
-- 🦊 A pixel fox that changes behaviour across pages
-- 🌱 Gentle interactive elements
-- ✨ Soft hover animations
+- 🦊 A tiny pixel fox that quietly accompanies visitors
+- 🌱 Gentle interactive details
+- ✨ Soft transitions and hover animations
 - 🎵 Optional background music
 
 ---
@@ -89,7 +87,7 @@ Designed and built entirely from scratch.
 
 ```text
 /
-├── essays/            # Essays
+├── essays/            # Long-form writing about the questions that don't have simple answers
 ├── field-notes/       # Small things worth keeping
 ├── gallery/           # Photography, drawings & concerts
 ├── map/               # Interactive travel globe
@@ -98,22 +96,6 @@ Designed and built entirely from scratch.
 ├── scripts/           # Website interactions
 └── index.html
 ```
-
----
-
-## Highlights
-
-Some of my favourite details.
-
-🦊 A tiny pixel fox that quietly accompanies visitors.
-
-🌍 A world map filled with memories instead of checklists.
-
-🎵 Optional background music.
-
-📱 Responsive layouts for desktop and mobile.
-
-✨ Every illustration, photograph, and piece of writing was created or selected with intention.
 
 ---
 
@@ -127,6 +109,7 @@ Built with simplicity in mind.
 - Smooth scrolling
 - Mobile-friendly layouts
 - Accessible navigation
+- Thoughtfully crafted interactions
 
 ---
 
@@ -170,43 +153,28 @@ More is on the way.
 
 Hi, I'm Elvira.
 
-I study oral health, write essays, draw, and build quiet things for the web.
+I study oral health, write, illustrate, and build thoughtful experiences for the web.
 
 I'm interested in the space where science, design, technology, and human stories meet.
 
-Towards Wonder is where I collect those explorations.
+Towards Wonder is where those interests come together.
 
----
-
-## Changelog
-
-The website grows little by little.
-
-Recent additions include:
-
-- 🌍 Interactive World Map
-- 🦊 Pixel fox companion
-- 🎵 Background music
-- 📱 Mobile redesign
-- 🖼 Expanded Gallery
-- ✍️ Essays & Field Notes
 
 ---
 
 ## Connect
 
-🌐 Website
-
+🌐 Website  
 https://elvira.studio
 
-💼 LinkedIn
-
-https://www.linkedin.com/in/elvirawang/
+💼 LinkedIn  
+https://www.linkedin.com/in/pinrou-wang-66a6463b7
 
 ---
 
 Designed and built by Elvira Wang.
 
-**Built slowly, one small detail at a time.**
-If this project made you pause, smile, or wonder for a moment, then it has already done its job.
+Built slowly, one small detail at a time.
+
+Made with curiosity, patience, and a little pixel fox. 🦊
 
