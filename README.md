@@ -4,6 +4,9 @@ A quiet place for essays, drawings, maps, and small curiosities.
 
 🌐 https://elvira.studio
 
+Turn the music on.
+The little fox already knows the way.
+
 ---
 
 ## What you'll find
