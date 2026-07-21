@@ -446,62 +446,23 @@ and being human.
 <section id="map" class="section map-section">
 
   <div class="section-heading">
-    <p class="section-label">Travel Map</p>
+    <p class="section-label">Map</p>
     <h2>Places that stayed with me.</h2>
   </div>
 
   <div class="map-card">
 
-    <div class="map-visual" aria-label="Interactive travel map">
-
-      <button
-        class="pin sydney"
-        type="button"
-        data-place="Sydney"
-        aria-label="View note about Sydney">
-        Sydney
-      </button>
-
-      <button
-        class="pin lux"
-        type="button"
-        data-place="Luxembourg"
-        aria-label="View note about Luxembourg">
-        Luxembourg
-      </button>
-
-      <button
-        class="pin uk"
-        type="button"
-        data-place="Derbyshire"
-        aria-label="View note about Derbyshire">
-        Derbyshire
-      </button>
-
-      <button
-        class="pin denmark"
-        type="button"
-        data-place="Denmark"
-        aria-label="View note about Denmark">
-        Denmark
-      </button>
-
+    <!--
+      The globe, its markers, and the note panel's contents are
+      entirely built and driven by globe.js from the GLOBE_LOCATIONS
+      array there. Adding, removing, or repositioning a place only
+      ever means editing that one array; nothing here needs to change.
+    -->
+    <div class="globe-stage" id="globeStage" aria-label="An interactive globe of places that shaped me. Drag to rotate; hover or focus a marker to preview it, click to select.">
+      <canvas class="globe-canvas" id="globeCanvas" aria-hidden="true"></canvas>
     </div>
 
-    <div class="map-note" id="mapNote">
-      <p class="section-label">A Map of Curiosity</p>
-
-      <h3>Sydney</h3>
-
-      <p>
-        Where I learned that independence can be both lonely
-        and beautiful.
-      </p>
-
-      <a href="#" class="text-link">
-        Read travel note →
-      </a>
-    </div>
+    <div class="map-note" id="globeNote"></div>
   </div>
 </section>
 
@@ -638,8 +599,9 @@ and being human.
   </footer>
 
   <script src="script.js"></script>
+  <script src="globe.js"></script>
   <script src="cursor.js"></script>
-  <script src="corner-plant.js"></script>
+  <script src="fox.js"></script>
   <script src="gallery-preload.js"></script>
 </body>
 </html>

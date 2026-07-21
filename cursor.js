@@ -201,18 +201,4 @@
       { passive: true }
     );
   });
-
-
-  /* ----------------------------------------
-     PUBLIC API — optional. Lets another isolated script (currently
-     just corner-plant.js, homepage only) react to the cursor without
-     reaching into its internals. Safe to ignore entirely; nothing in
-     this file depends on anyone calling these.
-  ---------------------------------------- */
-
-  window.TowardsWonderCursor = {
-    setSeedMode: function (isSeed) {
-      dot.classList.toggle("is-seed", !!isSeed);
-    }
-  };
 })();

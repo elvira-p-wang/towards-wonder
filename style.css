@@ -6,6 +6,7 @@
   --line: rgba(31,27,24,.12);
   --accent: #9b5f44;
   --soft: #eadccc;
+  --glow: #b9776a; /* warm dusty pink-brown — the Travel Globe's visited-location glow (rgb(185, 119, 106)) */
 }
 
 * { box-sizing: border-box; }
@@ -740,44 +741,210 @@ h3 { font-size: 28px; }
   border-radius: 34px;
   overflow: hidden;
 }
-.map-visual {
+
+
+/* ----------------------------------------
+   GLOBE STAGE — a quiet, hand-drawn-feeling 3D globe rendered on
+   canvas by globe.js (paper-toned sphere + faint graticule; no
+   continents, no photographic texture — an atlas, not a map service).
+   The ambient background behind the sphere echoes the old map's warm
+   radial wash so the section keeps the same overall temperature.
+---------------------------------------- */
+
+.globe-stage {
   position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+
+  /* Dragging/pinching happens directly on this box — without this,
+     a fast drag on desktop starts highlighting text behind the
+     canvas, and a press-drag on mobile can trigger the native
+     callout/selection menu. Nothing inside is selectable text
+     anyway (canvas + buttons), so this is safe everywhere. */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+
   background:
-    radial-gradient(circle at 30% 30%, #eadccc 0, transparent 28%),
-    radial-gradient(circle at 75% 65%, #dfc5b4 0, transparent 24%),
-    linear-gradient(135deg, #f9efe3, #eee0d0);
+    radial-gradient(circle at 50% 46%, rgba(234, 220, 204, 0.7) 0%, transparent 55%),
+    linear-gradient(160deg, #f9efe3, #eee0d0);
 }
-.map-visual:before {
+
+.globe-stage:active {
+  cursor: grabbing;
+}
+
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hover warmth — a soft glow-tinted wash that fades in while any
+   marker is hovered/focused, toggled by globe.js via .is-warm. */
+.globe-stage::after {
   content: "";
   position: absolute;
-  inset: 50px;
-  border: 1px dashed rgba(31,27,24,.25);
-  border-radius: 50%;
+  inset: 0;
+
+  background: radial-gradient(circle at 50% 50%, rgba(185, 119, 106, 0.14), transparent 68%);
+
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
 }
-.pin {
+
+.globe-stage.is-warm::after {
+  opacity: 1;
+}
+
+
+/* ----------------------------------------
+   GLOBE MARKERS — small dots, not labelled pins: a name only
+   surfaces on hover/focus/selection, so eighteen real (sometimes
+   geographically close) places stay legible rather than cluttered.
+   Position is set every animation frame by globe.js via inline
+   transform, matching the sphere's current rotation.
+---------------------------------------- */
+
+.globe-marker {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
   border: 0;
-  background: var(--ink);
-  color: white;
-  border-radius: 999px;
-  padding: 9px 13px;
-  font-size: 12px;
+  background: transparent;
   cursor: pointer;
-  transition: transform .2s ease;
+  will-change: transform;
 }
-.pin:hover { transform: translateY(-3px); }
-.sydney { left: 68%; top: 65%; }
-.lux { left: 46%; top: 34%; }
-.uk { left: 37%; top: 29%; }
-.denmark { left: 50%; top: 22%; }
+
+.globe-marker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--glow);
+  box-shadow: 0 0 0 3px rgba(255, 250, 243, 0.75);
+
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.globe-marker:hover .globe-marker-dot,
+.globe-marker:focus-visible .globe-marker-dot {
+  transform: scale(1.35);
+}
+
+.globe-marker:focus-visible {
+  outline: none;
+}
+
+.globe-marker:focus-visible .globe-marker-dot {
+  box-shadow: 0 0 0 3px rgba(255, 250, 243, 0.9), 0 0 0 5px rgba(185, 119, 106, 0.35);
+}
+
+/* Subtle glow on the locked selection — a warm dusty pink-brown
+   shadow, not a pulsing effect; restraint over spectacle. */
+.globe-marker.is-selected .globe-marker-dot {
+  box-shadow: 0 0 0 3px rgba(255, 250, 243, 0.9), 0 0 14px rgba(185, 119, 106, 0.5);
+}
+
+.globe-marker-label {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.92);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+
+  color: var(--ink);
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.globe-marker:hover .globe-marker-label,
+.globe-marker:focus-visible .globe-marker-label,
+.globe-marker.is-selected .globe-marker-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+
+/* ----------------------------------------
+   NOTE PANEL
+---------------------------------------- */
+
 .map-note {
-  padding: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  padding: 50px;
+
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.map-note p { color: var(--muted); font-size: 18px; }
+
+.map-note.is-fading {
+  opacity: 0;
+  transform: translate3d(0, 10px, 0);
+}
+
+.map-note h3 {
+  margin-top: 14px;
+
+  font-size: clamp(34px, 4vw, 50px);
+}
+
+.map-note-meta {
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.map-note p {
+  margin: 20px 0 0;
+
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.map-note .text-link {
+  margin-top: 24px;
+}
+
 .text-link { color: var(--accent); text-decoration: none; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-marker-dot,
+  .globe-marker-label,
+  .map-note {
+    transition-duration: 0.01ms;
+  }
+}
 
 .cards {
   display: grid;
@@ -1578,8 +1745,21 @@ footer {
     min-height: auto;
   }
 
-  .map-visual {
-    min-height: 360px;
+  /* The globe stays a real, draggable sphere on mobile (touch drag
+     works via the same pointer-event handlers as desktop) — it just
+     gets a shorter stage and a slightly larger marker hit area, since
+     fingers are less precise than a cursor. */
+  .globe-stage {
+    min-height: 320px;
+  }
+
+  .globe-marker {
+    width: 32px;
+    height: 32px;
+  }
+
+  .map-note {
+    padding: 40px 28px;
   }
 
   h1 {
@@ -3733,13 +3913,6 @@ html.custom-cursor-active [contenteditable] {
   transform: translate(-50%, -50%) scale(0.68);
 }
 
-/* Optional detail — the cursor visually resembles a seed while near
-   the corner plant (see corner-plant.js): a slightly organic,
-   asymmetric outline instead of a perfect circle. */
-.custom-cursor-dot.is-seed {
-  border-radius: 42% 58% 55% 45% / 55% 45% 58% 42%;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor-dot {
     transition-duration: 0.01ms;
@@ -3748,154 +3921,446 @@ html.custom-cursor-active [contenteditable] {
 
 
 /* ========================================
-   EASTER EGG — CORNER PLANT (homepage only)
+   PIXEL FOX COMPANION (all pages)
 
-   Markup is built entirely by corner-plant.js (included only on
-   index.html); nothing to add in index.html itself. Reuses --muted
-   and --accent rather than introducing new colours.
+   Markup is built entirely by fox.js (included on every page);
+   nothing to add anywhere else. Colours are their own small
+   palette (--fox-*), distinct from the site's --ink/--accent but
+   chosen to sit quietly alongside them — warm, muted, low-contrast.
 ======================================== */
 
-/* EDIT POINT — size and stroke weight. */
 :root {
-  --plant-width: 64px;
-  --plant-height: 88px;
-  --plant-stroke: 1.3px;
+  /* Pixel palette — matches Elvira's reference spec exactly. */
+  --fox-fur: #d47a5c;
+  --fox-fur-light: #e6a287;
+  --fox-cream: #f6eee6;
+  --fox-shadow: #8c6f61;
+  --fox-ink: #231f20;
+  --fox-ground: rgba(35, 31, 32, 0.16);
 
-  /* EDIT POINT — bud growth reveal duration (~700–900ms per spec). */
-  --plant-bud-grow-duration: 0.8s;
-
-  /* EDIT POINT — the halo's blur radius at full strength (~6–9px per
-     spec). A fixed value, not JS-driven — only the halo's opacity
-     changes dynamically (see corner-plant.js), which keeps this
-     effect simple and doesn't depend on animating `filter` itself. */
-  --bud-glow-blur: 7px;
+  /* EDIT POINT — rendered size (viewBox is a fixed 40 x 44). */
+  --fox-width: 58px;
+  --fox-height: 64px;
 }
 
-.corner-plant {
+.pixel-fox {
   position: fixed;
-  right: 30px;
-  bottom: 24px;
+  right: 26px;
+  bottom: 20px;
 
-  width: var(--plant-width);
-  height: var(--plant-height);
+  width: var(--fox-width);
+  height: var(--fox-height);
 
   z-index: 6;
   cursor: pointer;
 
   /* Fixed positioning, out of document flow — causes no layout
-     shift on any existing section. */
+     shift on any existing section, on any page. */
 }
 
-.corner-plant-svg {
+.pixel-fox-svg {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-/* Clicks and hover always land on the .corner-plant container, not
-   individual stroke-only paths (inconsistent hit-testing across
-   browsers otherwise). */
-.corner-plant-svg,
-.corner-plant-svg * {
+/* Clicks/hover always land on the .pixel-fox container itself, not
+   individual shapes — consistent hit-testing regardless of which
+   part of the silhouette the pointer happens to be over. */
+.pixel-fox-svg,
+.pixel-fox-svg * {
   pointer-events: none;
 }
 
-.plant-stem,
-.plant-leaf {
+.fox-fur { fill: var(--fox-fur); }
+.fox-fur-light { fill: var(--fox-fur-light); }
+.fox-cream { fill: var(--fox-cream); }
+.fox-ink { fill: var(--fox-ink); }
+.fox-shadow { fill: var(--fox-shadow); }
+.fox-ground { fill: var(--fox-ground); }
+
+.fox-envelope-flap {
   fill: none;
-  stroke: var(--muted);
-  stroke-width: var(--plant-stroke);
+  stroke: var(--fox-shadow);
+  stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.plant-leaf {
+
+/* ---- breathing, tail sway (idle/sitting baseline) ---- */
+
+@keyframes fox-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.035); }
+}
+
+@keyframes fox-breathe-slow {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.018); }
+}
+
+.fox-body {
   transform-box: fill-box;
   transform-origin: bottom center;
-  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: fox-breathe 3.2s ease-in-out infinite;
 }
 
-/* The dwell-growth bud — a tiny circular growth point at the stem's
-   apical tip, not a third leaf. Hidden until .is-grown is added
-   directly to it (see corner-plant.js growBud()).
+.pixel-fox.is-sleeping .fox-body {
+  animation: fox-breathe-slow 5.4s ease-in-out infinite;
+}
 
-   transform-box: view-box + an explicit pixel transform-origin
-   (rather than the fill-box/bottom-center keyword .plant-leaf uses)
-   because this group now has two differently-sized concentric
-   circles (the dot and its larger halo) — their combined bounding
-   box's "bottom center" would shift depending on the halo's radius,
-   which isn't precise enough here. Referencing the SVG's own
-   viewBox coordinates directly instead always anchors on (32, 24) —
-   exactly the stem path's own top endpoint above — regardless of
-   either circle's size. */
-.plant-bud {
-  transform-box: view-box;
-  transform-origin: 32px 24px;
-  transform: scale(0);
+@keyframes fox-tail-sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(6deg); }
+}
+
+.fox-tail {
+  transform-box: fill-box;
+  transform-origin: 18% 88%;
+  animation: fox-tail-sway 4.4s ease-in-out infinite;
+}
+
+.pixel-fox.is-sitting .fox-tail {
+  animation-duration: 5.2s;
+}
+
+/* About — "sitting curled": tail settles in around the body (a
+   gentler partial curl than the full sleep wrap below) instead of
+   swaying, while the fox stays awake and alert (eyes open, normal
+   breathing) — a quieter settle, not a doze. */
+.pixel-fox.is-about .fox-tail {
+  animation: none;
+  transform: rotate(64deg) scale(0.98);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Lying/sleeping — the tail settles and, once fully asleep, wraps
+   in around the body rather than swaying. */
+.pixel-fox.is-lying .fox-tail {
+  animation: none;
+  transform: rotate(28deg);
+  transition: transform 0.6s ease;
+}
+
+.pixel-fox.is-sleeping .fox-tail {
+  animation: none;
+  transform: rotate(132deg) scale(0.96);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pixel-fox.is-waking .fox-tail {
+  animation: none;
+  transform: rotate(-16deg) scale(1.06);
+  transition: transform 0.5s ease;
+}
+
+
+/* ---- whole-body pose (sit / lie / sleep / wake / hop) ---- */
+
+.fox-rig {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pixel-fox.is-sitting .fox-rig {
+  transform: translateY(2px) scaleY(0.95);
+}
+
+.pixel-fox.is-lying .fox-rig {
+  transform: translateY(6px) scaleY(0.72) scaleX(1.08) rotate(-3deg);
+}
+
+.pixel-fox.is-sleeping .fox-rig {
+  transform: translateY(7px) scaleY(0.68) scaleX(1.1) rotate(-3deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pixel-fox.is-about .fox-rig {
+  transform: translateY(2.5px) scaleY(0.96);
+}
+
+@keyframes fox-stretch {
+  0% { transform: translateY(7px) scaleY(0.68) scaleX(1.1) rotate(-3deg); }
+  35% { transform: translateY(3px) scaleY(0.6) scaleX(1.28) rotate(-1deg); }
+  70% { transform: translateY(-1px) scaleY(1.08) scaleX(0.96) rotate(0deg); }
+  100% { transform: translateY(0) scaleY(1) scaleX(1) rotate(0deg); }
+}
+
+.pixel-fox.is-waking .fox-rig {
+  animation: fox-stretch 0.82s cubic-bezier(0.34, 1.2, 0.4, 1);
+}
+
+@keyframes fox-hop {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(-7px); }
+  60% { transform: translateY(0.5px); }
+}
+
+.pixel-fox.is-hopping .fox-rig {
+  animation: fox-hop 0.42s ease;
+}
+
+
+/* ---- head: hover look-up, autonomous look-around, fluffy tilt ---- */
+
+.fox-head {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Default hover look — home/about (no accessory): a plain curious
+   look-up. Overridden per accessory below (EDIT POINT — each of the
+   four accessory contexts gets its own small, bespoke hover
+   reaction rather than sharing this one). */
+.pixel-fox.is-looking .fox-head {
+  transform: translateY(-2px) rotate(-3deg);
+}
+
+/* Gallery — camera does the lifting (see .fox-accessory below); the
+   head barely moves, as if steadying a shot. */
+.pixel-fox[data-accessory="camera"].is-looking .fox-head {
+  transform: translateY(-1px) rotate(-2deg);
+}
+
+/* Essays/Field Notes — looks down at the book instead of up. */
+.pixel-fox[data-accessory="book"].is-looking .fox-head {
+  transform: translateY(2px) rotate(5deg);
+}
+
+/* Map — looks down toward the compass tucked at its paw. */
+.pixel-fox[data-accessory="compass"].is-looking .fox-head {
+  transform: translateY(1.5px) rotate(7deg);
+}
+
+/* Contact — a small alert lift, as the envelope itself is raised
+   to show it (see .fox-accessory below). */
+.pixel-fox[data-accessory="envelope"].is-looking .fox-head {
+  transform: translateY(-1.5px) rotate(-2deg);
+}
+
+.pixel-fox.is-fluffy .fox-head {
+  transform: rotate(9deg);
+  transition: transform 0.5s ease;
+}
+
+@keyframes fox-look-around {
+  0% { transform: rotate(0); }
+  22% { transform: rotate(-11deg); }
+  55% { transform: rotate(9deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0); }
+}
+
+.fox-head.is-looking-around {
+  animation: fox-look-around 1.8s ease-in-out;
+}
+
+
+/* ---- eyes (blink) and ears (twitch) ---- */
+
+.fox-eyes rect {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.09s ease;
+}
+
+.fox-eyes.is-blinking rect {
+  transform: scaleY(0.12);
+}
+
+.pixel-fox.is-sleeping .fox-eyes rect {
+  transform: scaleY(0.16);
+  transition: transform 0.4s ease;
+}
+
+.fox-ear-left,
+.fox-ear-right {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease;
+}
+
+.fox-ear-left.is-twitching {
+  transform: rotate(-14deg);
+}
+
+.fox-ear-right.is-twitching {
+  transform: rotate(14deg);
+}
+
+.pixel-fox.is-lying .fox-ear-left { transform: rotate(-8deg); }
+.pixel-fox.is-lying .fox-ear-right { transform: rotate(8deg); }
+
+.pixel-fox.is-sleeping .fox-ear-left,
+.pixel-fox.is-sleeping .fox-ear-right {
+  transform: rotate(0) scaleY(0.9);
+}
+
+
+/* ---- fluffy/confused reaction: fur tufts + a small pixel "?" ---- */
+
+.fox-fluff circle {
   opacity: 0;
-
-  transition: transform var(--plant-bud-grow-duration)
-      cubic-bezier(0.22, 1, 0.36, 1),
-    opacity var(--plant-bud-grow-duration) cubic-bezier(0.22, 1, 0.36, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.plant-bud.is-grown {
+.pixel-fox.is-fluffy .fox-fluff circle {
   opacity: 1;
   transform: scale(1);
 }
 
-/* The visible growth point — warm accent fill (not the stroke-only
-   --muted the rest of the plant uses), matching the "existing warm
-   brown accent colour" spec. Opacity (rest → slightly brighter on
-   approach) is set directly by corner-plant.js; the transition here
-   is what makes that change — and the asymmetric enter/exit speed,
-   via corner-plant.js toggling transition-duration — feel smooth. No
-   scale/size change ever happens here, so it never reads as
-   enlarging. */
-.plant-bud-dot {
-  fill: var(--accent);
-  opacity: 0.85;
-  transition: opacity 0.6s ease;
-}
-
-/* The halo — a separate, softly blurred circle sitting behind the
-   dot (same markup order in corner-plant.js — SVG paints in document
-   order, so the halo drawn first sits visually underneath). A plain
-   blurred fill circle rather than filter: drop-shadow on the dot
-   itself: simpler to reason about (opacity and scale are the only
-   moving parts; the blur radius is a fixed value, not something
-   being animated) and renders identically between Safari and
-   Chrome, where drop-shadow's colour-interpolation edge cases
-   sometimes don't. transform-box: fill-box + transform-origin:
-   center scales it from its own centre (which is also the dot's
-   centre) rather than the SVG viewport's origin. It both brightens
-   and visibly grows with proximity (see corner-plant.js) so "near"
-   and "very near" read as distinctly different amounts of glow. */
-.plant-bud-halo {
-  fill: var(--accent);
-  filter: blur(var(--bud-glow-blur));
+.fox-question {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  font-size: 9px;
+  fill: var(--fox-shadow);
+  text-anchor: middle;
   opacity: 0;
-
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(0.6);
-
-  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.corner-plant.is-near .plant-stem {
-  stroke: var(--accent);
-  transition: stroke 1.4s ease;
+@keyframes fox-question-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2.5px); }
 }
 
-.corner-plant-message {
+.pixel-fox.is-fluffy .fox-question {
+  opacity: 1;
+  animation: fox-question-bob 1.3s ease-in-out infinite;
+}
+
+
+/* ---- sleep "z"s ---- */
+
+.fox-zzz text {
+  opacity: 0;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  fill: var(--fox-shadow);
+  text-anchor: middle;
+}
+
+@keyframes fox-zzz-rise {
+  0% { opacity: 0; transform: translateY(2px) scale(0.8); }
+  25% { opacity: 0.85; }
+  75% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-9px) scale(1.1); }
+}
+
+.pixel-fox.is-sleeping .fox-zzz text {
+  animation: fox-zzz-rise 2.6s ease-in-out infinite;
+}
+
+.pixel-fox.is-sleeping .fox-zzz text:nth-child(2) { animation-delay: 0.5s; }
+.pixel-fox.is-sleeping .fox-zzz text:nth-child(3) { animation-delay: 1s; }
+
+
+/* ---- click sparkles ---- */
+
+.fox-sparkle {
+  opacity: 0;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  font-size: 6px;
+  fill: var(--fox-fur);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes fox-sparkle-pop {
+  0% { opacity: 0; transform: translateY(0) scale(0.4); }
+  35% { opacity: 1; transform: translateY(-4px) scale(1); }
+  100% { opacity: 0; transform: translateY(-9px) scale(0.7); }
+}
+
+.pixel-fox.is-hopping .fox-sparkle-a {
+  animation: fox-sparkle-pop 0.5s ease-out;
+}
+
+.pixel-fox.is-hopping .fox-sparkle-b {
+  animation: fox-sparkle-pop 0.5s ease-out 0.06s;
+}
+
+
+/* ---- accessory (per page/section context) ---- */
+
+.fox-accessory {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.4s ease, opacity 0.5s ease;
+}
+
+/* Default hover reaction — subtle lift. Overridden per accessory
+   below so each reads as its own small gesture rather than one
+   generic nudge (see the matching .fox-head reactions above). */
+.pixel-fox.is-looking .fox-accessory {
+  transform: translateY(-1.5px);
+}
+
+/* Gallery — the camera is what lifts, up toward eye level. */
+.pixel-fox[data-accessory="camera"].is-looking .fox-accessory {
+  transform: translateY(-3.5px) rotate(-6deg);
+}
+
+/* Essays/Field Notes — the book stays put; the head looks down at
+   it instead (see .fox-head above). */
+.pixel-fox[data-accessory="book"].is-looking .fox-accessory {
+  transform: translateY(0.5px);
+}
+
+/* Map — a small curious tilt, as if being consulted. */
+.pixel-fox[data-accessory="compass"].is-looking .fox-accessory {
+  transform: translateY(-1px) rotate(-8deg);
+}
+
+/* Contact — raised to show it. */
+.pixel-fox[data-accessory="envelope"].is-looking .fox-accessory {
+  transform: translateY(-3px) rotate(4deg);
+}
+
+.fox-accessory-camera,
+.fox-accessory-book,
+.fox-accessory-compass,
+.fox-accessory-envelope {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pixel-fox[data-accessory="camera"] .fox-accessory-camera,
+.pixel-fox[data-accessory="book"] .fox-accessory-book,
+.pixel-fox[data-accessory="compass"] .fox-accessory-compass,
+.pixel-fox[data-accessory="envelope"] .fox-accessory-envelope {
+  opacity: 1;
+}
+
+/* Accessory is hidden (never mid-page/hover-reactive) once the fox
+   is actually asleep or mid-stretch waking up — "placed aside"
+   rather than staying visible on a curled-up, eyes-closed fox. It
+   fades back in on its own once .is-idle resumes and the context's
+   opacity rule above re-applies. */
+.pixel-fox.is-sleeping .fox-accessory,
+.pixel-fox.is-waking .fox-accessory {
+  opacity: 0;
+}
+
+
+/* ---- speech / thought bubble ---- */
+
+.fox-message {
   position: absolute;
   left: 50%;
   bottom: 100%;
 
   margin: 0 0 10px;
-  padding: 7px 14px;
+  padding: 6px 12px;
 
   width: max-content;
   max-width: 150px;
@@ -3907,7 +4372,7 @@ html.custom-cursor-active [contenteditable] {
   color: var(--ink);
   font-family: "Cormorant Garamond", serif;
   font-style: italic;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.4;
   text-align: center;
 
@@ -3915,45 +4380,76 @@ html.custom-cursor-active [contenteditable] {
   pointer-events: none;
   transform: translate(-50%, 6px);
 
-  transition: opacity 0.5s ease,
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.corner-plant-message.is-visible {
+.fox-message.is-visible {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .plant-leaf,
-  .plant-bud,
-  .plant-bud-dot,
-  .plant-bud-halo,
-  .corner-plant-message {
-    transition-duration: 0.01ms;
-  }
-
-  /* The bud still grows in (corner-plant.js's dwell timer isn't
-     motion-gated), just without an animated reveal — it appears
-     instantly via the 0.01ms override above, at rest opacity. The
-     halo glow is skipped entirely under reduced motion (see
-     corner-plant.js's !reduceMotion guards) and never engages, so
-     the dot's own resting accent-coloured fill is the only thing
-     marking it as grown — no separate static highlight needed. */
+/* The autonomous thought bubble — same element, quieter: smaller,
+   slightly translucent, so it reads as a passing thought rather
+   than a greeting aimed at the visitor. */
+.fox-message.is-thought {
+  font-size: 12px;
+  padding: 4px 10px;
+  max-width: 120px;
 }
 
-@media (max-width: 760px) {
-  .corner-plant {
-    right: 16px;
-    bottom: 16px;
+.fox-message.is-thought.is-visible {
+  opacity: 0.92;
+}
 
-    --plant-width: 44px;
-    --plant-height: 60px;
+
+/* ---- reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fox-body,
+  .fox-tail,
+  .fox-head,
+  .fox-question,
+  .fox-zzz text,
+  .fox-sparkle-a,
+  .fox-sparkle-b,
+  .pixel-fox.is-hopping .fox-rig,
+  .pixel-fox.is-waking .fox-rig {
+    animation: none !important;
   }
 
-  .corner-plant-message {
-    max-width: 140px;
-    font-size: 13px;
+  .fox-rig,
+  .fox-head,
+  .fox-eyes rect,
+  .fox-ear-left,
+  .fox-ear-right,
+  .fox-tail,
+  .fox-message,
+  .fox-accessory,
+  .fox-fluff circle {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ---- mobile ---- */
+
+@media (max-width: 760px) {
+  .pixel-fox {
+    right: 14px;
+    bottom: 14px;
+
+    --fox-width: 42px;
+    --fox-height: 46px;
+  }
+
+  .fox-message {
+    max-width: 130px;
+    font-size: 12px;
+  }
+
+  .fox-message.is-thought {
+    max-width: 105px;
+    font-size: 11px;
   }
 }

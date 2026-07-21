@@ -278,33 +278,12 @@ window.addEventListener(
   }
 );
 
-const notes = {
-  Sydney: {
-    title: 'Sydney',
-    text: 'Where I learned that independence can be both lonely and beautiful.'
-  },
-  Luxembourg: {
-    title: 'Luxembourg',
-    text: 'A small country that made me curious about language, identity, and European childhoods.'
-  },
-  Derbyshire: {
-    title: 'Derbyshire',
-    text: 'A place where literature, landscape, and imagination meet — hello, Mr Darcy.'
-  },
-  Denmark: {
-    title: 'Denmark',
-    text: 'A quiet note on design, distance, and the art of seeming independent.'
-  }
-};
+/* ========================================
+   TRAVEL MAP — moved to globe.js
 
-const mapNote = document.getElementById('mapNote');
-document.querySelectorAll('.pin').forEach(pin => {
-  pin.addEventListener('click', () => {
-    const place = pin.dataset.place;
-    mapNote.innerHTML = `
-      <h3>${notes[place].title}</h3>
-      <p>${notes[place].text}</p>
-      <a href="#" class="text-link">Read travel note →</a>
-    `;
-  });
-});
+   The old flat, aesthetically-arranged map has been replaced by an
+   interactive 3D globe. Its data (GLOBE_LOCATIONS), rendering, and
+   interaction all live in globe.js now — see that file's header
+   comment. Kept out of this file so it can be a fully isolated,
+   optional feature, same pattern as cursor.js and fox.js.
+======================================== */
