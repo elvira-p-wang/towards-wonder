@@ -310,6 +310,12 @@ html.site-menu-open body {
 @media (max-width: 760px) {
   .nav-menu-toggle {
     display: flex;
+    /* At this width <nav> is hidden and the music toggle has moved
+       out to <body> (see audio.js), so the hamburger is left as the
+       only item after the logo in the header's flex row — without
+       this it just sits flush-left next to the logo instead of in
+       its usual top-right corner. */
+    margin-left: auto;
   }
 
   .site-menu {
