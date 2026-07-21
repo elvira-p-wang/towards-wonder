@@ -4449,8 +4449,16 @@ html.custom-cursor-active [contenteditable] {
   width: var(--fox-width);
   height: var(--fox-height);
 
-  z-index: 6;
+  z-index: 20;
   cursor: pointer;
+  pointer-events: auto;
+
+  /* Mobile Safari/Chrome can otherwise wait ~300ms to see whether a
+     tap is the start of a double-tap-zoom or scroll gesture before
+     firing click — this tells it to treat a tap here as an
+     immediate, unambiguous action instead. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 
   /* Fixed positioning, out of document flow — causes no layout
      shift on any existing section, on any page. */
@@ -5009,7 +5017,11 @@ html.custom-cursor-active [contenteditable] {
 @media (max-width: 760px) {
   .pixel-fox {
     right: 14px;
-    bottom: 14px;
+    /* max() keeps it clear of a phone's home-indicator gesture strip
+       (env(safe-area-inset-bottom)) — without this, a tap here can
+       get swallowed by the OS's own swipe-up gesture instead of
+       ever reaching the page. */
+    bottom: max(14px, env(safe-area-inset-bottom, 0px) + 8px);
 
     --fox-width: 42px;
     --fox-height: 46px;
