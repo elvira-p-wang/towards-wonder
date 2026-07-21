@@ -1,37 +1,37 @@
 # Towards Wonder
 
-A personal website about curiosity, design, science, and the small things worth keeping.
+A quiet place for essays, drawings, maps, and small curiosities.
 
 🌐 https://elvira.studio
 
 ---
 
-## What's inside
+## What you'll find
 
-- Essays
-- Field Notes
-- Gallery
-- Interactive World Map
-- Project (Brewing...)
+- Essays that think out loud
+- Field Notes from science and everyday life
+- A growing collection of photographs and drawings
+- An interactive map of places that stayed with me
+- Small projects, still becoming
 
-Built to explore the intersection of oral health, writing, illustration, and thoughtful web design.
-
----
-
-## Tech
-
-- HTML
-- CSS
-- JavaScript
-- Three.js
-- GitHub
-- Vercel
+Nothing here is finished.
+Everything here is becoming.
 
 ---
 
-## Design
+## Built with
 
-Designed and built from scratch by Elvira Wang.
+HTML · CSS · JavaScript · Three.js · GitHub · Vercel
 
-Inspired by Nordic minimalism, editorial layouts, and slow interactions.
+---
+
+## Why I made this
+
+I study oral health, but I'm equally fascinated by design, writing, and the ways people notice the world.
+
+This website is where those interests meet.
+
+---
+
+Designed and built by Elvira Wang.
 
