@@ -12,7 +12,7 @@ There is no build, lint, or test setup for the site itself. To preview changes, 
 - Double-click `index.html` to open it directly in a browser, or
 - Serve the directory locally, e.g. `python3 -m http.server` from the project root, then visit `http://localhost:8000`.
 
-To publish: drag the folder into Netlify Drop, or push to a GitHub Pages–enabled repo (per [README.txt](README.txt)).
+To publish: drag the folder into Netlify Drop, or push to a GitHub Pages–enabled repo (per [README.md](README.md)).
 
 If you've added photos to `images/gallery/{photographs,drawings,concerts}/`, run `npm install` once, then `npm run prepare-gallery` before deploying — see "Gallery architecture" for what this does. This is a manual step by design (the site itself has no build/server process, so nothing regenerates automatically on its own) — but `npm run watch-gallery` will run it automatically for you, in the background, every time a file changes under `images/gallery/`, for as long as you leave it running in a terminal. It does not make the *deployed* page auto-update (that still needs a commit + redeploy after you're done); it only keeps your local preview in sync while you're adding images, so you don't have to remember to re-run the command by hand each time.
 
