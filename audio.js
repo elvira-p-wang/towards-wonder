@@ -56,6 +56,17 @@
 
   // ----------------------------------------
   // MARKUP
+  //
+  // Lives in the top nav, not a fixed corner: inserted directly into
+  // this page's own <header class="nav ..."> — right before
+  // .nav-menu-toggle when that exists (index.html only), so it sits
+  // beside the hamburger once the text links hide on mobile; appended
+  // as the header's last child everywhere else (essays/field-notes/
+  // gallery pages have no hamburger). Combined with the "nav { margin-
+  // left: auto }" rule in style.css, this keeps it grouped tightly
+  // with the nav links and hamburger on the right, logo still pinned
+  // left — see "AMBIENT MUSIC BUTTON" in style.css for the layout
+  // side of this.
   // ----------------------------------------
 
   var button = document.createElement("button");
@@ -74,7 +85,20 @@
     '<circle cx="16" cy="16" r="3"/>' +
     "</svg>";
 
-  document.body.appendChild(button);
+  var navHeader = document.querySelector("header.nav");
+
+  if (navHeader) {
+    var navMenuToggle = navHeader.querySelector(".nav-menu-toggle");
+    if (navMenuToggle) {
+      navHeader.insertBefore(button, navMenuToggle);
+    } else {
+      navHeader.appendChild(button);
+    }
+  } else {
+    // Shouldn't happen on this site, but never lose the button
+    // entirely if some future page lacks a <header class="nav">.
+    document.body.appendChild(button);
+  }
 
   // ----------------------------------------
   // AUDIO — created lazily, only on first play
