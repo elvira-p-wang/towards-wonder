@@ -257,6 +257,56 @@ if (exploreItems.length) {
 }
 
 /* ========================================
+   SCROLL REVEAL — page-wide
+   Generalises the reveal above (Explore's own
+   intro/list fade-rise) to every section below
+   it — Essays, Field Notes, Map, Gallery,
+   Projects, About Me, Contact — via the shared
+   .reveal-up class (plus .essay-spine, which
+   carries its own bespoke version in CSS since
+   its `transform` is already used for a hover
+   slide). One-time: each element eases in the
+   first time it crosses into view, then is
+   left alone, same as exploreItems above.
+======================================== */
+
+const revealUpItems = document.querySelectorAll('.reveal-up, .essay-spine');
+
+if (revealUpItems.length) {
+
+  if (!('IntersectionObserver' in window)) {
+
+    revealUpItems.forEach(item => {
+      item.classList.add('is-visible');
+    });
+
+  } else {
+
+    const revealUpObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          requestAnimationFrame(() => {
+            entry.target.classList.add('is-visible');
+          });
+
+          revealUpObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -10% 0px'
+      }
+    );
+
+    revealUpItems.forEach(item => {
+      revealUpObserver.observe(item);
+    });
+  }
+}
+
+/* ========================================
    TOUCH DEVICES
 ======================================== */
 

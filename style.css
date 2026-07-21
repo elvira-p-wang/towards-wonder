@@ -61,6 +61,245 @@ body {
   font-size: 14px;
 }
 
+
+/* ========================================
+   MOBILE SITE MENU
+   A hamburger toggle (top-right, mobile only) that opens a quiet
+   full-screen index of every section on the page. The sticky header
+   itself stays on top of the overlay (rather than being covered by
+   it) so the toggle — morphed into an × — remains reachable to close
+   it again. Explore's four destinations (Essays, Field Notes, Map,
+   Gallery) are nested underneath it as smaller, indented rows, so the
+   hierarchy of the page reads at a glance without needing a
+   click-to-expand accordion.
+======================================== */
+
+.nav-menu-toggle {
+  display: none;
+
+  width: 26px;
+  height: 16px;
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-menu-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+
+  background: var(--ink);
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.nav-menu-toggle[aria-expanded="true"] .nav-menu-toggle-bar:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.nav-menu-toggle[aria-expanded="true"] .nav-menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-menu-toggle[aria-expanded="true"] .nav-menu-toggle-bar:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+.site-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+
+  display: none;
+  flex-direction: column;
+
+  padding-top: 102px;
+
+  background: rgba(248, 243, 236, 0.97);
+  backdrop-filter: blur(20px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0s linear 0.45s;
+}
+
+.site-menu[aria-hidden="false"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    opacity 0.45s ease,
+    visibility 0s linear 0s;
+}
+
+.site-menu-list {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 8vw 40px;
+}
+
+.site-menu-item {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 15px 0;
+
+  color: var(--ink);
+  text-decoration: none;
+
+  border-bottom: 1px solid var(--line);
+
+  opacity: 0;
+  transform: translateY(14px);
+
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+}
+
+.site-menu-number {
+  flex-shrink: 0;
+  width: 30px;
+
+  color: var(--accent);
+
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+
+  opacity: 0.55;
+}
+
+.site-menu-title {
+  flex: 1;
+  min-width: 0;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(26px, 7vw, 32px);
+  font-weight: 500;
+}
+
+.site-menu-arrow {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+
+  color: var(--accent);
+  opacity: 0.5;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.site-menu-item:active .site-menu-title,
+.site-menu-item:hover .site-menu-title {
+  color: var(--accent);
+}
+
+.site-menu-item:active .site-menu-arrow,
+.site-menu-item:hover .site-menu-arrow {
+  opacity: 1;
+  transform: translate(4px, -4px) rotate(8deg);
+}
+
+
+/* Explore's sub-destinations — quieter, indented, no number/arrow */
+
+.site-menu-item--sub {
+  padding: 10px 0 10px 46px;
+
+  border-bottom-color: transparent;
+}
+
+.site-menu-item--sub .site-menu-title {
+  font-size: clamp(17px, 4.4vw, 19px);
+  font-weight: 400;
+
+  color: var(--muted);
+}
+
+.site-menu-item--sub:active .site-menu-title,
+.site-menu-item--sub:hover .site-menu-title {
+  color: var(--accent);
+}
+
+.site-menu-item:last-child {
+  border-bottom: none;
+}
+
+
+/* Staggered reveal as the menu opens */
+
+.site-menu[aria-hidden="false"] .site-menu-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-menu-item:nth-child(1)  { transition-delay: 0.04s; }
+.site-menu-item:nth-child(2)  { transition-delay: 0.08s; }
+.site-menu-item:nth-child(3)  { transition-delay: 0.11s; }
+.site-menu-item:nth-child(4)  { transition-delay: 0.14s; }
+.site-menu-item:nth-child(5)  { transition-delay: 0.17s; }
+.site-menu-item:nth-child(6)  { transition-delay: 0.2s; }
+.site-menu-item:nth-child(7)  { transition-delay: 0.23s; }
+.site-menu-item:nth-child(8)  { transition-delay: 0.26s; }
+.site-menu-item:nth-child(9)  { transition-delay: 0.29s; }
+
+html.site-menu-open,
+html.site-menu-open body {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-menu-toggle-bar,
+  .site-menu,
+  .site-menu-item,
+  .site-menu-arrow {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-menu-toggle {
+    display: flex;
+  }
+
+  .site-menu {
+    display: flex;
+  }
+}
+
 main { padding: 0 7vw; }
 .hero {
   min-height: 82vh;
@@ -69,6 +308,7 @@ main { padding: 0 7vw; }
   align-items: center;
   gap: 48px;
   padding: 70px 0 40px;
+  overflow-x: hidden; /* contains the ambient glow's soft bleed past .hero-right's edge */
 }
 
 .hero-left {
@@ -145,6 +385,135 @@ main { padding: 0 7vw; }
 
   background-size: 100%;
   background-position: center 45%;
+}
+
+/* ========================================
+   HERO ENTRANCE — "the page breathes in"
+   Pure CSS, no loading screen, no JS: the
+   page is already fully laid out on first
+   paint, and these elements simply ease
+   into their resting state via animation-
+   delay. Order: photo → handwriting → body
+   copy → title (deliberately a touch slower
+   and heavier than the copy) → line → Begin
+   button, which settles in last, like a
+   held breath finishing. A faint ambient
+   glow behind the photo and a near-
+   imperceptible drift on the grain texture
+   keep things quietly alive afterwards,
+   rather than the page going still the
+   moment the entrance finishes.
+======================================== */
+
+.hero-photo {
+  opacity: 0;
+  animation: hero-photo-in .85s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.hero-right::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 0 0 0 140px;
+  background: radial-gradient(circle at 60% 35%, rgba(185,119,106,.4), rgba(185,119,106,0) 65%);
+  filter: blur(40px);
+  opacity: 0;
+  pointer-events: none;
+  animation:
+    hero-glow-in .9s ease-out .1s forwards,
+    hero-glow-breathe 9s ease-in-out 1s infinite;
+}
+
+.handwriting {
+  opacity: 0;
+  animation: hero-rise-in .5s ease-out .05s forwards;
+}
+
+.hero-copy {
+  opacity: 0;
+  animation: hero-rise-in .5s ease-out .12s forwards;
+}
+
+.hero h1 {
+  opacity: 0;
+  animation: hero-rise-in-title .65s cubic-bezier(.19,1,.22,1) .2s forwards;
+}
+
+.short-line {
+  opacity: 0;
+  transform-origin: left center;
+  animation: hero-line-in .5s ease-out .5s forwards;
+}
+
+.begin-button {
+  opacity: 0;
+  animation: hero-rise-in .5s ease-out .62s forwards;
+}
+
+@keyframes hero-photo-in {
+  from { opacity: 0; transform: scale(1.035); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hero-glow-in {
+  from { opacity: 0; }
+  to   { opacity: .22; }
+}
+
+@keyframes hero-glow-breathe {
+  0%, 100% { opacity: .16; transform: scale(1); }
+  50%      { opacity: .3; transform: scale(1.04); }
+}
+
+@keyframes hero-rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-rise-in-title {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-line-in {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes grain-drift {
+  0%, 100% { background-position: 0 0; }
+  50%      { background-position: 7px 11px; }
+}
+
+.grain {
+  animation: grain-drift 48s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .hero-right::before,
+  .handwriting,
+  .hero-copy,
+  .hero h1,
+  .short-line,
+  .begin-button,
+  .grain {
+    animation: none !important;
+  }
+
+  .hero-photo,
+  .handwriting,
+  .hero-copy,
+  .hero h1,
+  .short-line,
+  .begin-button {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-right::before {
+    opacity: .22;
+  }
 }
 
 .eyebrow, .section-label {
@@ -723,6 +1092,53 @@ h3 { font-size: 28px; }
   }
 }
 
+/* ========================================
+   SCROLL REVEAL — page-wide
+   Generalises the Explore section's own fade
+   + gentle-rise (above) to every section below
+   it — Essays, Field Notes, Map, Gallery,
+   Projects, About Me, Contact — so scrolling
+   down never pops content in; each piece
+   eases into place once, the first time it
+   crosses into view (see script.js "SCROLL
+   REVEAL"). `--reveal-delay` lets a handful of
+   side-by-side elements (a heading next to its
+   copy, three gallery panels, two project
+   cards) stagger slightly rather than arriving
+   in a single flat beat — set per-element
+   below, right next to what it's staggering.
+   Reduced-motion users still get the reveal,
+   just instantly, matching the Explore
+   section's own convention above.
+======================================== */
+
+.reveal-up {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+
+  will-change: opacity, transform;
+
+  transition:
+    opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s);
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal-d1 { --reveal-delay: 0.05s; }
+.reveal-d2 { --reveal-delay: 0.15s; }
+.reveal-d3 { --reveal-delay: 0.27s; }
+.reveal-d4 { --reveal-delay: 0.38s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    transition-duration: 0.01ms;
+  }
+}
+
 .section, .split-section, .contact {
   padding: 90px 0;
   border-top: 1px solid var(--line);
@@ -969,6 +1385,11 @@ h3 { font-size: 28px; }
 .card span { color: var(--accent); font-size: 13px; }
 .card p { color: var(--muted); }
 .large { min-height: 260px; }
+
+/* Scroll reveal stagger — the two project cards sit side by side, so
+   without this they'd enter together in one flat beat. See "SCROLL
+   REVEAL" further up for the shared .reveal-up recipe. */
+.two .card:nth-child(2) { --reveal-delay: 0.12s; }
 
 /* ========================================
    FIELD NOTES — SCATTERED ARCHIVE
@@ -1317,13 +1738,33 @@ h3 { font-size: 28px; }
 
   overflow: hidden;
 
+  opacity: 0;
   transform: translateX(0);
 
   transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
     transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
     padding 0.62s cubic-bezier(0.22, 1, 0.36, 1),
     background-color 0.5s ease,
     box-shadow 0.55s ease;
+}
+
+/* Scroll reveal — opacity only (not the shared .reveal-up recipe),
+   since this element's own `transform` is already spoken for by its
+   hover slide-right above; animating both from the same property
+   would fight each other. Staggered per spine via --reveal-delay,
+   same mechanism as everywhere else — see "SCROLL REVEAL" above. */
+.essay-spine.is-visible {
+  opacity: 1;
+}
+
+.essay-spine:nth-of-type(2) { --reveal-delay: 0.12s; }
+.essay-spine:nth-of-type(3) { --reveal-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .essay-spine {
+    transition-duration: 0.01ms;
+  }
 }
 
 
@@ -2862,6 +3303,11 @@ footer {
   cursor: pointer;
 }
 
+/* Scroll reveal stagger — three panels side by side; see "SCROLL
+   REVEAL" further up for the shared .reveal-up recipe. */
+.gallery-panel:nth-child(2) { --reveal-delay: 0.12s; }
+.gallery-panel:nth-child(3) { --reveal-delay: 0.24s; }
+
 .gallery-panel-image {
   position: absolute;
   inset: 0;
@@ -4267,13 +4713,16 @@ html.custom-cursor-active [contenteditable] {
 }
 
 
-/* ---- Projects/About Me: round glasses + a chin-propped paw ----
-   Both hidden by default, shown together only via .is-about (set on
-   scroll into #projects or #about-me) — a "pausing to think" pose,
-   replacing the earlier squash/tail-curl "sitting curled" attempt. */
+/* ---- Projects/About Me: round glasses + a tilted head ----
+   Hidden/untilted by default, shown together only via .is-about (set
+   on scroll into #projects or #about-me) — a quiet, quizzical
+   "pausing to think" pose, replacing both the earlier squash/tail-
+   curl attempt and the chin-propped paw that followed it. */
 
 .fox-glasses {
   opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
   transition: opacity 0.4s ease;
 }
 
@@ -4287,12 +4736,37 @@ html.custom-cursor-active [contenteditable] {
   stroke-width: 0.8;
 }
 
-.fox-chin-paw {
+/* Resting head tilt — kept, unchanged, through hover too (see the
+   combined selector below), so hovering nudges the glasses (see the
+   push keyframe below) without the head itself snapping to the
+   plain look-up every other context uses. */
+
+.pixel-fox.is-about.fox-head {
+  transform: rotate(12deg);
+}
+.pixel-fox.is-about.is-looking .fox-head {
+  transform: rotate(-16deg);
+}
+
+/* Hover — a quick, snappy "push the glasses back up the nose"
+   nudge, distinct from the head's own hover reactions elsewhere. */
+@keyframes fox-glasses-push {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-1.4px); }
+  60% { transform: translateY(0.3px); }
+  100% { transform: translateY(0); }
+}
+
+.pixel-fox.is-about.is-looking .fox-glasses {
+  animation: fox-glasses-push 0.5s ease-out;
+}
+
+.fox-bowtie {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
-.pixel-fox.is-about .fox-chin-paw {
+.pixel-fox[data-accessory="envelope"] .fox-bowtie {
   opacity: 1;
 }
 
@@ -4510,7 +4984,8 @@ html.custom-cursor-active [contenteditable] {
   .fox-sparkle-a,
   .fox-sparkle-b,
   .pixel-fox.is-hopping .fox-rig,
-  .pixel-fox.is-waking .fox-rig {
+  .pixel-fox.is-waking .fox-rig,
+  .pixel-fox.is-about.is-looking .fox-glasses {
     animation: none !important;
   }
 
@@ -4522,6 +4997,7 @@ html.custom-cursor-active [contenteditable] {
   .fox-tail,
   .fox-message,
   .fox-accessory,
+  .fox-glasses,
   .fox-fluff circle {
     transition-duration: 0.01ms !important;
   }

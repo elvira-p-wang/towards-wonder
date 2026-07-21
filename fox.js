@@ -194,15 +194,14 @@
           '<text class="fox-question" x="20" y="-1">?</text>' +
         "</g>" +
 
-        // Thinking paw — hidden by default (see .fox-chin-paw in
-        // CSS), shown alongside the glasses for Projects/About Me:
-        // a paw propped against the chin/cheek, overlapping down
-        // into the shoulder so it reads as connected to the body
-        // rather than floating. Painted after the head so it sits
-        // on top of both head and body.
-        '<g class="fox-chin-paw">' +
-          '<rect class="fox-cream" x="22" y="22" width="5" height="6" />' +
-          '<rect class="fox-shadow" x="23" y="27" width="3" height="1" />' +
+        // Bow tie — hidden by default (see .fox-bowtie in CSS),
+        // shown only for Contact: two brown wings meeting at a
+        // small centre knot, sitting right at the collar where the
+        // head meets the chest.
+        '<g class="fox-bowtie">' +
+          '<path class="fox-shadow" d="M14 24 L14 29 L19 26.5 Z" />' +
+          '<path class="fox-shadow" d="M26 24 L26 29 L21 26.5 Z" />' +
+          '<rect class="fox-shadow" x="18.5" y="25.5" width="3" height="2" />' +
         "</g>" +
 
         // Sleep "z"s and click sparkles — hidden until their state

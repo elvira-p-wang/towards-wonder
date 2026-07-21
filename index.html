@@ -12,7 +12,7 @@
 <body>
   <div class="grain"></div>
 
-  <header class="nav">
+  <header class="nav home-nav">
     <a href="/" class="logo">
     <img src="images/logo.png" alt="Towards Wonder">
     </a>
@@ -22,10 +22,74 @@
   <a href="#about-me">About</a>
   <a href="#contact">Contact</a>
 </nav>
+
+    <button type="button" class="nav-menu-toggle" aria-expanded="false" aria-controls="siteMenu" aria-label="Open menu">
+      <span class="nav-menu-toggle-bar"></span>
+      <span class="nav-menu-toggle-bar"></span>
+      <span class="nav-menu-toggle-bar"></span>
+    </button>
   </header>
 
+  <!-- Mobile site index — a quiet full-screen overlay listing every
+       section on the page. Explore's own four destinations (Essays,
+       Field Notes, Map, Gallery) are nested under it as smaller,
+       indented rows so the hierarchy reads at a glance without an
+       accordion. Opened/closed by mobile-nav.js; invisible and inert
+       above the 760px breakpoint where the full nav is already shown. -->
+  <div class="site-menu" id="siteMenu" aria-hidden="true">
+    <nav class="site-menu-list" aria-label="Site sections">
+
+      <a href="#hero" class="site-menu-item">
+        <span class="site-menu-number">01</span>
+        <span class="site-menu-title">Hero</span>
+        <svg class="site-menu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </a>
+
+      <a href="#explore" class="site-menu-item">
+        <span class="site-menu-number">02</span>
+        <span class="site-menu-title">Explore</span>
+        <svg class="site-menu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </a>
+
+      <a href="#essays" class="site-menu-item site-menu-item--sub">
+        <span class="site-menu-title">Essays</span>
+      </a>
+
+      <a href="#discoveries" class="site-menu-item site-menu-item--sub">
+        <span class="site-menu-title">Field Notes</span>
+      </a>
+
+      <a href="#map" class="site-menu-item site-menu-item--sub">
+        <span class="site-menu-title">Map</span>
+      </a>
+
+      <a href="#gallery" class="site-menu-item site-menu-item--sub">
+        <span class="site-menu-title">Gallery</span>
+      </a>
+
+      <a href="#projects" class="site-menu-item">
+        <span class="site-menu-number">03</span>
+        <span class="site-menu-title">Projects</span>
+        <svg class="site-menu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </a>
+
+      <a href="#about-me" class="site-menu-item">
+        <span class="site-menu-number">04</span>
+        <span class="site-menu-title">About</span>
+        <svg class="site-menu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </a>
+
+      <a href="#contact" class="site-menu-item">
+        <span class="site-menu-number">05</span>
+        <span class="site-menu-title">Contact</span>
+        <svg class="site-menu-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="8 7 17 7 17 16"/></svg>
+      </a>
+
+    </nav>
+  </div>
+
   <main>
-  <section class="hero">
+  <section id="hero" class="hero">
   <div class="hero-left">
     <p class="handwriting">Elvira</p>
     <h1>Towards <em>Wonder.</em></h1>
@@ -152,7 +216,7 @@ and being human.
 
   <div class="essays-intro">
 
-    <div class="essays-heading">
+    <div class="essays-heading reveal-up">
       <p class="section-label">Essays</p>
 
       <h2>
@@ -161,7 +225,7 @@ and being human.
       </h2>
     </div>
 
-    <p class="essays-intro-copy">
+    <p class="essays-intro-copy reveal-up reveal-d2">
       Longer reflections on beauty, care,
       uncertainty, and becoming.
     </p>
@@ -221,7 +285,7 @@ and being human.
 
   </div>
 
-  <div class="essays-ending">
+  <div class="essays-ending reveal-up">
     <span class="essays-ending-line"></span>
     <p>Still growing.</p>
   </div>
@@ -229,7 +293,7 @@ and being human.
 
  <!-- Field Notes -->
     <section id="discoveries" class="section field-notes-section">
-      <div class="section-heading">
+      <div class="section-heading reveal-up">
         <p class="section-label">Field Notes</p>
         <h2>Small things worth keeping.</h2>
         <p class="field-notes-copy">Unfinished thoughts, kept as they were written.</p>
@@ -241,7 +305,7 @@ and being human.
         - Cards are laid out newest → oldest, left → right (largest number first).
         - Whenever a new note is added, renumber + reorder the entire set by date.
       -->
-      <div class="field-notes-row" tabindex="0" aria-label="Field notes — scroll horizontally to browse">
+      <div class="field-notes-row reveal-up" tabindex="0" aria-label="Field notes — scroll horizontally to browse">
 
         <a href="field-notes/the-shape-of-home.html" class="field-note-card">
           <span class="field-note-number">013</span>
@@ -445,12 +509,12 @@ and being human.
 
 <section id="map" class="section map-section">
 
-  <div class="section-heading">
+  <div class="section-heading reveal-up">
     <p class="section-label">Map</p>
     <h2>Places that stayed with me.</h2>
   </div>
 
-  <div class="map-card">
+  <div class="map-card reveal-up reveal-d2">
 
     <!--
       The globe, its markers, and the note panel's contents are
@@ -468,14 +532,14 @@ and being human.
 
     <section id="gallery" class="section gallery-section">
 
-  <div class="section-heading">
+  <div class="section-heading reveal-up">
     <p class="section-label">Gallery</p>
     <h2>A collection of<br><em>observations.</em></h2>
   </div>
 
   <div class="gallery-entrance">
 
-    <a href="gallery/photographs.html" class="gallery-panel gallery-panel--photographs">
+    <a href="gallery/photographs.html" class="gallery-panel gallery-panel--photographs reveal-up">
       <span
         class="gallery-panel-image"
         style="background-image: url('images/gallery/photographs/stillness/stillness4.jpeg');"
@@ -488,7 +552,7 @@ and being human.
       </span>
     </a>
 
-    <a href="gallery/drawings.html" class="gallery-panel gallery-panel--drawings">
+    <a href="gallery/drawings.html" class="gallery-panel gallery-panel--drawings reveal-up">
       <span
         class="gallery-panel-image gallery-panel-image--placeholder"
     
@@ -502,7 +566,7 @@ and being human.
       </span>
     </a>
 
-    <a href="gallery/concerts.html" class="gallery-panel gallery-panel--concerts">
+    <a href="gallery/concerts.html" class="gallery-panel gallery-panel--concerts reveal-up">
       <span
         class="gallery-panel-image gallery-panel-image--placeholder"
         style="background-image: url('images/gallery/concerts/concerts/concerts28.jpeg');"
@@ -519,12 +583,12 @@ and being human.
 </section>
 
 <section id="projects" class="section projects">
-      <div class="section-heading">
+      <div class="section-heading reveal-up">
         <p class="section-label">Projects</p>
         <h2>Clinical and creative work.</h2>
       </div>
       <div class="cards two">
-        <article class="card large">
+        <article class="card large reveal-up">
           <h3>Project 01</h3>
           <p>Brewing...</p>
           <pre class="project-animal" aria-hidden="true">
@@ -533,7 +597,7 @@ and being human.
  / づ づ
 </pre>
         </article>
-        <article class="card large">
+        <article class="card large reveal-up">
           <div class="project-card">
     <div class="project-text">
         <h3>Project 02</h3>
@@ -551,17 +615,17 @@ and being human.
     </section>
 
     <section id="about-me" class="section about-me">
-  <div class="about-me-heading section-heading">
+  <div class="about-me-heading section-heading reveal-up">
     <p class="section-label">About Me</p>
     <h2>Behind the <em>notes.</em></h2>
   </div>
 
   <div class="about-me-content">
-    <div class="about-me-photo">
+    <div class="about-me-photo reveal-up">
       <img src="images/gallery/photographs/light/light43.jpeg" alt="Portrait of Elvira Wang" class="about-photo">
     </div>
 
-    <div class="about-me-bio">
+    <div class="about-me-bio reveal-up reveal-d2">
       <p class="about-me-greeting">Hi! I’m Elvira.</p>
       <p>I study oral health, write essays, draw, and build quiet things for the web.</p>
       <p>I’m interested in the space where science, design, and human stories meet.</p>
@@ -570,7 +634,7 @@ and being human.
     </div>
   </div>
 
-  <div class="about-me-currently">
+  <div class="about-me-currently reveal-up">
     <p class="section-label">Currently</p>
     <ul>
       <li>Learning teeth.</li>
@@ -581,15 +645,15 @@ and being human.
   </div>
 </section>
     <section id="contact" class="contact">
-  <p class="section-label">Contact</p>
+  <p class="section-label reveal-up">Contact</p>
 
-  <h2>If this resonates, <br>I'd love to hear from you.</h2>
+  <h2 class="reveal-up reveal-d2">If this resonates, <br>I'd love to hear from you.</h2>
 
   <p class="contact-fields">
-  
+
   </p>
 
-  <a href="mailto:elvira.p.wang@gmail.com" class="button primary">Email me</a>
+  <a href="mailto:elvira.p.wang@gmail.com" class="button primary reveal-up reveal-d3">Email me</a>
 </section>
   </main>
 
@@ -598,6 +662,7 @@ and being human.
   </footer>
 
   <script src="script.js"></script>
+  <script src="mobile-nav.js"></script>
   <script src="globe.js"></script>
   <script src="cursor.js"></script>
   <script src="fox.js"></script>
