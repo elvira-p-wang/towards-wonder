@@ -1,8 +1,8 @@
 # Towards Wonder
 
-A quiet corner of the internet for curiosity.
+A place for curiosity.
 
-Towards Wonder is a personal website where I collect essays, illustrations, photographs, travel memories, and small interactive experiments.
+Towards Wonder is a personal website collecting essays, field notes, illustrations, photographs, travel memories, and small interactive experiments.
 
 Rather than a portfolio, it's an evolving archive of things I don't want to forget.
 
@@ -20,8 +20,8 @@ I wanted to create a website that feels calm, thoughtful, and quietly playful—
 
 Every page is designed around one idea:
 
-> Stay curious.
-> Keep noticing.
+> Stay curious.  
+> Keep noticing.  
 > Move a little slower.
 
 ---
@@ -30,7 +30,13 @@ Every page is designed around one idea:
 
 ### ✦ Essays
 
-Thoughts on science, design, travel, books, and the small things worth keeping.
+Long-form writing on science, design, travel, books, and the questions that stay with me.
+
+### ✦ Field Notes
+
+**Small things worth keeping.**
+
+Tiny observations, unfinished thoughts, and moments that quietly stayed with me.
 
 ### ✦ Gallery
 
@@ -38,28 +44,24 @@ Photography, illustrations, graphic designs, and concert memories.
 
 ### ✦ Interactive World Map
 
-A collection of countries I've visited, each paired with a personal memory instead of a travel guide.
+Countries I've visited, each paired with a personal memory instead of a travel guide.
 
 ### ✦ Quiet Interactions
 
-Small animations and hidden details that reward curiosity.
+Small details that reward curiosity.
 
 Including:
 
-- A pixel fox that changes behaviour across different pages
-- Gentle hover animations
-- Soft page transitions
-- Tiny discoverable interactions
-
-### ✦ Music
-
-Optional background music for slower browsing.
+- 🦊 A pixel fox that changes behaviour across pages
+- 🌱 Gentle interactive elements
+- ✨ Soft hover animations
+- 🎵 Optional background music
 
 ---
 
 ## Design Principles
 
-This website follows a few simple rules:
+This website follows a few simple rules.
 
 - Minimal before decorative.
 - Every interaction should have a reason.
@@ -85,14 +87,15 @@ Designed and built entirely from scratch.
 
 ## Project Structure
 
-```
+```text
 /
-├── essays/           # Essays and long-form writing
-├── gallery/          # Photography and illustrations
-├── map/              # Interactive travel globe
-├── assets/           # Images, icons and media
-├── styles/           # Global styling
-├── scripts/          # Website interactions
+├── essays/            # Essays
+├── field-notes/       # Small things worth keeping
+├── gallery/           # Photography, drawings & concerts
+├── map/               # Interactive travel globe
+├── assets/            # Images, music and icons
+├── styles/            # Global styling
+├── scripts/           # Website interactions
 └── index.html
 ```
 
@@ -100,11 +103,9 @@ Designed and built entirely from scratch.
 
 ## Highlights
 
-Some of my favourite details:
+Some of my favourite details.
 
 🦊 A tiny pixel fox that quietly accompanies visitors.
-
-🌱 Small interactive elements that respond to curiosity.
 
 🌍 A world map filled with memories instead of checklists.
 
@@ -124,8 +125,8 @@ Built with simplicity in mind.
 - Lightweight vanilla JavaScript
 - Optimised image loading
 - Smooth scrolling
+- Mobile-friendly layouts
 - Accessible navigation
-- Mobile-first improvements
 
 ---
 
@@ -133,7 +134,7 @@ Built with simplicity in mind.
 
 This project intentionally avoids large frameworks.
 
-Building everything from scratch helped me better understand how websites work, while keeping the experience lightweight, flexible, and personal.
+Building everything from scratch helped me better understand how websites work while keeping the experience lightweight, flexible, and personal.
 
 Sometimes simplicity is the better design choice.
 
@@ -144,10 +145,11 @@ Sometimes simplicity is the better design choice.
 Inspired by:
 
 - Nordic minimalism
-- Editorial layouts
+- Editorial design
 - Museums and quiet libraries
 - Slow travel
-- Small moments of wonder
+- Nature
+- The small moments that often go unnoticed
 
 ---
 
@@ -156,10 +158,11 @@ Inspired by:
 More is on the way.
 
 - Interactive projects
-- Oral health experiments
 - More essays
+- More field notes
+- Oral health experiments
 - More illustrations
-- New travel stories
+- New places on the map
 
 ---
 
@@ -175,22 +178,35 @@ Towards Wonder is where I collect those explorations.
 
 ---
 
+## Changelog
+
+The website grows little by little.
+
+Recent additions include:
+
+- 🌍 Interactive World Map
+- 🦊 Pixel fox companion
+- 🎵 Background music
+- 📱 Mobile redesign
+- 🖼 Expanded Gallery
+- ✍️ Essays & Field Notes
+
+---
+
 ## Connect
 
 🌐 Website
+
 https://elvira.studio
 
 💼 LinkedIn
 
 https://www.linkedin.com/in/elvirawang/
 
-📧 Email
-
-(Your email)
-
 ---
 
 Designed and built by Elvira Wang.
 
+**Built slowly, one small detail at a time.**
 If this project made you pause, smile, or wonder for a moment, then it has already done its job.
 
