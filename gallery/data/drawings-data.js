@@ -43,7 +43,7 @@
   }
 
   window.DRAWINGS_DATA = {
-    totalCount: 47,
+    totalCount: 45,
     collections: [
       {
         id: "sketches",
@@ -104,10 +104,8 @@
         { id: "comics-001", src: "../images/gallery/drawings/comic/comics1.jpeg", alt: "", category: "comics", aspectRatio: "2048 / 2048" },
         { id: "comics-002", src: "../images/gallery/drawings/comic/comics2.jpeg", alt: "", category: "comics", aspectRatio: "2048 / 2048" },
         { id: "comics-003", src: "../images/gallery/drawings/comic/comics3.jpeg", alt: "", category: "comics", aspectRatio: "1255 / 3000" },
-        { id: "comics-004", src: "../images/gallery/drawings/comic/comics4.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
-        { id: "comics-005", src: "../images/gallery/drawings/comic/comics5.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
-        { id: "comics-006", src: "../images/gallery/drawings/comic/comics6.jpeg", alt: "", category: "comics", aspectRatio: "1688 / 3000" },
-        { id: "comics-007", src: "../images/gallery/drawings/comic/comics7.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" }
+        { id: "comics-004", src: "../images/gallery/drawings/comic/comics6.jpeg", alt: "", category: "comics", aspectRatio: "1688 / 3000" },
+        { id: "comics-005", src: "../images/gallery/drawings/comic/comics7.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" }
       ]
       },
       {

@@ -712,10 +712,15 @@ function patchPanelCounts(indexHtml, results) {
   results.forEach((result) => {
     const countText =
       result.liveTotalCount + (result.liveTotalCount === 1 ? " work" : " works");
+    // Matches the panel's class attribute even if it carries extra
+    // classes after its own (e.g. "gallery-panel gallery-panel--x
+    // reveal-up" from the scroll-reveal system) — anchored on the
+    // module's own panel class rather than requiring it to be the
+    // last one before the closing quote.
     const panelRegex = new RegExp(
       '(class="gallery-panel ' +
         result.panelClass +
-        '"[\\s\\S]*?<span class="gallery-panel-count">)([^<]*)(<\\/span>)'
+        '(?:\\s[^"]*)?"[\\s\\S]*?<span class="gallery-panel-count">)([^<]*)(<\\/span>)'
     );
 
     if (panelRegex.test(html)) {
