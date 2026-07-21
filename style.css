@@ -43,17 +43,17 @@ body {
 }
 
 /* Was "justify-content: space-between" with exactly two children
-   (logo, nav-links). Now that the music toggle (and, on index.html,
-   the hamburger) also live in this same header, space-between would
-   spread all of them out evenly instead of keeping nav-links + music
-   icon + hamburger grouped tightly on the right — so instead the
-   header just flows left-to-right, and whichever element starts the
-   "right-hand group" gets pushed flush right with an auto margin.
-   That's <nav> itself on desktop; see the mobile query below for the
-   equivalent handoff once <nav> hides and .music-toggle becomes the
-   first item in that group instead. Visually this reproduces the
-   original space-between result exactly for logo/nav — nothing about
-   their positions actually changes. */
+   (logo, nav-links). Now that the music toggle also lives in this
+   same header on desktop (immediately after the nav links), space-
+   between would spread the two apart instead of keeping them grouped
+   tightly on the right — so instead the header just flows left-to-
+   right, and <nav> gets pushed flush right with an auto margin.
+   Visually this reproduces the original space-between result exactly
+   for logo/nav — nothing about their positions actually changes. On
+   mobile the music toggle reverts to its own fixed bottom-left
+   position (see "AMBIENT MUSIC BUTTON" below) and is no longer part
+   of this flex row at all, so nothing here needs a mobile-specific
+   handoff for it. */
 .nav nav {
   margin-left: auto;
 }
@@ -2198,16 +2198,6 @@ footer {
 
   .nav nav {
     display: none;
-  }
-
-  /* <nav> (which carried the right-alignment auto margin above) is
-     hidden at this width, so .music-toggle becomes the first item
-     in the "right-hand group" instead — hand the auto margin off to
-     it, so it (and the hamburger right after it, on index.html)
-     still ends up flush right instead of collapsing back next to
-     the logo. */
-  .music-toggle {
-    margin-left: auto;
   }
 
   .split-section,
@@ -5070,20 +5060,31 @@ html.custom-cursor-active [contenteditable] {
    AMBIENT MUSIC BUTTON (all pages)
 
    Built by audio.js — nothing hand-written into any page for it,
-   same pattern as the fox and cursor — but unlike them, it lives
-   inside the top <header class="nav ...">, not a fixed corner: a
-   plain icon sitting on the same row as the nav links, right after
-   the last one (Contact, on the homepage), with the hamburger toggle
-   immediately after it in turn on index.html. See ".nav nav" and its
-   mobile override further up for how that row stays grouped flush
-   right as <nav> itself hides at mobile width. Deliberately quiet —
-   no circle, no border, no fill, nothing that reads as a "button"
-   sitting apart from the plain-text links beside it; the note icon
-   alone is the only hint it's there, exactly like the rest of the
-   nav. While playing, it "breathes" — the same slow scale pulse
-   language as the hero's entrance and the scroll reveals elsewhere
-   on the site — rather than an equalizer or spinner, so the active
-   state reads as calm rather than busy.
+   same pattern as the fox and cursor. Two different layouts for two
+   breakpoints, same <button> element throughout (audio.js never
+   creates or moves it in the DOM based on screen size — this is CSS
+   only, via the max-width query below):
+
+   - Desktop: lives inside the top <header class="nav ...">, not a
+     fixed corner — a plain icon sitting on the same row as the nav
+     links, right after the last one (Contact, on the homepage), with
+     the hamburger toggle immediately after it in turn on index.html.
+     See ".nav nav" further up for how that row stays grouped flush
+     right. No circle, no border, no fill — the note icon sits at the
+     same visual weight as the plain-text links beside it.
+   - Mobile: reverts to its own fixed bottom-left circle (Elvira's
+     original placement, kept unchanged rather than following the nav
+     — she asked for the desktop nav-icon treatment without carrying
+     it over to mobile), independent of the header entirely.
+
+   While playing, it "breathes" on both breakpoints — the same slow-
+   pulse language as the hero's entrance and the scroll reveals
+   elsewhere on the site — rather than an equalizer or spinner, so the
+   active state reads as calm rather than busy. The two breakpoints
+   use different keyframes (scale+opacity on desktop, since there's no
+   background to glow against; scale+box-shadow ring on mobile, where
+   the circle gives it something to glow against) — see
+   music-toggle-breathe vs. music-toggle-breathe-fixed below.
 ======================================== */
 
 .music-toggle {
@@ -5149,6 +5150,83 @@ html.custom-cursor-active [contenteditable] {
   }
 }
 
+/* ---- mobile: back to the original fixed bottom-left circle ---- */
+
+@media (max-width: 760px) {
+  .music-toggle {
+    position: fixed;
+    left: 14px;
+    bottom: max(14px, env(safe-area-inset-bottom, 0px) + 8px);
+    z-index: 20;
+
+    margin: 0;
+
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    background: rgba(255, 250, 243, 0.72);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+
+    color: var(--muted);
+
+    backdrop-filter: blur(6px);
+
+    transition:
+      color 0.4s ease,
+      border-color 0.4s ease,
+      background-color 0.4s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.6s ease;
+  }
+
+  .music-toggle:hover,
+  .music-toggle:focus-visible {
+    color: var(--accent);
+    border-color: rgba(155, 95, 68, 0.4);
+    transform: scale(1.06);
+  }
+
+  .music-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .music-toggle:active {
+    transform: scale(0.96);
+  }
+
+  .music-toggle-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .music-toggle.is-playing {
+    color: var(--accent);
+    border-color: rgba(155, 95, 68, 0.45);
+    background: rgba(255, 250, 243, 0.85);
+
+    animation: music-toggle-breathe-fixed 4.2s ease-in-out infinite;
+  }
+}
+
+@keyframes music-toggle-breathe-fixed {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(185, 119, 106, 0.28);
+  }
+  50% {
+    transform: scale(1.045);
+    box-shadow: 0 0 0 7px rgba(185, 119, 106, 0);
+  }
+}
+
+/* Placed after the max-width query above (not merged into it) so
+   that reduced-motion always wins on top of it when both apply —
+   otherwise a mobile device with reduced motion enabled would have
+   the box-shadow-ring animation re-enabled by the later, equally-
+   specific mobile rule. */
 @media (prefers-reduced-motion: reduce) {
   .music-toggle {
     transition-duration: 0.01ms;
@@ -5156,18 +5234,5 @@ html.custom-cursor-active [contenteditable] {
 
   .music-toggle.is-playing {
     animation: none;
-  }
-}
-
-@media (max-width: 760px) {
-  .music-toggle {
-    margin-left: 18px;
-    margin-right: 14px; /* breathing room before the hamburger, which has no gap of its own */
-    padding: 6px;
-  }
-
-  .music-toggle-icon {
-    width: 19px;
-    height: 19px;
   }
 }

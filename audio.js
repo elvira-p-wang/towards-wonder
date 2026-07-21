@@ -57,16 +57,27 @@
   // ----------------------------------------
   // MARKUP
   //
-  // Lives in the top nav, not a fixed corner: inserted directly into
-  // this page's own <header class="nav ..."> — right before
-  // .nav-menu-toggle when that exists (index.html only), so it sits
-  // beside the hamburger once the text links hide on mobile; appended
-  // as the header's last child everywhere else (essays/field-notes/
-  // gallery pages have no hamburger). Combined with the "nav { margin-
-  // left: auto }" rule in style.css, this keeps it grouped tightly
-  // with the nav links and hamburger on the right, logo still pinned
-  // left — see "AMBIENT MUSIC BUTTON" in style.css for the layout
-  // side of this.
+  // Two different homes for two breakpoints, same element:
+  // - Desktop: inserted into this page's own <header class="nav ...">
+  //   — right before .nav-menu-toggle when that exists (index.html
+  //   only), so it sits beside the hamburger once the text links hide
+  //   on mobile; appended as the header's last child everywhere else
+  //   (essays/field-notes/gallery pages have no hamburger). Combined
+  //   with the "nav nav { margin-left: auto }" rule in style.css,
+  //   this keeps it grouped tightly with the nav links, logo still
+  //   pinned left.
+  // - Mobile: a plain child of <body>, deliberately NOT inside
+  //   header.nav. That header has `backdrop-filter`, which creates a
+  //   CSS containing block for any position:fixed descendant — a
+  //   fixed-positioned button left inside it would end up pinned to
+  //   the header's own box instead of the viewport, breaking the
+  //   fixed bottom-left placement style.css gives it at this width
+  //   (see "AMBIENT MUSIC BUTTON" there). Re-parenting here avoids
+  //   having to touch that shared header rule at all.
+  //
+  // placeButton() below decides which one applies, re-run on every
+  // breakpoint crossing (not just on load), so resizing across 760px
+  // — or rotating a tablet — relocates it correctly without a reload.
   // ----------------------------------------
 
   var button = document.createElement("button");
@@ -85,19 +96,43 @@
     '<circle cx="16" cy="16" r="3"/>' +
     "</svg>";
 
-  var navHeader = document.querySelector("header.nav");
+  var mobileQuery = window.matchMedia("(max-width: 760px)");
 
-  if (navHeader) {
-    var navMenuToggle = navHeader.querySelector(".nav-menu-toggle");
-    if (navMenuToggle) {
-      navHeader.insertBefore(button, navMenuToggle);
-    } else {
-      navHeader.appendChild(button);
+  function placeButton() {
+    if (mobileQuery.matches) {
+      if (button.parentNode !== document.body) {
+        document.body.appendChild(button);
+      }
+      return;
     }
-  } else {
-    // Shouldn't happen on this site, but never lose the button
-    // entirely if some future page lacks a <header class="nav">.
-    document.body.appendChild(button);
+
+    var navHeader = document.querySelector("header.nav");
+
+    if (!navHeader) {
+      // Shouldn't happen on this site, but never lose the button
+      // entirely if some future page lacks a <header class="nav">.
+      if (button.parentNode !== document.body) {
+        document.body.appendChild(button);
+      }
+      return;
+    }
+
+    if (button.parentNode !== navHeader) {
+      var navMenuToggle = navHeader.querySelector(".nav-menu-toggle");
+      if (navMenuToggle) {
+        navHeader.insertBefore(button, navMenuToggle);
+      } else {
+        navHeader.appendChild(button);
+      }
+    }
+  }
+
+  placeButton();
+
+  if (mobileQuery.addEventListener) {
+    mobileQuery.addEventListener("change", placeButton);
+  } else if (mobileQuery.addListener) {
+    mobileQuery.addListener(placeButton); // Safari < 14
   }
 
   // ----------------------------------------
