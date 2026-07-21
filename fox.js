@@ -65,79 +65,144 @@
 
   fox.innerHTML =
     '<svg class="pixel-fox-svg" viewBox="0 0 40 44">' +
-      '<ellipse class="fox-ground" cx="20" cy="42.5" rx="13" ry="2.2" />' +
+      '<ellipse class="fox-ground" cx="20" cy="41.5" rx="13" ry="2.2" />' +
       '<g class="fox-rig">' +
 
-        // Tail — three overlapping rounded blocks, tapering to a
-        // cream tip, base pinned near the body's right shoulder so
-        // it reads as attached whichever way it's rotated.
+        // Tail — four chunky, only gently tapering blocks curling up
+        // and out to the side, ending in a generously sized cream
+        // tip — fluffy/bushy, not a thin sharp point. rx=0
+        // throughout the fox, deliberately — true crisp pixel edges
+        // rather than soft rounded blobs.
         '<g class="fox-tail">' +
-          '<rect class="fox-fur" x="27" y="22" width="8" height="10" rx="4" />' +
-          '<rect class="fox-fur" x="31" y="13" width="8" height="10" rx="4" />' +
-          '<rect class="fox-cream" x="33" y="5" width="7" height="9" rx="3.5" />' +
+          '<rect class="fox-fur" x="27" y="23" width="10" height="9" />' +
+          '<rect class="fox-fur" x="30" y="15" width="9" height="9" />' +
+          '<rect class="fox-fur" x="32" y="8" width="8" height="8" />' +
+          '<rect class="fox-cream" x="32" y="2" width="7" height="7" />' +
         "</g>" +
 
-        // Body — torso, cream chest/belly patch, and two front paws
-        // with small shadow "toes". The accessory (camera / book /
-        // compass / envelope) sits tucked beside the right paw.
+        // Body — torso, a cream chest/belly patch that runs
+        // continuously up into the face patch above, two front paws,
+        // and the per-context accessory (tucked beside the right
+        // paw, except the book, which sits centred between both).
         '<g class="fox-body">' +
-          '<rect class="fox-fur" x="8" y="24" width="24" height="16" rx="8" />' +
-          '<rect class="fox-cream" x="14" y="30" width="12" height="10" rx="5" />' +
-          '<rect class="fox-cream" x="11" y="37" width="6" height="5" rx="2" />' +
-          '<rect class="fox-shadow" x="12" y="40" width="4" height="2" rx="1" />' +
-          '<rect class="fox-cream" x="23" y="37" width="6" height="5" rx="2" />' +
-          '<rect class="fox-shadow" x="24" y="40" width="4" height="2" rx="1" />' +
+          '<rect class="fox-fur" x="8" y="25" width="24" height="16" />' +
+          '<rect class="fox-cream" x="13" y="25" width="14" height="13" />' +
+          '<rect class="fox-cream" x="11" y="36" width="6" height="5" />' +
+          '<rect class="fox-shadow" x="12" y="39.5" width="4" height="1.5" />' +
+          '<rect class="fox-cream" x="23" y="36" width="6" height="5" />' +
+          '<rect class="fox-shadow" x="24" y="39.5" width="4" height="1.5" />' +
           '<g class="fox-accessory">' +
             '<g class="fox-accessory-camera">' +
-              '<rect class="fox-ink" x="24" y="33" width="8" height="6" rx="1" />' +
-              '<circle class="fox-fur-light" cx="28" cy="36" r="2" />' +
+              '<rect class="fox-ink" x="23" y="33" width="8" height="6" />' +
+              '<circle class="fox-fur-light" cx="27" cy="36" r="2" />' +
             "</g>" +
+            // Book — centred between the two paws (x11-17 and
+            // x23-29) but wider than the gap between them, so it
+            // extends a little past each paw's outer edge, like an
+            // open book actually being held rather than tucked
+            // neatly inside the gap. Deliberately thin top-to-bottom
+            // (4 tall vs. 22 wide) — a booklet resting flat on the
+            // paws, not a thick tome.
             '<g class="fox-accessory-book">' +
-              '<rect class="fox-cream" x="22" y="34" width="9" height="6" rx="1" />' +
-              '<rect class="fox-shadow" x="26.3" y="34" width="1" height="6" />' +
+              '<rect class="fox-cream" x="9" y="32" width="11" height="4" />' +
+              '<rect class="fox-shadow" x="11" y="33" width="6" height="0.6" />' +
+              '<rect class="fox-shadow" x="11" y="34.4" width="6" height="0.6" />' +
+              '<rect class="fox-cream" x="20" y="32" width="11" height="4" />' +
+              '<rect class="fox-shadow" x="23" y="33" width="6" height="0.6" />' +
+              '<rect class="fox-shadow" x="23" y="34.4" width="6" height="0.6" />' +
+              '<rect class="fox-shadow" x="19.5" y="32" width="1" height="4" />' +
             "</g>" +
+            // Compass — outer casing ring, lighter face, a two-tone
+            // N/S needle (dark tip pointing north, light tip
+            // pointing south, like a real compass needle) with a
+            // small pivot dot at centre, plus four cardinal tick
+            // marks on the rim — reads as an actual compass rather
+            // than a circle with a plus sign through it.
             '<g class="fox-accessory-compass">' +
-              '<circle class="fox-cream" cx="27" cy="37" r="4" />' +
-              '<rect class="fox-shadow" x="26.6" y="33.4" width="0.8" height="7.2" />' +
-              '<rect class="fox-shadow" x="23.4" y="36.6" width="7.2" height="0.8" />' +
+              '<circle class="fox-shadow" cx="27" cy="36" r="4.5" />' +
+              '<circle class="fox-cream" cx="27" cy="36" r="3.5" />' +
+              '<rect class="fox-shadow" x="26.7" y="32.3" width="0.6" height="1" />' +
+              '<rect class="fox-shadow" x="26.7" y="38.7" width="0.6" height="1" />' +
+              '<rect class="fox-shadow" x="30.2" y="35.7" width="1" height="0.6" />' +
+              '<rect class="fox-shadow" x="22.8" y="35.7" width="1" height="0.6" />' +
+              '<path class="fox-ink" d="M27 32.7 L28.2 36 L25.8 36 Z" />' +
+              '<path class="fox-fur-light" d="M27 39.3 L28.2 36 L25.8 36 Z" />' +
+              '<circle class="fox-shadow" cx="27" cy="36" r="0.5" />' +
             "</g>" +
             '<g class="fox-accessory-envelope">' +
-              '<rect class="fox-cream" x="22" y="34" width="9" height="6" rx="1" />' +
-              '<path class="fox-envelope-flap" d="M22 34 L26.5 37.4 L31 34" />' +
+              '<rect class="fox-cream" x="22" y="33" width="9" height="6" />' +
+              '<path class="fox-envelope-flap" d="M22 33 L26.5 36.4 L31 33" />' +
             "</g>" +
           "</g>" +
         "</g>" +
 
-        // Head — ears (each independently twitchable), face, muzzle,
-        // eyes, nose, plus the hidden-by-default fluff tufts and "?"
-        // shown only during the fluffy/confused reaction.
+        // Head — three-step tapered ears (each independently
+        // twitchable) with a deeper-tone tip, a wide cream "shield"
+        // covering both cheeks and the chin (the fox's face marking,
+        // not just a small muzzle patch), eyes, nose, plus the
+        // hidden-by-default fluff tufts and "?" shown only during
+        // the fluffy/confused reaction.
         '<g class="fox-head">' +
           '<g class="fox-ear-left">' +
-            '<rect class="fox-fur" x="10" y="2" width="4" height="4" />' +
-            '<rect class="fox-fur" x="7" y="6" width="8" height="4" />' +
-            '<rect class="fox-fur-light" x="10" y="6.5" width="4" height="3" />' +
+            '<rect class="fox-fur" x="7" y="7" width="7" height="3" />' +
+            '<rect class="fox-fur" x="8" y="4" width="5" height="3" />' +
+            '<rect class="fox-fur-deep" x="9" y="1" width="3" height="3" />' +
+            '<rect class="fox-fur-light" x="9" y="5" width="3" height="4" />' +
           "</g>" +
           '<g class="fox-ear-right">' +
-            '<rect class="fox-fur" x="26" y="2" width="4" height="4" />' +
-            '<rect class="fox-fur" x="25" y="6" width="8" height="4" />' +
-            '<rect class="fox-fur-light" x="26" y="6.5" width="4" height="3" />' +
+            '<rect class="fox-fur" x="26" y="7" width="7" height="3" />' +
+            '<rect class="fox-fur" x="27" y="4" width="5" height="3" />' +
+            '<rect class="fox-fur-deep" x="28" y="1" width="3" height="3" />' +
+            '<rect class="fox-fur-light" x="28" y="5" width="3" height="4" />' +
           "</g>" +
-          '<rect class="fox-fur" x="6" y="8" width="28" height="18" rx="7" />' +
+          '<rect class="fox-fur" x="6" y="9" width="28" height="17" />' +
           '<g class="fox-fluff">' +
-            '<circle class="fox-fur-light" cx="8" cy="9" r="1.8" />' +
-            '<circle class="fox-fur-light" cx="32" cy="9" r="1.8" />' +
-            '<circle class="fox-fur-light" cx="4.5" cy="16" r="1.8" />' +
-            '<circle class="fox-fur-light" cx="35.5" cy="16" r="1.8" />' +
-            '<circle class="fox-fur-light" cx="11" cy="4.5" r="1.6" />' +
-            '<circle class="fox-fur-light" cx="29" cy="4.5" r="1.6" />' +
+            '<circle class="fox-fur-light" cx="7" cy="11" r="1.8" />' +
+            '<circle class="fox-fur-light" cx="33" cy="11" r="1.8" />' +
+            '<circle class="fox-fur-light" cx="4" cy="18" r="1.8" />' +
+            '<circle class="fox-fur-light" cx="36" cy="18" r="1.8" />' +
+            '<circle class="fox-fur-light" cx="10" cy="6" r="1.6" />' +
+            '<circle class="fox-fur-light" cx="30" cy="6" r="1.6" />' +
           "</g>" +
-          '<rect class="fox-cream" x="13" y="18" width="14" height="9" rx="4.5" />' +
+          // Face patch runs from the nose's own top edge (nose sits
+          // right at the patch's top, not above it in the fur) down
+          // to the head's own bottom edge, so it reads as continuous
+          // with the body's chest patch (which starts 1 unit higher,
+          // at the body's top) — one unbroken white marking from
+          // muzzle to chest.
+          '<rect class="fox-cream" x="10" y="19" width="20" height="7" />' +
           '<g class="fox-eyes">' +
-            '<rect class="fox-ink" x="13" y="15.5" width="3" height="4" rx="1" />' +
-            '<rect class="fox-ink" x="24" y="15.5" width="3" height="4" rx="1" />' +
+            '<rect class="fox-ink" x="13" y="15" width="3" height="3" />' +
+            '<rect class="fox-ink" x="24" y="15" width="3" height="3" />' +
           "</g>" +
-          '<rect class="fox-ink" x="18.5" y="22.5" width="3" height="2.5" rx="1" />' +
-          '<text class="fox-question" x="20" y="1">?</text>' +
+          '<rect class="fox-ink" x="18" y="19" width="4" height="2" />' +
+          // Round black-framed glasses — hidden by default (see
+          // .fox-glasses in CSS), shown only for Projects/About Me.
+          // Deliberately oversized (13 diameter, well over 4x the
+          // eyes' own 3-unit size) for a cute, slightly nerdy
+          // look — open rings (fill: none) centred on each eye so
+          // the eye pixels themselves stay untouched and still show
+          // through, overlapping in the middle where a short bridge
+          // sits, plus two short temple stubs at the outer edges.
+          '<g class="fox-glasses">' +
+            '<circle class="fox-glasses-lens" cx="14" cy="16.5" r="4.3" />' +
+            '<circle class="fox-glasses-lens" cx="26" cy="16.5" r="4.3" />' +
+            '<rect class="fox-ink" x="19" y="16" width="2" height="1" />' +
+            '<rect class="fox-ink" x="6" y="16" width="4" height="1" />' +
+            '<rect class="fox-ink" x="30" y="16" width="4" height="1" />' +
+          "</g>" +
+          '<text class="fox-question" x="20" y="-1">?</text>' +
+        "</g>" +
+
+        // Thinking paw — hidden by default (see .fox-chin-paw in
+        // CSS), shown alongside the glasses for Projects/About Me:
+        // a paw propped against the chin/cheek, overlapping down
+        // into the shoulder so it reads as connected to the body
+        // rather than floating. Painted after the head so it sits
+        // on top of both head and body.
+        '<g class="fox-chin-paw">' +
+          '<rect class="fox-cream" x="22" y="22" width="5" height="6" />' +
+          '<rect class="fox-shadow" x="23" y="27" width="3" height="1" />' +
         "</g>" +
 
         // Sleep "z"s and click sparkles — hidden until their state
@@ -220,13 +285,18 @@
 
   // On the single-page home, refine context further by which
   // section is actually in view — Map gets its compass, Contact its
-  // envelope, About its quieter pose, everything else the plain
-  // default. Only wired up when those section ids actually exist on
-  // the page, so this is a no-op everywhere else.
+  // envelope, About its quieter pose, Essays and Field Notes both
+  // get the book (and the essay dialogue pool) same as the standalone
+  // essay/field-note pages, everything else the plain default. Only
+  // wired up when those section ids actually exist on the page, so
+  // this is a no-op everywhere else.
   if (staticContext === "home" && "IntersectionObserver" in window) {
     var sectionContexts = [
       { id: "map", ctx: "map" },
       { id: "gallery", ctx: "gallery" },
+      { id: "essays", ctx: "essay" },
+      { id: "discoveries", ctx: "essay" },
+      { id: "projects", ctx: "about" },
       { id: "about-me", ctx: "about" },
       { id: "contact", ctx: "contact" }
     ].filter(function (entry) {
@@ -234,30 +304,68 @@
     });
 
     if (sectionContexts.length) {
+      // Tracks each section's own currently-visible pixel height,
+      // persisted across callbacks — not just whichever entries
+      // happened to cross a threshold in this particular batch (an
+      // IntersectionObserver callback only ever reports the
+      // sections whose ratio just crossed a threshold, not the full
+      // set being observed, so recomputing "best" from only that
+      // batch loses track of sections — like Map, which is taller
+      // than the viewport — that are still genuinely on screen but
+      // didn't fire this time).
+      //
+      // Comparing raw intersectionRatio (visible area ÷ the
+      // section's *own* total area) also unfairly penalises a tall
+      // section like Map: once it's scrolled to fully fill the
+      // viewport, only a small fraction of its own great height is
+      // "visible" by that ratio, so a short section peeking in at
+      // the edge can outrank it. Comparing visible pixel height
+      // instead treats every section fairly regardless of how tall
+      // it is.
+      var visiblePx = {};
+      sectionContexts.forEach(function (entry) {
+        visiblePx[entry.id] = 0;
+      });
+
+      function pickBestSection() {
+        var bestId = null;
+        var bestPx = 0;
+        sectionContexts.forEach(function (entry) {
+          var px = visiblePx[entry.id] || 0;
+          if (px > bestPx) {
+            bestPx = px;
+            bestId = entry.id;
+          }
+        });
+
+        if (!bestId) {
+          setContext("home");
+          return;
+        }
+
+        var match = sectionContexts.filter(function (entry) {
+          return entry.id === bestId;
+        })[0];
+
+        setContext(match ? match.ctx : "home");
+      }
+
       var sectionObserver = new IntersectionObserver(
         function (entries) {
-          var best = null;
           entries.forEach(function (entry) {
-            if (
-              entry.isIntersecting &&
-              (!best || entry.intersectionRatio > best.intersectionRatio)
-            ) {
-              best = entry;
-            }
+            var match = sectionContexts.filter(function (s) {
+              return document.getElementById(s.id) === entry.target;
+            })[0];
+            if (!match) return;
+
+            visiblePx[match.id] = entry.isIntersecting
+              ? entry.intersectionRect.height
+              : 0;
           });
 
-          if (!best) {
-            setContext("home");
-            return;
-          }
-
-          var match = sectionContexts.filter(function (entry) {
-            return document.getElementById(entry.id) === best.target;
-          })[0];
-
-          setContext(match ? match.ctx : "home");
+          pickBestSection();
         },
-        { threshold: [0.35, 0.5, 0.65] }
+        { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] }
       );
 
       sectionContexts.forEach(function (entry) {

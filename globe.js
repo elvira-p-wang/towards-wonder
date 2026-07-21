@@ -246,23 +246,100 @@ const RAW_CONTINENTS = [
     ]
   },
   {
-    name: 'europe',
+    // Was a single "europe" ring that looped up through Scandinavia and
+    // then doubled back down through the Baltic states to close near
+    // its own starting region — a self-crossing path. Canvas fills
+    // self-crossing polygons with the nonzero winding rule, so where
+    // two lobes of the same ring overlapped with opposite winding
+    // direction, their winding numbers cancelled out and that area
+    // silently went unfilled — this is what made Norway disappear.
+    // Fixed by splitting the Nordic peninsula into its own separate,
+    // individually-simple rings (this one, plus denmark/norway/sweden/
+    // finland below) rather than one large ring trying to thread the
+    // Atlantic coast, the Baltic coast, *and* Scandinavia in one pass.
+    // This ring now only traces mainland Europe (Iberia round through
+    // France, the Low Countries, Germany, the Baltic coast down to the
+    // Gulf of Finland, then an artificial closing edge approximating
+    // the Europe/Asia land border down to the Black Sea, then Turkey,
+    // Greece, the Balkans, Italy, and back to Iberia) — a single
+    // continuous clockwise sweep with no backtracking, so it can't
+    // self-intersect the way the old ring did.
+    name: 'mainland-europe',
     points: [
       [37.0, -8.9], [38.7, -9.4], [41.1, -8.7], [43.4, -8.4], [43.5, -1.8],
-      [47.2, -2.9], [48.4, -4.8], [49.4, 0.1], [51.0, 2.4], [52.4, 4.6],
-      [53.5, 8.6], [54.3, 10.1], [57.0, 9.9], [58.0, 11.5], [62.5, 6.0],
-      [67.3, 14.4], [70.4, 25.8], [69.0, 33.0], [65.0, 39.0], [60.0, 29.7],
-      [59.4, 24.7], [56.9, 24.1], [54.7, 20.5], [54.4, 18.6], [54.3, 14.3],
-      [53.9, 9.1], [51.9, 4.5], [46.2, -1.2], [43.3, 3.0], [43.7, 7.3],
-      [44.1, 9.8], [41.9, 12.5], [40.6, 17.9], [38.4, 26.1], [41.0, 29.0],
-      [43.4, 28.0], [45.4, 29.7], [46.5, 30.7], [47.1, 39.7], [51.2, 51.4],
-      [56.8, 60.6], [65.0, 60.0]
+      [47.2, -2.9], [49.4, 0.1], [51.0, 2.4], [51.9, 4.5], [53.5, 8.6],
+      [54.8, 8.9], [54.0, 10.8], [54.4, 14.3], [54.2, 18.6], [54.7, 20.5],
+      [56.9, 24.1], [59.4, 24.7], [60.0, 29.7], [50.0, 36.0], [46.5, 30.7],
+      [45.4, 29.7], [43.4, 28.0], [41.0, 29.0], [38.4, 26.1], [37.9, 23.7],
+      [39.6, 19.9], [42.5, 18.5], [45.5, 13.6], [41.9, 15.9], [40.6, 17.9],
+      [38.1, 15.6], [40.8, 14.3], [43.7, 10.3], [44.1, 9.8], [43.7, 7.3],
+      [43.3, 3.0], [41.4, 2.2], [39.5, -0.3], [36.7, -4.4], [36.0, -5.6]
+    ]
+  },
+  {
+    // Own marker (Denmark) — kept as a separate small ring rather than
+    // folded into the mainland-europe trace above, both for accuracy
+    // (Denmark is mostly islands/a thin peninsula, easy to mangle
+    // inline) and so it can't ever again drag a neighbouring ring into
+    // a self-crossing shape.
+    name: 'denmark',
+    points: [
+      [57.7, 10.6], [57.1, 8.0], [55.5, 8.1], [54.8, 9.4], [55.5, 9.8],
+      [55.3, 11.0], [55.7, 12.6], [56.0, 12.4], [56.5, 10.3]
+    ]
+  },
+  {
+    // Own marker (Norway). Closes via an approximate line down the
+    // Scandinavian mountains (the Norway/Sweden land border), not a
+    // coastline — there's no water there, but every ring needs some
+    // closing edge, and the soft fill makes it invisible either way.
+    name: 'norway',
+    points: [
+      [58.0, 7.0], [58.9, 5.7], [60.4, 5.0], [62.5, 6.0], [63.5, 10.4],
+      [65.5, 12.0], [67.3, 14.4], [69.0, 18.0], [70.4, 25.8], [70.0, 29.0],
+      [69.5, 30.0], [65.0, 14.0], [61.0, 12.0], [59.0, 11.5]
+    ]
+  },
+  {
+    // Own marker (Sweden).
+    name: 'sweden',
+    points: [
+      [59.0, 11.5], [58.5, 11.3], [56.0, 12.8], [56.2, 15.6], [58.6, 17.0],
+      [59.3, 18.1], [60.7, 17.1], [63.0, 19.0], [65.6, 22.2], [68.0, 20.0],
+      [64.0, 14.5]
+    ]
+  },
+  {
+    // Own marker (Finland).
+    name: 'finland',
+    points: [
+      [60.1, 19.9], [60.2, 24.9], [60.5, 27.0], [61.5, 29.0], [65.0, 29.5],
+      [68.0, 28.5], [69.0, 27.0], [68.5, 23.0], [66.0, 23.5], [63.5, 21.0],
+      [61.0, 21.3]
+    ]
+  },
+  {
+    // Not a marker, but large/recognizable enough that leaving it out
+    // reads as a conspicuous gap in the North Atlantic.
+    name: 'iceland',
+    points: [
+      [66.5, -14.5], [65.0, -13.5], [63.4, -19.0], [64.0, -22.0], [65.9, -24.0]
+    ]
+  },
+  {
+    // Not a marker, but one of the most recognizable shapes on any
+    // world map — its absence near Canada would look like a mistake
+    // rather than a deliberate simplification.
+    name: 'greenland',
+    points: [
+      [83.0, -35.0], [81.0, -15.0], [76.0, -20.0], [70.0, -22.0], [65.0, -40.0],
+      [60.0, -45.0], [62.0, -49.0], [68.0, -53.0], [76.0, -68.0], [81.0, -65.0]
     ]
   },
   {
     // Real coastline data treats Europe and Asia as one connected
     // Eurasian landmass (no ocean between them) — this ring picks up
-    // roughly where the Europe ring's Ural-mountains seam leaves off,
+    // roughly where mainland-europe's Ural/Black-Sea seam leaves off,
     // rather than being topologically welded to it. At this fill
     // style (soft, low-alpha, no stroke) the seam itself is invisible.
     name: 'asia',
@@ -279,10 +356,18 @@ const RAW_CONTINENTS = [
     ]
   },
   {
+    // Own island — was previously missing entirely.
+    name: 'taiwan',
+    points: [
+      [25.3, 121.8], [24.8, 121.9], [23.5, 121.5], [22.0, 120.7], [22.8, 120.2],
+      [24.0, 120.6], [25.0, 121.5]
+    ]
+  },
+  {
     name: 'north-america',
     points: [
-      [71, -156], [69, -141], [69, -105], [68, -81], [62, -78], [55, -80],
-      [58, -94], [58, -63], [52, -56], [47, -53], [45, -64], [44, -66],
+      [71, -156], [69, -141], [69, -105], [63, -75], [58, -63],
+      [52, -56], [47, -53], [45, -64], [44, -66],
       [43, -70], [42, -71], [40, -74], [38, -75], [36, -76], [34, -78],
       [32, -81], [30, -81], [25, -80], [25, -82], [30, -88], [29, -90],
       [29, -95], [26, -97], [22, -97], [19, -96], [16, -95], [15, -92],
@@ -329,10 +414,10 @@ const RAW_CONTINENTS = [
   {
     name: 'japan',
     points: [
-      [41.4, 140.0], [43.1, 141.3], [45.4, 141.9], [41.8, 140.7], [40.8, 140.7],
-      [38.2, 140.9], [35.7, 140.9], [34.7, 137.7], [34.7, 135.2], [35.5, 133.0],
-      [34.4, 132.5], [33.9, 130.9], [31.6, 130.6], [32.8, 129.9], [36.6, 137.2],
-      [38.9, 139.8], [40.8, 140.0]
+      [41.0, 140.5], [41.8, 140.3], [43.0, 141.0], [45.0, 141.8], [43.2, 144.8],
+      [42.0, 141.5], [41.3, 140.8], [38.2, 140.9], [35.7, 139.8], [34.7, 137.7],
+      [34.4, 132.5], [34.0, 131.0], [33.9, 130.9], [31.6, 130.6], [32.8, 129.9],
+      [34.3, 131.1], [35.0, 132.7], [36.6, 137.2], [38.9, 139.8]
     ]
   },
   {
@@ -365,8 +450,8 @@ const RAW_CONTINENTS = [
   {
     name: 'sumatra',
     points: [
-      [5.6, 95.3], [3.8, 97.7], [0.5, 101.4], [-2.0, 101.0], [-5.4, 104.0],
-      [-3.8, 102.3], [-1.0, 100.4], [2.5, 98.8]
+      [5.6, 95.3], [3.0, 98.5], [0.0, 102.0], [-3.5, 104.3], [-5.4, 105.2],
+      [-4.5, 102.5], [-2.0, 100.5], [1.0, 99.0], [3.5, 96.5]
     ]
   },
   {
@@ -422,7 +507,7 @@ const RAW_CONTINENTS = [
   const INERTIA_STOP_EPS = 0.02;      // rad/s below which inertia is considered settled
   const RETURN_MS = 1300;             // easing back to the idle spin after inertia settles
   const FOCUS_TWEEN_MS = 1500;        // click-to-focus rotation duration
-  const RESUME_IDLE_DELAY_MS = 2400;  // pause on a clicked location before idle spin resumes
+  const RESUME_IDLE_DELAY_MS = 60000; // how long the globe holds still after ANY interaction (drag/wheel/pinch settling, or a click-to-focus arrival) before its slow idle spin resumes — deliberately long, so there's real time to read a place's note before the globe starts drifting again
 
   // Trackpad two-finger swipe (and a plain mouse wheel) arrive as
   // non-ctrlKey `wheel` events — there's no separate "trackpad pan"
@@ -435,6 +520,17 @@ const RAW_CONTINENTS = [
   // reliably told apart from a single event, and unifying "wheel
   // always rotates, pinch always zooms" is simpler and matches how
   // Apple/Google's own map products behave.
+  // Both deltas are negated in onWheel below. Under macOS's default
+  // "natural scrolling", a two-finger swipe reports deltaX/deltaY in
+  // the direction content would SCROLL, which is the opposite of the
+  // direction the fingers moved — e.g. swiping right (finger moves
+  // right) reports a negative deltaX. Direct-manipulation drag uses
+  // dx>0 (pointer moved right) to mean "surface moves right", so
+  // matching that feel for a swipe means flipping the sign on both
+  // axes: swipe left-to-right rotates the globe left-to-right, swipe
+  // bottom-to-top rotates it bottom-to-top, and so on for all 4
+  // directions — the surface visually follows the fingers, the same
+  // way a single-pointer drag already does.
   const WHEEL_ROTATE_YAW_PER_PX = 0.006;
   const WHEEL_ROTATE_PITCH_PER_PX = 0.0045;
   const WHEEL_VELOCITY_SAMPLES = 5;
@@ -956,10 +1052,26 @@ const RAW_CONTINENTS = [
     dragState = { x, y, t: performance.now(), history: [] };
   }
 
+  // Shared by every path that can end an interaction — drag release,
+  // wheel-gesture end, inertia settling, and click-to-focus arrival:
+  // holds the globe still for RESUME_IDLE_DELAY_MS (a real pause to
+  // read a place's note, or just to keep exploring without the globe
+  // drifting out from under you), then eases back up to the idle spin
+  // via 'returning' rather than snapping straight to idle speed.
+  function pauseThenResumeIdle() {
+    mode = 'paused';
+    window.clearTimeout(resumeIdleTimer);
+    resumeIdleTimer = window.setTimeout(() => {
+      if (mode !== 'paused') return;
+      mode = 'returning';
+      returnState = { startTime: null, startSpeed: 0, startPitch: pitchOffset };
+    }, RESUME_IDLE_DELAY_MS);
+  }
+
   // Shared by drag-release and wheel-gesture-end: averages recent
   // instantaneous velocity samples (rather than trusting only the
   // last one, which can be jittery) and decides whether to glide into
-  // inertia or ease straight into the idle spin.
+  // inertia or settle into the post-interaction pause.
   function settleRotation(history) {
     if (reducedMotion || !history || !history.length) {
       velocityYaw = 0;
@@ -976,9 +1088,12 @@ const RAW_CONTINENTS = [
     const settled =
       Math.abs(velocityYaw) < INERTIA_STOP_EPS && Math.abs(velocityPitch) < INERTIA_STOP_EPS;
 
-    if (reducedMotion || settled) {
-      mode = 'returning';
-      returnState = { startTime: null, startSpeed: velocityYaw, startPitch: pitchOffset };
+    if (reducedMotion) {
+      // No automatic animation under reduced motion — leave the globe
+      // exactly where the direct drag left it, no ease-back-to-baseline.
+      mode = 'idle';
+    } else if (settled) {
+      pauseThenResumeIdle();
     } else {
       mode = 'inertia';
     }
@@ -1100,8 +1215,11 @@ const RAW_CONTINENTS = [
     if (!wheelGesture) wheelGesture = { history: [], lastT: now - 16, endTimer: null };
     const dt = Math.max(1, now - wheelGesture.lastT);
 
-    const dYaw = e.deltaX * WHEEL_ROTATE_YAW_PER_PX;
-    const dPitch = e.deltaY * WHEEL_ROTATE_PITCH_PER_PX;
+    // Negated — see the WHEEL_ROTATE_YAW_PER_PX comment above: this is
+    // what makes the globe's surface follow the fingers' actual swipe
+    // direction rather than the browser's "content scroll" direction.
+    const dYaw = -e.deltaX * WHEEL_ROTATE_YAW_PER_PX;
+    const dPitch = -e.deltaY * WHEEL_ROTATE_PITCH_PER_PX;
 
     yaw += dYaw;
     pitchOffset = clamp(pitchOffset + dPitch, -MAX_PITCH_OFFSET, MAX_PITCH_OFFSET);
@@ -1142,8 +1260,7 @@ const RAW_CONTINENTS = [
         velocityPitch *= friction;
 
         if (Math.abs(velocityYaw) < INERTIA_STOP_EPS && Math.abs(velocityPitch) < INERTIA_STOP_EPS) {
-          mode = 'returning';
-          returnState = { startTime: null, startSpeed: velocityYaw, startPitch: pitchOffset };
+          pauseThenResumeIdle();
         }
         break;
       }
@@ -1170,11 +1287,7 @@ const RAW_CONTINENTS = [
         pitchOffset = focusTween.startPitch + focusTween.deltaPitch * eased;
 
         if (t >= 1) {
-          mode = 'paused';
-          window.clearTimeout(resumeIdleTimer);
-          resumeIdleTimer = window.setTimeout(() => {
-            if (mode === 'paused') mode = 'idle';
-          }, RESUME_IDLE_DELAY_MS);
+          pauseThenResumeIdle();
         }
         break;
       }

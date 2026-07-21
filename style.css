@@ -453,13 +453,20 @@ h3 { font-size: 28px; }
 
   justify-self: end;
 
+  display: block;
+  width: 21px;
+  height: 21px;
+
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
-  font-size: 25px;
-  font-weight: 300;
-
   transition: transform 0.4s ease;
+}
+
+.explore-arrow svg,
+.essay-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -1468,10 +1475,11 @@ h3 { font-size: 28px; }
 .essay-arrow {
   justify-self: end;
 
-  color: var(--accent);
+  display: block;
+  width: 19px;
+  height: 19px;
 
-  font-size: 23px;
-  font-weight: 300;
+  color: var(--accent);
 
   opacity: 0.38;
 
@@ -1767,6 +1775,46 @@ footer {
   }
 
 
+  /* Hero mobile — stack into one column; the tall hero photo gets its
+     own aspect-ratio box (rather than the desktop's fixed 700px height)
+     so it always shows a full, uncropped-feeling slice of the image at
+     any phone width. Fixes the previous bug where a narrow single-column
+     width made `background-size: 100%` render the image shorter than
+     its container, causing the browser to tile (repeat) it vertically —
+     the "重影" ghosting. `cover` + `no-repeat` + a tuned vertical
+     position keep it to one clean, elegant crop instead. */
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 36px;
+    padding: 20px 0 56px;
+  }
+
+  .hero-left {
+    padding-top: 12px;
+    padding-left: 0;
+  }
+
+  .hero-copy {
+    max-width: 300px;
+  }
+
+  .hero-right {
+    min-height: auto;
+    margin-right: 0;
+    aspect-ratio: 2 / 3;
+  }
+
+  .hero-photo {
+    border-radius: 0 0 0 56px;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 64%;
+  }
+
+
   /* Explore mobile */
 
   .explore-section {
@@ -1888,7 +1936,8 @@ footer {
 
     align-self: center;
 
-    font-size: 20px;
+    width: 17px;
+    height: 17px;
     opacity: 0.65;
   }
 
@@ -3930,13 +3979,16 @@ html.custom-cursor-active [contenteditable] {
 ======================================== */
 
 :root {
-  /* Pixel palette — matches Elvira's reference spec exactly. */
-  --fox-fur: #d47a5c;
-  --fox-fur-light: #e6a287;
-  --fox-cream: #f6eee6;
-  --fox-shadow: #8c6f61;
-  --fox-ink: #231f20;
-  --fox-ground: rgba(35, 31, 32, 0.16);
+  /* Pixel palette — a softer, more muted take on fox-orange than a
+     literal swatch match, chosen to sit quietly in this site's warm,
+     low-contrast world rather than pop against it. */
+  --fox-fur: #dd9a76;
+  --fox-fur-light: #f0c9ab;
+  --fox-fur-deep: #c9835c;
+  --fox-cream: #fbf5ec;
+  --fox-shadow: #96796a;
+  --fox-ink: #382c26;
+  --fox-ground: rgba(56, 44, 38, 0.14);
 
   /* EDIT POINT — rendered size (viewBox is a fixed 40 x 44). */
   --fox-width: 58px;
@@ -3975,6 +4027,7 @@ html.custom-cursor-active [contenteditable] {
 
 .fox-fur { fill: var(--fox-fur); }
 .fox-fur-light { fill: var(--fox-fur-light); }
+.fox-fur-deep { fill: var(--fox-fur-deep); }
 .fox-cream { fill: var(--fox-cream); }
 .fox-ink { fill: var(--fox-ink); }
 .fox-shadow { fill: var(--fox-shadow); }
@@ -4018,22 +4071,12 @@ html.custom-cursor-active [contenteditable] {
 
 .fox-tail {
   transform-box: fill-box;
-  transform-origin: 18% 88%;
+  transform-origin: 10% 95%;
   animation: fox-tail-sway 4.4s ease-in-out infinite;
 }
 
 .pixel-fox.is-sitting .fox-tail {
   animation-duration: 5.2s;
-}
-
-/* About — "sitting curled": tail settles in around the body (a
-   gentler partial curl than the full sleep wrap below) instead of
-   swaying, while the fox stays awake and alert (eyes open, normal
-   breathing) — a quieter settle, not a doze. */
-.pixel-fox.is-about .fox-tail {
-  animation: none;
-  transform: rotate(64deg) scale(0.98);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Lying/sleeping — the tail settles and, once fully asleep, wraps
@@ -4069,23 +4112,29 @@ html.custom-cursor-active [contenteditable] {
   transform: translateY(2px) scaleY(0.95);
 }
 
+/* Lying/sleeping — deliberately no scaleX/scaleY squash here: size
+   stays constant, only position (settling lower) and a gentle tilt
+   change, matching a real curled-up posture rather than a flattened
+   one. The tail wrap (above), closed eyes, and slow breathing carry
+   the rest of the "asleep" read. */
 .pixel-fox.is-lying .fox-rig {
-  transform: translateY(6px) scaleY(0.72) scaleX(1.08) rotate(-3deg);
+  transform: translateY(4px) rotate(-6deg);
 }
 
 .pixel-fox.is-sleeping .fox-rig {
-  transform: translateY(7px) scaleY(0.68) scaleX(1.1) rotate(-3deg);
+  transform: translateY(5px) rotate(-7deg);
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.pixel-fox.is-about .fox-rig {
-  transform: translateY(2.5px) scaleY(0.96);
-}
-
+/* The one place a brief scale change is appropriate: the stretch
+   itself is motion, not a resting pose, so elongating low then
+   rising back to full size at 100% is exactly the "stretch first,
+   then stand" read — it just settles at the same size it started
+   the sleep cycle at, never staying squashed. */
 @keyframes fox-stretch {
-  0% { transform: translateY(7px) scaleY(0.68) scaleX(1.1) rotate(-3deg); }
-  35% { transform: translateY(3px) scaleY(0.6) scaleX(1.28) rotate(-1deg); }
-  70% { transform: translateY(-1px) scaleY(1.08) scaleX(0.96) rotate(0deg); }
+  0% { transform: translateY(5px) rotate(-7deg); }
+  35% { transform: translateY(2px) scaleY(0.82) scaleX(1.2) rotate(-2deg); }
+  70% { transform: translateY(-1px) scaleY(1.06) scaleX(0.97) rotate(0deg); }
   100% { transform: translateY(0) scaleY(1) scaleX(1) rotate(0deg); }
 }
 
@@ -4126,7 +4175,14 @@ html.custom-cursor-active [contenteditable] {
   transform: translateY(-1px) rotate(-2deg);
 }
 
-/* Essays/Field Notes — looks down at the book instead of up. */
+/* Essays/Field Notes — a persistent slight head-bow at rest, not
+   just on hover, so the fox reads as genuinely mid-page rather than
+   idly holding a closed book. Hovering (below) deepens the same
+   bow further. */
+.pixel-fox[data-accessory="book"] .fox-head {
+  transform: translateY(1px) rotate(3deg);
+}
+
 .pixel-fox[data-accessory="book"].is-looking .fox-head {
   transform: translateY(2px) rotate(5deg);
 }
@@ -4165,7 +4221,17 @@ html.custom-cursor-active [contenteditable] {
 .fox-eyes rect {
   transform-box: fill-box;
   transform-origin: center;
-  transition: transform 0.09s ease;
+  transition: transform 0.09s ease, y 0.3s ease, height 0.3s ease;
+}
+
+/* Essays/Field Notes — eyes sit a little lower and noticeably
+   thinner, like a focused, slightly narrowed reading gaze. Adjusts
+   the actual SVG geometry (y/height) rather than `transform`, so it
+   layers cleanly under the blink/sleep transforms above and below
+   without fighting their own scaleY. */
+.pixel-fox[data-accessory="book"] .fox-eyes rect {
+  y: 17px;
+  height: 2px;
 }
 
 .fox-eyes.is-blinking rect {
@@ -4198,6 +4264,36 @@ html.custom-cursor-active [contenteditable] {
 .pixel-fox.is-sleeping .fox-ear-left,
 .pixel-fox.is-sleeping .fox-ear-right {
   transform: rotate(0) scaleY(0.9);
+}
+
+
+/* ---- Projects/About Me: round glasses + a chin-propped paw ----
+   Both hidden by default, shown together only via .is-about (set on
+   scroll into #projects or #about-me) — a "pausing to think" pose,
+   replacing the earlier squash/tail-curl "sitting curled" attempt. */
+
+.fox-glasses {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.pixel-fox.is-about .fox-glasses {
+  opacity: 1;
+}
+
+.fox-glasses-lens {
+  fill: none;
+  stroke: var(--fox-ink);
+  stroke-width: 0.8;
+}
+
+.fox-chin-paw {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.pixel-fox.is-about .fox-chin-paw {
+  opacity: 1;
 }
 
 
