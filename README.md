@@ -12,7 +12,7 @@ A personal website about curiosity, design, science, and the small things worth 
 - Field Notes
 - Gallery
 - Interactive World Map
-- About
+- Project (Brewing...)
 
 Built to explore the intersection of oral health, writing, illustration, and thoughtful web design.
 
