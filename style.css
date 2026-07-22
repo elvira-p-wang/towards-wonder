@@ -13,7 +13,7 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
   background: var(--bg);
   color: var(--ink);
   line-height: 1.7;
@@ -209,7 +209,7 @@ body {
 
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   letter-spacing: 0.14em;
 
@@ -220,7 +220,7 @@ body {
   flex: 1;
   min-width: 0;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(26px, 7vw, 32px);
   font-weight: 500;
 }
@@ -351,7 +351,7 @@ main { padding: 0 7vw; }
 }
 
 .handwriting {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-style: italic;
   font-size: 26px;
   font-weight: 500;
@@ -547,7 +547,7 @@ main { padding: 0 7vw; }
   font-weight: 600;
 }
 h1, h2, h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
   line-height: 1.05;
   margin: 0;
 }
@@ -1316,7 +1316,7 @@ h3 { font-size: 28px; }
   backdrop-filter: blur(6px);
 
   color: var(--ink);
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -1423,7 +1423,7 @@ h3 { font-size: 28px; }
 
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 12px;
   letter-spacing: 0.04em;
 }
@@ -1586,7 +1586,7 @@ h3 { font-size: 28px; }
 
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -1646,7 +1646,7 @@ h3 { font-size: 28px; }
 
   color: #8d5942;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: 21px;
   font-style: italic;
   font-weight: 500;
@@ -1656,7 +1656,7 @@ h3 { font-size: 28px; }
 .field-note-read {
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -1694,7 +1694,7 @@ h3 { font-size: 28px; }
 .field-note-date {
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -1958,7 +1958,7 @@ h3 { font-size: 28px; }
 
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.13em;
@@ -1978,7 +1978,7 @@ h3 { font-size: 28px; }
 
   color: var(--muted);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: 18px;
   font-style: italic;
   line-height: 1.42;
@@ -2097,7 +2097,7 @@ h3 { font-size: 28px; }
 
   color: var(--muted);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: 19px;
   font-style: italic;
 }
@@ -2159,7 +2159,7 @@ h3 { font-size: 28px; }
 .about-me-bio .about-me-greeting {
   margin: 0 0 20px;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(22px, 2.2vw, 26px);
   font-weight: 500;
   color: var(--ink);
@@ -2580,7 +2580,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -2625,7 +2625,7 @@ footer {
 
   color: #26211e;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(56px, 6.3vw, 91px);
   font-weight: 500;
   letter-spacing: -0.045em;
@@ -2653,7 +2653,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(21px, 1.8vw, 27px);
   font-weight: 500;
   letter-spacing: -0.005em;
@@ -2673,7 +2673,7 @@ footer {
 
   color: rgba(31, 27, 24, 0.56);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -2734,7 +2734,7 @@ footer {
 
   color: rgba(31, 27, 24, 0.8);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 16px;
   font-weight: 300;
   letter-spacing: 0.005em;
@@ -2755,7 +2755,7 @@ footer {
 
   color: #302925;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(25px, 2.4vw, 32px);
   font-weight: 500;
   letter-spacing: -0.012em;
@@ -2772,11 +2772,45 @@ footer {
 
   color: var(--accent);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: 3.5em;
   font-style: normal;
   font-weight: 500;
   line-height: 0.75;
+}
+
+
+/* Inline CJK text set within a Latin-script paragraph (e.g. a quoted
+   Chinese line, title or name inside an essay/field note) reads
+   larger next to Latin type at the same font-size, since CJK glyphs
+   fill a full em-square while Latin letters sit on a smaller
+   x-height. Sizing down to ~89% brings the two scripts into visual
+   balance, so a quoted line reads as part of the prose rather than a
+   heavier, dropped-in annotation. Only applied where CJK sits inline
+   against Latin text in the same line/sentence — a standalone
+   all-Chinese line (e.g. a field note's own hover-card quote) has
+   nothing to balance against, so is left at full size and this class
+   isn't used there.
+
+   Weight is deliberately left unset here (inherits the surrounding
+   paragraph's own weight) because the right correction is context-
+   dependent: Noto Serif SC's regular weight reads heavier than
+   Cormorant Garamond at the same size when a paragraph's base weight
+   is already high (e.g. .article-lead's 500), but that same 400
+   would look *heavier*, not lighter, inside a 300-weight body
+   paragraph. Combine with .cjk-serif below when the surrounding text
+   is a 500-weight serif lead paragraph; leave unpaired (size only)
+   inside regular 300-weight body copy. */
+.cjk-inline {
+  font-size: 0.89em;
+}
+
+/* Pair with .cjk-inline inside a 500-weight serif context (e.g.
+   .article-lead, set in "Cormorant Garamond"/"Noto Serif SC") to
+   also step the CJK down one loaded weight (500 → 400) so it reads
+   lighter, not just smaller, next to the surrounding Latin text. */
+.cjk-serif {
+  font-weight: 400;
 }
 
 
@@ -2810,7 +2844,7 @@ footer {
 
   color: #6e4b3b !important;
 
-  font-family: "Cormorant Garamond", serif !important;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif !important;
   font-size: 23px !important;
   font-style: italic;
   font-weight: 500 !important;
@@ -2842,7 +2876,7 @@ footer {
 
   color: #302925;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(35px, 3.8vw, 48px);
   font-weight: 500;
   letter-spacing: -0.025em;
@@ -2877,7 +2911,7 @@ footer {
 
   color: #8d5942;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(27px, 2.75vw, 35px);
   font-style: italic;
   font-weight: 500;
@@ -2934,7 +2968,7 @@ footer {
 
   color: #4b3930 !important;
 
-  font-family: "Cormorant Garamond", serif !important;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif !important;
   font-size: clamp(25px, 2.65vw, 34px) !important;
   font-style: italic;
   font-weight: 500 !important;
@@ -2953,7 +2987,7 @@ footer {
 
   color: var(--accent);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -2976,7 +3010,7 @@ footer {
 
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
 }
 
 .article-references ol {
@@ -2990,7 +3024,7 @@ footer {
 
   color: rgba(31, 27, 24, 0.58);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 300;
   letter-spacing: 0.002em;
@@ -3028,7 +3062,7 @@ footer {
 .article-footer a {
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -3331,7 +3365,7 @@ footer {
 
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -3460,7 +3494,7 @@ footer {
 .gallery-panel-title {
   display: block;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(34px, 3vw, 46px);
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -3481,7 +3515,7 @@ footer {
   margin-top: 12px;
   max-width: 260px;
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 14px;
   line-height: 1.65;
 
@@ -3493,7 +3527,7 @@ footer {
 
   margin-top: 20px;
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -3544,7 +3578,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -3565,7 +3599,7 @@ footer {
 
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -3577,7 +3611,7 @@ footer {
 
   color: #26211e;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-size: clamp(56px, 7vw, 100px);
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -3590,7 +3624,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-style: italic;
   font-size: clamp(20px, 1.8vw, 26px);
   line-height: 1.55;
@@ -3629,7 +3663,7 @@ footer {
 
   color: #26211e;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-weight: 500;
   font-size: clamp(32px, 3.4vw, 50px);
   letter-spacing: -0.02em;
@@ -3645,7 +3679,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 15px;
   line-height: 1.75;
 }
@@ -3656,7 +3690,7 @@ footer {
 
   color: var(--muted);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-style: italic;
   font-size: 19px;
   text-align: center;
@@ -3667,7 +3701,7 @@ footer {
 
   color: rgba(155, 95, 68, 0.6);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -3837,7 +3871,7 @@ footer {
 }
 
 .exhibit-tile-index {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.16em;
@@ -3926,7 +3960,7 @@ footer {
 .lightbox-placeholder-index {
   color: rgba(248, 243, 236, 0.35);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -3942,7 +3976,7 @@ footer {
 
   color: rgba(248, 243, 236, 0.72);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-weight: 300;
 
   cursor: pointer;
@@ -3988,7 +4022,7 @@ footer {
 
   color: rgba(248, 243, 236, 0.72);
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-style: italic;
   font-size: 16px;
   text-align: center;
@@ -4008,7 +4042,7 @@ footer {
 
   color: rgba(248, 243, 236, 0.5);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-align: center;
@@ -4081,7 +4115,7 @@ body.lightbox-open {
   color: rgba(31, 27, 24, 0.38);
   cursor: pointer;
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -4117,7 +4151,7 @@ body.lightbox-open {
 .room-nav-current {
   color: var(--accent);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", "Noto Sans SC", sans-serif;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -5044,7 +5078,7 @@ html.custom-cursor-active [contenteditable] {
   border-radius: 3px;
 
   color: var(--ink);
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
   font-style: italic;
   font-size: 14px;
   line-height: 1.4;
