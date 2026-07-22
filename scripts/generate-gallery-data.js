@@ -181,6 +181,20 @@ const MODULES = [
         // ratio instead of raw filename order. No sequence/order
         // dependency here (unlike comics), so free to shuffle.
         layoutSort: true
+      },
+      {
+        id: "information-designs",
+        title: "Information Designs",
+        sentence: "Making complex ideas easier to see.",
+        // folder matches the folder name actually used on disk
+        // (singular "information design", same precedent as
+        // "graphic design"/"illustration" above — folder doesn't have
+        // to match id).
+        folder: "information design",
+        placeholderCount: 8,
+        aspects: ["4 / 3", "1 / 1", "3 / 4"],
+        featuredIndexes: [],
+        layoutSort: true
       }
     ]
   },

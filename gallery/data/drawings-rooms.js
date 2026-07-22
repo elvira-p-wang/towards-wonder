@@ -9,4 +9,4 @@
   both stay in sync with drawings-data.js automatically.
 */
 
-window.DRAWINGS_ROOM_ORDER = ["sketches","illustrations","comics","graphic-designs"];
+window.DRAWINGS_ROOM_ORDER = ["sketches","illustrations","comics","graphic-designs","information-designs"];
