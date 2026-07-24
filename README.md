@@ -34,26 +34,26 @@ Long-form reflections on identity, science, creativity, travel, and the quiet qu
 
 ### ✦ Field Notes
 
-Tiny observations, unfinished thoughts, and moments that quietly stayed with me.
+Tiny observations, unfinished thoughts, and moments that quietly stayed with me - some serious, some just funny things that happened after an exam.
 
 ### ✦ Gallery
 
-Photography, illustrations, graphic designs, and concert memories.
+Photography, drawings, and concert memories, presented like a quiet museum rather than a portfolio grid - one exhibition room at a time, nothing cropped or rushed.
 
 ### ✦ Interactive World Map
 
-Countries I've visited, each paired with a personal memory instead of a travel guide.
+A hand-drawn 3D globe of the countries I've visited, each one paired with a personal memory instead of a travel guide. Built from scratch with plain canvas and trigonometry - no 3D library underneath.
 
 ### ✦ Quiet Interactions
 
-Small details that reward curiosity.
+Small details that reward curiosity, never ones that demand attention.
 
 Including:
 
-- 🦊 A tiny pixel fox that quietly accompanies visitors
-- 🌱 Gentle interactive details
-- ✨ Soft transitions and hover animations
-- 🎵 Optional background music
+- 🦊 A tiny pixel fox that quietly accompanies visitors, and occasionally falls asleep
+- 🖱️ A soft custom cursor, restrained further on long-form reading pages
+- ✨ Gentle scroll reveals and hover transitions
+- 🎵 An optional, opt-in ambient music button - never autoplaying
 
 ---
 
@@ -71,15 +71,14 @@ This website follows a few simple rules.
 
 ## Built With
 
-- HTML
-- CSS
-- JavaScript
-- Three.js
-- Git
-- GitHub
-- Vercel
+Plain HTML, CSS, and JavaScript - no frameworks, no build step, no runtime dependencies.
 
-Designed and built entirely from scratch.
+- HTML / CSS / JavaScript, hand-authored
+- A small amount of dev-only Node tooling (see below) to prepare gallery images before deploy
+- Git & GitHub for version control
+- Any static host - Netlify Drop, GitHub Pages, or similar
+
+Designed and built entirely from scratch. Every interaction on this site, including the 3D globe, is written in plain JavaScript with nothing imported at runtime.
 
 ---
 
@@ -87,14 +86,37 @@ Designed and built entirely from scratch.
 
 ```text
 /
-├── essays/            # Long-form writing about the questions that don't have simple answers
-├── field-notes/       # Small things worth keeping
-├── gallery/           # Photography, drawings & concerts
-├── map/               # Interactive travel globe
-├── assets/            # Images, music and icons
-├── styles/            # Global styling
-├── scripts/           # Website interactions
-└── index.html
+├── index.html            # The whole homepage - Hero, Explore, Map, Gallery, Field Notes, Projects, About, Contact
+├── style.css             # One stylesheet for the entire site
+├── script.js              # Scroll memory, hero transition, scroll-reveal animations
+├── globe.js                # The interactive 3D travel map
+├── cursor.js                 # The custom cursor
+├── fox.js                     # The pixel fox companion
+├── audio.js                    # The ambient music button
+├── gallery-preload.js            # Warms the Gallery's image cache before you open it
+├── essays/                        # Long-form writing
+├── field-notes/                    # Short, personal notes
+├── gallery/                         # Photographs, Visual Arts & Concerts - each its own exhibition page
+├── images/                           # Every image on the site, including gallery originals
+├── audio/                              # The ambient background track
+├── scripts/                             # Dev-only tooling that prepares gallery images (Node + sharp)
+└── package.json                          # Powers only the gallery pipeline above, not a build step
+```
+
+---
+
+## Running Locally
+
+No build step, no server required.
+
+- Double-click `index.html` to open it directly in a browser, or
+- Serve the folder locally - `python3 -m http.server` from the project root, then visit `http://localhost:8000`
+
+Adding real photos or drawings to the Gallery:
+
+```bash
+npm install          # once
+npm run prepare-gallery   # optimises new images and regenerates gallery data
 ```
 
 ---
@@ -105,7 +127,7 @@ Built with simplicity in mind.
 
 - Responsive design
 - Lightweight vanilla JavaScript
-- Optimised image loading
+- Optimised, size-aware image compression
 - Smooth scrolling
 - Mobile-friendly layouts
 - Accessible navigation
@@ -115,9 +137,9 @@ Built with simplicity in mind.
 
 ## Why Vanilla JavaScript?
 
-This project intentionally avoids large frameworks.
+This project intentionally avoids frameworks and libraries, even for the parts that look like they'd need one - like the 3D globe.
 
-Building everything from scratch helped me better understand how websites work while keeping the experience lightweight, flexible, and personal.
+Building everything from scratch helped me better understand how the web actually works, while keeping the site light, fast, and entirely my own.
 
 Sometimes simplicity is the better design choice.
 
@@ -159,7 +181,6 @@ I'm interested in the space where science, design, technology, and human stories
 
 Towards Wonder is where those interests come together.
 
-
 ---
 
 ## Connect
@@ -172,9 +193,14 @@ https://www.linkedin.com/in/pinrou-wang-66a6463b7
 
 ---
 
+## License
+
+This is a personal, creative project rather than open-source software - the code structure is here for anyone curious to read, but the writing, photographs, and artwork remain © Elvira Wang. Please don't republish them without asking.
+
+---
+
 Designed and built by Elvira Wang.
 
 Built slowly, one small detail at a time.
 
 Made with curiosity, patience, and a little pixel fox. 🦊
-
