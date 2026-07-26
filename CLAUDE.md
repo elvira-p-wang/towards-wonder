@@ -91,7 +91,7 @@ window.DRAWINGS_DATA = {
     {
       id: "comics",
       title: "Comics",
-      sentence: "Small stories told in sequence.",
+      sentence: "🦊 ^-⩊-^ 🐱 /ᐠ. .ᐟ\",
       images: [
         {
           id: "comics-morning-walk-1",

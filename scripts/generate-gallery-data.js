@@ -161,7 +161,7 @@ const MODULES = [
       {
         id: "comics",
         title: "Comics",
-        sentence: "Small stories told in sequence.",
+        sentence: "🦊 ^-⩊-^🐱 /ᐠ. .ᐟ\\",
         folder: "comic",
         placeholderCount: 8,
         aspects: ["3 / 2"],
