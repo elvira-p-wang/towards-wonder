@@ -256,7 +256,7 @@ Elvira will send real Field Notes over time — full article text plus a publica
 ## Known gaps to be aware of
 
 - `images/about-me.jpg` is referenced in `index.html` but does not exist in `images/`.
-- All three Gallery modules now have real images: Photographs (192, across Stillness/Light/Presence/Landscapes), Drawings (50, across Sketches/Illustrations/Comics/Graphic Designs), Concerts (33). The Photographs entrance panel on the homepage uses a real photo (`images/gallery/photographs/stillness/stillness4.jpeg`); the Drawings and Concerts panels still use a placeholder tone fill (`.gallery-panel-image--placeholder`) until a real photo/drawing is chosen for each — that's a one-line swap in `index.html` whenever Elvira picks one, unrelated to the data pipeline.
+- All three Gallery modules now have real images: Photographs (192, across Stillness/Light/Presence/Landscapes), Drawings (56, across Sketches/Illustrations/Comics/Graphic Designs/Information Designs), Concerts (33). The Photographs entrance panel on the homepage uses a real photo (`images/gallery/photographs/stillness/stillness4.jpeg`); the Drawings and Concerts panels still use a placeholder tone fill (`.gallery-panel-image--placeholder`) until a real photo/drawing is chosen for each — that's a one-line swap in `index.html` whenever Elvira picks one, unrelated to the data pipeline.
 - The Contact section's mailto link still uses the placeholder `your.email@example.com`.
 
 ## Project Philosophy
