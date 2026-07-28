@@ -1452,32 +1452,35 @@ h3 { font-size: 28px; }
 
 /* ========================================
    PROJECTS
-   One real, shipped project (Envelope) gets
-   a wide "feature" card — thumbnail plus a
-   short pitch — framed as an object (bordered,
-   inset image, on --paper) rather than
-   full-bleed like the Gallery entrance, so
-   Projects reads as its own quieter shelf
-   rather than a copy of the Gallery. The card
-   carries two links: "View live demo" is
-   primary (a stretched-link overlay makes the
-   whole card clickable to it), "View source"
-   is a small, quiet secondary link to the
-   GitHub repo — see the note above
+   Each shipped project (Envelope, Clinical
+   Atlas, Feedback to Action) gets its own wide
+   "feature" card — thumbnail plus a short pitch
+   — framed as an object (bordered, inset image,
+   on --paper) rather than full-bleed like the
+   Gallery entrance, so Projects reads as its own
+   quieter shelf rather than a copy of the
+   Gallery. The card carries two links: "View
+   live demo" is primary (a stretched-link
+   overlay makes the whole card clickable to it),
+   "View source" is a small, quiet secondary link
+   to the GitHub repo — see the note above
    .project-feature-links for how the two
-   coexist without nesting <a> inside <a>. The
-   second grid slot is a narrow, muted "still
-   brewing" placeholder — deliberately smaller,
-   so the asymmetry itself signals "here's the
-   real thing, and here's what's next" rather
-   than two equal, half-empty cards side by side.
-======================================== */
+   coexist without nesting <a> inside <a>.
+   Feature cards stack one per row (rather than
+   side by side) so the list can grow to any
+   number of shipped projects without the grid
+   needing to change shape. The final row is a
+   narrow, muted "still brewing" placeholder,
+   centered and capped at a much smaller width
+   than the feature cards above it — deliberately
+   smaller, so the asymmetry itself signals
+   "here's what's shipped, and here's what's
+   next" rather than another full-width card. */
 
 .projects-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 240px;
+  grid-template-columns: 1fr;
   gap: 24px;
-  align-items: stretch;
 
   margin-top: 64px;
 }
@@ -1628,6 +1631,8 @@ h3 { font-size: 28px; }
   justify-content: center;
   gap: 8px;
 
+  max-width: 300px;
+  margin: 0 auto;
   padding: 30px 20px;
 
   background: rgba(155, 95, 68, 0.05);
@@ -1661,10 +1666,6 @@ h3 { font-size: 28px; }
    teaser card in just after the feature card. */
 
 @media (max-width: 900px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
   .project-feature {
     grid-template-columns: 1fr;
   }
@@ -1674,6 +1675,7 @@ h3 { font-size: 28px; }
   }
 
   .project-teaser {
+    max-width: none;
     min-height: 160px;
   }
 }
