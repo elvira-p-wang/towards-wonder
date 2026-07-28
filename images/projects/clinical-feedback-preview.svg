@@ -13,69 +13,58 @@
   <text x="40" y="112" font-size="33" fill="#262220">Feedback to Action</text>
   <text x="40" y="136" font-size="14" fill="#837b73" font-family="Helvetica, Arial, sans-serif">Turns placement feedback into reflections you&#8217;ll actually finish writing.</text>
 
-  <!-- overview cards -->
+  <!-- left: raw pasted feedback -->
   <g font-family="Helvetica, Arial, sans-serif">
-    <!-- card 1 -->
-    <rect x="40" y="160" width="260" height="112" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="60" y="188" font-size="11" letter-spacing="1" fill="#837b73">STRENGTHS</text>
-    <text x="60" y="216" font-size="24" fill="#262220" font-family="Georgia, serif">6</text>
-    <rect x="60" y="230" width="220" height="5" rx="2.5" fill="#efe9dd"/>
-    <rect x="60" y="230" width="150" height="5" rx="2.5" fill="#55806b"/>
-    <text x="60" y="254" font-size="11" fill="#55806b">Noted this placement</text>
+    <rect x="40" y="150" width="360" height="374" rx="12" fill="#fffefb" stroke="#e6ded2"/>
+    <text x="60" y="176" font-size="11" letter-spacing="1" fill="#837b73">PASTE FEEDBACK</text>
 
-    <!-- card 2 -->
-    <rect x="320" y="160" width="260" height="112" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="340" y="188" font-size="11" letter-spacing="1" fill="#837b73">GROWTH AREAS</text>
-    <text x="340" y="216" font-size="24" fill="#262220" font-family="Georgia, serif">4</text>
-    <rect x="340" y="230" width="220" height="5" rx="2.5" fill="#efe9dd"/>
-    <rect x="340" y="230" width="110" height="5" rx="2.5" fill="#af7c3f"/>
-    <text x="340" y="254" font-size="11" fill="#af7c3f">Ranked by urgency</text>
+    <text x="60" y="204" font-size="12" fill="#6b6459">- pt care good, but visibly rushed</text>
+    <text x="60" y="228" font-size="12" fill="#6b6459">- please ensure allergy hx checked always</text>
+    <text x="60" y="252" font-size="12" fill="#6b6459">- well done explaining tx plan to family</text>
+    <text x="60" y="276" font-size="12" fill="#6b6459">- consent form left unsigned</text>
+    <text x="60" y="300" font-size="12" fill="#6b6459">- forgot glove change between ops</text>
 
-    <!-- card 3 -->
-    <rect x="600" y="160" width="260" height="112" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="620" y="188" font-size="11" letter-spacing="1" fill="#837b73">CONTEXT NOTES</text>
-    <text x="620" y="216" font-size="24" fill="#262220" font-family="Georgia, serif">3</text>
-    <rect x="620" y="230" width="220" height="5" rx="2.5" fill="#efe9dd"/>
-    <rect x="620" y="230" width="80" height="5" rx="2.5" fill="#6b8fa3"/>
-    <text x="620" y="254" font-size="11" fill="#6b8fa3">Background, not urgent</text>
+    <rect x="60" y="456" width="300" height="40" rx="20" fill="#9b5f44"/>
+    <text x="210" y="481" font-size="13" font-weight="600" text-anchor="middle" fill="#fffefb">Parse &amp; Generate Reflection</text>
   </g>
 
-  <!-- priority actions panel -->
-  <g font-family="Helvetica, Arial, sans-serif">
-    <rect x="40" y="292" width="820" height="80" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="60" y="316" font-size="15" fill="#262220" font-family="Georgia, serif">Priority actions</text>
-    <circle cx="65" cy="335" r="2.5" fill="#8a6a52"/>
-    <text x="76" y="339" font-size="12" fill="#43403c">Confirm allergy history before every new patient &#8212; patient safety, act first.</text>
-    <circle cx="65" cy="352" r="2.5" fill="#8a6a52"/>
-    <text x="76" y="356" font-size="12" fill="#43403c">Log the consent discussion in the notes each time &#8212; compliance &amp; documentation.</text>
-  </g>
+  <!-- arrow -->
+  <text x="402" y="349" font-size="30" fill="#9b5f44" font-family="Helvetica, Arial, sans-serif">&#8594;</text>
 
-  <!-- bottom row -->
+  <!-- right: sorted output -->
   <g font-family="Helvetica, Arial, sans-serif">
-    <rect x="40" y="392" width="400" height="132" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="60" y="416" font-size="14" fill="#262220" font-family="Georgia, serif">Reflective draft</text>
-    <g font-size="11.5" fill="#43403c">
-      <text x="60" y="440">Went well</text>
-      <line x1="60" y1="446" x2="380" y2="446" stroke="#efe9dd" stroke-width="1"/>
-      <text x="60" y="463">Needs improvement</text>
-      <line x1="60" y1="469" x2="380" y2="469" stroke="#efe9dd" stroke-width="1"/>
-      <text x="60" y="486">Action plan</text>
-      <line x1="60" y1="492" x2="380" y2="492" stroke="#efe9dd" stroke-width="1"/>
-      <text x="60" y="509">Feelings &#183; Key takeaway</text>
-    </g>
+    <rect x="440" y="150" width="420" height="374" rx="12" fill="#fffefb" stroke="#e6ded2"/>
+    <text x="460" y="176" font-size="11" letter-spacing="1" fill="#837b73">SORTED OUTPUT</text>
 
-    <rect x="460" y="392" width="400" height="132" rx="12" fill="#fffefb" stroke="#e6ded2"/>
-    <text x="480" y="416" font-size="14" fill="#262220" font-family="Georgia, serif">By category</text>
-    <circle cx="565" cy="465" r="38" fill="none" stroke="#efe9dd" stroke-width="16"/>
-    <circle cx="565" cy="465" r="38" fill="none" stroke="#8a6a52" stroke-width="16" stroke-dasharray="70 179"/>
-    <circle cx="565" cy="465" r="38" fill="none" stroke="#7f9b6b" stroke-width="16" stroke-dasharray="45 179" stroke-dashoffset="-70"/>
-    <circle cx="565" cy="465" r="38" fill="none" stroke="#c98f6b" stroke-width="16" stroke-dasharray="35 179" stroke-dashoffset="-115"/>
-    <circle cx="565" cy="465" r="38" fill="none" stroke="#6b8fa3" stroke-width="16" stroke-dasharray="29 179" stroke-dashoffset="-150"/>
-    <g font-size="10.5" fill="#837b73">
-      <circle cx="650" cy="446" r="4" fill="#8a6a52"/><text x="660" y="450">Professionalism</text>
-      <circle cx="650" cy="464" r="4" fill="#7f9b6b"/><text x="660" y="468">Patient Safety</text>
-      <circle cx="650" cy="482" r="4" fill="#c98f6b"/><text x="660" y="486">Communication</text>
-      <circle cx="650" cy="500" r="4" fill="#6b8fa3"/><text x="660" y="504">Documentation</text>
-    </g>
+    <!-- tags -->
+    <rect x="460" y="192" width="88" height="24" rx="12" fill="rgba(85,128,107,0.12)"/>
+    <text x="504" y="208" font-size="10.5" letter-spacing="0.5" text-anchor="middle" fill="#55806b">STRENGTH</text>
+    <rect x="558" y="192" width="112" height="24" rx="12" fill="rgba(175,124,63,0.12)"/>
+    <text x="614" y="208" font-size="10.5" letter-spacing="0.5" text-anchor="middle" fill="#af7c3f">GROWTH AREA</text>
+    <rect x="680" y="192" width="82" height="24" rx="12" fill="rgba(107,143,163,0.12)"/>
+    <text x="721" y="208" font-size="10.5" letter-spacing="0.5" text-anchor="middle" fill="#6b8fa3">CONTEXT</text>
+
+    <!-- priority actions -->
+    <text x="460" y="246" font-size="14" fill="#262220" font-family="Georgia, serif">Priority actions</text>
+
+    <circle cx="468" cy="264" r="9" fill="#af7c3f"/>
+    <text x="468" y="267.5" font-size="10" text-anchor="middle" fill="#fffefb">1</text>
+    <text x="486" y="268" font-size="12" fill="#43403c">Confirm allergy history before next patient</text>
+
+    <circle cx="468" cy="292" r="9" fill="#af7c3f"/>
+    <text x="468" y="295.5" font-size="10" text-anchor="middle" fill="#fffefb">2</text>
+    <text x="486" y="296" font-size="12" fill="#43403c">Log the consent discussion at every visit</text>
+
+    <line x1="460" y1="316" x2="840" y2="316" stroke="#e6ded2"/>
+
+    <!-- reflective draft -->
+    <text x="460" y="340" font-size="14" fill="#262220" font-family="Georgia, serif">Reflective draft</text>
+    <text x="460" y="364" font-size="11.5" fill="#43403c">Went well</text>
+    <line x1="460" y1="370" x2="840" y2="370" stroke="#efe9dd"/>
+    <text x="460" y="390" font-size="11.5" fill="#43403c">Needs improvement</text>
+    <line x1="460" y1="396" x2="840" y2="396" stroke="#efe9dd"/>
+    <text x="460" y="416" font-size="11.5" fill="#43403c">Action plan</text>
+    <line x1="460" y1="422" x2="840" y2="422" stroke="#efe9dd"/>
+    <text x="460" y="442" font-size="11.5" fill="#43403c">Feelings &#183; Key takeaway</text>
   </g>
 </svg>
