@@ -333,19 +333,25 @@ main { padding: 0 7vw; }
   padding: 70px 0 40px;
 
   /* Setting only overflow-x here is a classic CSS trap: per spec, if
-     one axis is non-"visible" and the other is left as "visible",
-     the "visible" one silently computes to "auto" instead — so
-     without the explicit overflow-y below, .hero quietly became its
-     own independently-scrollable box (min-height: 82vh, plus
-     .hero-right::before's glow bleeding further via inset: -6%, was
-     enough to overflow it vertically on some viewports). That's the
-     second, ugly browser-default scrollbar that showed up hovering
-     over the photo — a real scroll container distinct from the
-     page's own, not a rendering glitch. overflow-y: visible below
-     keeps the original intent (clip the glow's horizontal bleed
-     only) without opting into that. */
-  overflow-x: hidden;
-  overflow-y: visible;
+     one axis computes to something other than "visible" while the
+     other computes to "visible", the "visible" one is FORCED to
+     "auto" instead — and critically, this substitution happens
+     whether that axis was left unset or set to "visible" explicitly.
+     (A first attempt at this fix wrote `overflow-y: visible` here,
+     which looks like it should opt out — it doesn't; the spec still
+     silently promotes it to auto, because overflow-x is still
+     non-visible.) .hero quietly became its own independently-
+     scrollable box (min-height: 82vh, plus .hero-right::before's
+     glow bleeding further via inset: -6%, was enough to overflow it
+     vertically) — the second, ugly browser-default scrollbar that
+     showed up hovering over the photo, confirmed by temporarily
+     outlining the surrounding boxes and seeing exactly where it sat.
+     The only way to actually get no scrollbar is for *neither* axis
+     to compute to "visible" — so overflow-y: hidden below, matching
+     overflow-x, clips the glow's bleed on both axes instead of just
+     one. The glow is a soft, blurred, symmetric shape, so losing a
+     sliver of its vertical bleed isn't visually noticeable. */
+  overflow: hidden;
 }
 
 .hero-left {
