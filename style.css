@@ -331,7 +331,21 @@ main { padding: 0 7vw; }
   align-items: center;
   gap: 48px;
   padding: 70px 0 40px;
-  overflow-x: hidden; /* contains the ambient glow's soft bleed past .hero-right's edge */
+
+  /* Setting only overflow-x here is a classic CSS trap: per spec, if
+     one axis is non-"visible" and the other is left as "visible",
+     the "visible" one silently computes to "auto" instead — so
+     without the explicit overflow-y below, .hero quietly became its
+     own independently-scrollable box (min-height: 82vh, plus
+     .hero-right::before's glow bleeding further via inset: -6%, was
+     enough to overflow it vertically on some viewports). That's the
+     second, ugly browser-default scrollbar that showed up hovering
+     over the photo — a real scroll container distinct from the
+     page's own, not a rendering glitch. overflow-y: visible below
+     keeps the original intent (clip the glow's horizontal bleed
+     only) without opting into that. */
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .hero-left {
@@ -406,7 +420,19 @@ main { padding: 0 7vw; }
     linear-gradient(rgba(248,243,236,.12), rgba(248,243,236,.08)),
     url("images/hero.jpeg");
 
-  background-size: 100%;
+  /* `cover` + `no-repeat` — the same fix already applied under the
+     mobile breakpoint below (see the "Hero mobile" comment there).
+     The old `background-size: 100%` only sets the image's *width*;
+     whenever the box's actual height/width ratio makes the image
+     render shorter than the box, the browser tiles it to fill the
+     rest — a second, slightly offset copy starting right where the
+     first one ends, which shows up as a thin seam (the "重影"
+     ghosting) right at that repeat boundary. `cover` guarantees the
+     image always fills the box on both axes with a single copy, so
+     there's no seam to tile in the first place, at any viewport
+     width — not just below the mobile breakpoint. */
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center 45%;
 }
 
@@ -3062,6 +3088,65 @@ footer {
 
 
 /* ----------------------------------------
+   FIELD NOTE DIALOGUE
+   For a field note that quotes a real
+   back-and-forth (e.g. "What Currencies Are
+   You Optimising For?"). Each speaker's turn
+   sits in its own indented, left-bordered
+   block with a small uppercase initial, so the
+   quoted exchange reads as a distinct, quoted
+   voice rather than blending into the
+   surrounding first-person narration before and
+   after it — the same "set apart, not just
+   styled" logic as .article-pullquote, but
+   quieter (body-sized text, no italics) since
+   this is dialogue, not a single quotable line.
+---------------------------------------- */
+
+.field-note-dialogue {
+  margin: 50px 0;
+}
+
+.dialogue-turn {
+  padding-left: 22px;
+
+  border-left: 2px solid rgba(155, 95, 68, 0.3);
+}
+
+.dialogue-turn + .dialogue-turn {
+  margin-top: 34px;
+}
+
+.dialogue-speaker {
+  display: block;
+  margin-bottom: 12px;
+
+  color: var(--accent);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.dialogue-turn p {
+  margin: 0 0 1.3em;
+
+  color: rgba(31, 27, 24, 0.8);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.dialogue-turn p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ----------------------------------------
    ARTICLE SECTIONS
 ---------------------------------------- */
 
@@ -3160,6 +3245,165 @@ footer {
   background: var(--bg);
 
   transform: translateY(-50%);
+}
+
+
+/* ----------------------------------------
+   ARTICLE TABLE
+   Used for genuine tabular content inside a
+   longform essay (e.g. a definitions glossary)
+   — not decorative, so styled plainly: thin
+   rules, no shading, no rounded corners,
+   matching the essay's classic typographic
+   register rather than a dashboard look.
+---------------------------------------- */
+
+.article-table-wrap {
+  margin: 62px 0;
+
+  overflow-x: auto;
+}
+
+.article-table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.article-table caption {
+  margin-bottom: 18px;
+
+  color: var(--muted);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 12.5px;
+  font-style: italic;
+  text-align: left;
+}
+
+.article-table th,
+.article-table td {
+  padding: 14px 20px 14px 0;
+
+  color: rgba(31, 27, 24, 0.8);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: left;
+  vertical-align: top;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.article-table thead th {
+  padding-top: 0;
+
+  color: var(--accent);
+
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid rgba(155, 95, 68, 0.4);
+}
+
+.article-table tbody th {
+  padding-right: 24px;
+
+  color: #302925;
+
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+
+/* ----------------------------------------
+   ARTICLE FIGURE
+   A text-based diagram (three linked columns)
+   for essays that reference a conceptual
+   framework — same restrained register as the
+   table above, no icons or colour-coding.
+---------------------------------------- */
+
+.article-figure {
+  margin: 62px 0;
+}
+
+.article-figure-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: start;
+  gap: 20px;
+
+  padding: 36px 0;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.article-figure-col-title {
+  margin: 0 0 4px;
+
+  color: #302925;
+
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.article-figure-col-sub {
+  margin: 0 0 12px;
+
+  color: var(--muted);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.article-figure-col ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+
+  color: rgba(31, 27, 24, 0.75);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.article-figure-col li {
+  margin-bottom: 8px;
+}
+
+.article-figure-col li::marker {
+  color: rgba(155, 95, 68, 0.6);
+}
+
+.article-figure-arrow {
+  align-self: center;
+
+  color: rgba(155, 95, 68, 0.55);
+
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+}
+
+.article-figure figcaption {
+  margin-top: 20px;
+
+  color: var(--muted);
+
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-size: 12.5px;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 
@@ -3480,6 +3724,47 @@ footer {
     top: 44px;
 
     font-size: 22px;
+  }
+
+
+  /* Table */
+
+  .article-table th,
+  .article-table td {
+    padding: 12px 14px 12px 0;
+
+    font-size: 13px;
+  }
+
+  .article-table tbody th {
+    font-size: 15px;
+  }
+
+
+  /* Figure — stacks to a single column, arrows rotate to point down */
+
+  .article-figure-grid {
+    grid-template-columns: 1fr;
+
+    padding: 28px 0;
+  }
+
+  .article-figure-arrow {
+    justify-self: center;
+
+    transform: rotate(90deg);
+  }
+
+
+  /* Field note dialogue */
+
+  .dialogue-turn {
+    padding-left: 16px;
+  }
+
+  .dialogue-turn p {
+    font-size: 15.5px;
+    line-height: 1.72;
   }
 
 
