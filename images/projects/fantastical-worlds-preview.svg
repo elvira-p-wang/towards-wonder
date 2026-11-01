@@ -1,0 +1,153 @@
+<svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="900" height="540" fill="#f7f4ee" rx="14"/>
+
+  <!-- browser chrome -->
+  <rect x="0" y="0" width="900" height="34" fill="#efe9dd" rx="14"/>
+  <rect x="0" y="20" width="900" height="14" fill="#efe9dd"/>
+  <circle cx="22" cy="17" r="5" fill="#e2b3a8"/>
+  <circle cx="40" cy="17" r="5" fill="#e6d2a0"/>
+  <circle cx="58" cy="17" r="5" fill="#a9c9b3"/>
+
+  <!-- header -->
+  <text x="40" y="78" font-size="15" letter-spacing="2" fill="#837b73" font-family="Helvetica, Arial, sans-serif">FANTASTICAL WORLDS &#183; CONCERT POSTER, MADE PLAYABLE</text>
+  <text x="40" y="112" font-size="33" fill="#262220">Fantastical Worlds</text>
+  <text x="40" y="136" font-size="14" fill="#837b73" font-family="Helvetica, Arial, sans-serif">Sydney University Wind Orchestra &#183; Sat 31 Oct 2026 &#183; Verbrugghen Hall</text>
+
+  <!-- ===== left: the poster, as a flat riso-style 3D scene ===== -->
+  <defs>
+    <clipPath id="fw-poster"><rect x="40" y="150" width="299" height="374" rx="12"/></clipPath>
+  </defs>
+  <g clip-path="url(#fw-poster)">
+    <rect x="40" y="150" width="299" height="374" fill="#2f3f9d"/>
+    <!-- violet cloud band -->
+    <path d="M40 150 H339 V196 C312 190 292 212 262 204 C228 196 214 178 176 188 C140 198 110 222 78 210 C62 204 50 206 40 212 Z" fill="#7b5dc4"/>
+    <path d="M40 150 H339 V176 C318 172 300 186 280 182 C250 176 232 160 200 168 C160 178 120 196 40 186 Z" fill="#9378d6"/>
+
+    <!-- title -->
+    <text x="124" y="196" font-size="9.5" fill="#f3d27a" font-style="italic" text-anchor="middle" letter-spacing=".3">Sydney University Wind Orchestra</text>
+    <text x="132" y="226" font-size="28" fill="#f3c24f" font-style="italic" text-anchor="middle">Fantastical</text>
+    <text x="150" y="251" font-size="28" fill="#f3c24f" font-style="italic" text-anchor="middle">Worlds</text>
+
+    <!-- gold trombone slide + cream ribbon from the horn -->
+    <line x1="176" y1="306" x2="262" y2="350" stroke="#f3c24f" stroke-width="6" stroke-linecap="round"/>
+    <line x1="182" y1="296" x2="268" y2="340" stroke="#f3c24f" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M70 352 C 54 392, 112 400, 110 436 C 108 470, 66 478, 80 524 L 112 524 C 100 486, 142 470, 142 436 C 142 396, 92 392, 100 352 Z" fill="#f2e1c6"/>
+    <!-- foreground arches -->
+    <rect x="296" y="462" width="43" height="62" fill="#e98e86"/>
+    <path d="M304 524 v-20 a9 9 0 0 1 18 0 v20 z" fill="#2f3f9d"/>
+    <rect x="258" y="486" width="40" height="38" fill="#59b9c8"/>
+    <path d="M266 524 v-14 a7 7 0 0 1 14 0 v14 z" fill="#2f3f9d"/>
+
+    <!-- french horn bell ring -->
+    <circle cx="86" cy="316" r="42" fill="none" stroke="#f3c24f" stroke-width="9"/>
+    <circle cx="86" cy="316" r="23" fill="none" stroke="#f3c24f" stroke-width="6"/>
+
+    <!-- little town inside the horn -->
+    <rect x="62" y="318" width="20" height="28" fill="#e98e86"/>
+    <rect x="80" y="304" width="18" height="42" fill="#59b9c8"/>
+    <rect x="96" y="322" width="16" height="24" fill="#b79be3"/>
+    <polygon points="62,318 72,308 82,318" fill="#f3c24f"/>
+    <polygon points="80,304 89,294 98,304" fill="#e98e86"/>
+
+    <!-- tower spires on the right -->
+    <rect x="236" y="244" width="11" height="96" fill="#1e2a73"/>
+    <polygon points="236,244 241.5,226 247,244" fill="#1e2a73"/>
+    <rect x="270" y="232" width="11" height="108" fill="#1e2a73"/>
+    <polygon points="270,232 275.5,212 281,232" fill="#1e2a73"/>
+    <circle cx="241.5" cy="262" r="2.2" fill="#e6d2a0"/><circle cx="241.5" cy="276" r="2.2" fill="#e6d2a0"/><circle cx="241.5" cy="290" r="2.2" fill="#e6d2a0"/>
+    <circle cx="275.5" cy="252" r="2.2" fill="#e6d2a0"/><circle cx="275.5" cy="266" r="2.2" fill="#e6d2a0"/><circle cx="275.5" cy="280" r="2.2" fill="#e6d2a0"/>
+
+    <!-- pastel city blocks, right -->
+    <rect x="204" y="322" width="46" height="62" fill="#59b9c8"/>
+    <rect x="248" y="300" width="42" height="86" fill="#b79be3"/>
+    <rect x="288" y="318" width="51" height="68" fill="#e98e86"/>
+    <rect x="266" y="296" width="14" height="14" fill="#f3c24f"/>
+    <path d="M214 384 v-22 a8 8 0 0 1 16 0 v22 z" fill="#2f3f9d"/>
+    <path d="M300 386 v-26 a9 9 0 0 1 18 0 v26 z" fill="#2f3f9d"/>
+
+    <!-- winding cream road -->
+    <path d="M300 160 C 240 176, 330 200, 286 220 C 240 242, 206 262, 196 300 C 186 342, 226 360, 214 400 C 204 436, 150 436, 138 470 C 130 494, 150 506, 168 524 L 210 524 C 190 504, 180 486, 196 468 C 214 446, 262 440, 262 398 C 262 356, 232 336, 242 300 C 250 268, 300 252, 322 226 C 342 202, 330 170, 300 160 Z" fill="#f2e1c6"/>
+    <!-- blue river down the road -->
+    <path d="M238 330 C 246 372, 224 392, 226 420 C 228 450, 198 460, 196 500" fill="none" stroke="#4a6fd0" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 12"/>
+
+    <!-- staff + notes along the road, left -->
+    <g stroke="#1e2a73" stroke-width="1" fill="none" opacity=".9">
+      <path d="M64 386 C 96 384, 126 410, 150 430"/>
+      <path d="M62 391 C 94 389, 124 415, 148 435"/>
+      <path d="M60 396 C 92 394, 122 420, 146 440"/>
+    </g>
+    <ellipse cx="84" cy="392" rx="3.4" ry="2.4" fill="#1e2a73"/>
+    <ellipse cx="108" cy="402" rx="3.4" ry="2.4" fill="#1e2a73"/>
+    <ellipse cx="128" cy="418" rx="3.4" ry="2.4" fill="#1e2a73"/>
+
+    <!-- conductor -->
+    <circle cx="96" cy="494" r="3.4" fill="#1e2a73"/>
+    <path d="M91 512 q5 -16 10 0 z" fill="#1e2a73"/>
+
+    <!-- venue line -->
+    <text x="276" y="470" font-size="7.5" fill="#f2e1c6" text-anchor="end" font-family="Helvetica, Arial, sans-serif">Verbrugghen Hall</text>
+    <text x="276" y="481" font-size="7.5" fill="#f2e1c6" text-anchor="end" font-family="Helvetica, Arial, sans-serif">Sydney Conservatorium</text>
+    <text x="276" y="497" font-size="9" fill="#f2e1c6" text-anchor="end" font-family="Helvetica, Arial, sans-serif" letter-spacing=".5">SAT 31 OCT &#183; 7PM</text>
+  </g>
+
+  <!-- floating note trail from the cursor -->
+  <g fill="#9b5f44" font-family="Georgia, serif">
+    <text x="352" y="424" font-size="17" opacity=".35">&#9834;</text>
+    <text x="366" y="408" font-size="19" opacity=".55">&#9835;</text>
+    <text x="382" y="388" font-size="21" opacity=".8">&#9834;</text>
+  </g>
+
+  <!-- ===== right: the programme booklet, open ===== -->
+  <g>
+    <!-- soft shadow -->
+    <ellipse cx="640" cy="512" rx="210" ry="9" fill="#262220" opacity=".08"/>
+    <!-- left page -->
+    <path d="M410 168 L640 176 L640 496 L410 488 Z" fill="#fffefb" stroke="#e6ded2"/>
+    <!-- right page (slightly turning) -->
+    <path d="M640 176 L868 168 L868 488 L640 496 Z" fill="#fffefb" stroke="#e6ded2"/>
+    <path d="M640 176 L640 496 L624 495 L624 175 Z" fill="#efe9dd" opacity=".7"/>
+
+    <!-- left page: concert programme -->
+    <text x="525" y="212" font-size="19" fill="#5a2a6e" text-anchor="middle">Concert Programme</text>
+    <g font-family="Georgia, serif" fill="#5a2a6e">
+      <text x="432" y="246" font-size="10" font-weight="700">Beyond the Darial Pass</text>
+      <text x="618" y="246" font-size="8.5" text-anchor="end" fill="#8a6a52">Ji-Thompson</text>
+      <text x="432" y="274" font-size="10.5" font-weight="700">The Devil Went Down to Georgia</text>
+      <text x="432" y="302" font-size="10.5" font-weight="700">Children&#8217;s March</text>
+      <text x="618" y="302" font-size="9" text-anchor="end" fill="#8a6a52">P. Grainger</text>
+      <text x="432" y="330" font-size="10.5" font-weight="700">Shifting Atmospheres</text>
+      <text x="618" y="330" font-size="9" text-anchor="end" fill="#8a6a52">R. Dunlop</text>
+      <text x="432" y="358" font-size="10.5" font-weight="700">Danz&#243;n No. 2</text>
+      <text x="618" y="358" font-size="9" text-anchor="end" fill="#8a6a52">A. M&#225;rquez</text>
+    </g>
+    <text x="525" y="388" font-size="9" fill="#af7c3f" text-anchor="middle" letter-spacing="2" font-family="Helvetica, Arial, sans-serif">&#8211; INTERMISSION &#8211;</text>
+    <g font-family="Georgia, serif" fill="#5a2a6e">
+      <text x="432" y="414" font-size="10.5" font-weight="700">Blood Water</text>
+      <text x="618" y="414" font-size="9" text-anchor="end" fill="#8a6a52">J. Good</text>
+      <text x="432" y="442" font-size="10.5" font-weight="700">Howl&#8217;s Moving Castle</text>
+      <text x="618" y="442" font-size="9" text-anchor="end" fill="#8a6a52">J. Hisaishi</text>
+      <text x="432" y="470" font-size="10.5" font-weight="700">Stardust Crusaders</text>
+      <text x="618" y="470" font-size="9" text-anchor="end" fill="#8a6a52">Y. Kanno</text>
+    </g>
+    <g stroke="#efe9dd"><line x1="432" y1="256" x2="618" y2="256"/><line x1="432" y1="284" x2="618" y2="284"/><line x1="432" y1="312" x2="618" y2="312"/><line x1="432" y1="340" x2="618" y2="340"/><line x1="432" y1="368" x2="618" y2="368"/><line x1="432" y1="424" x2="618" y2="424"/><line x1="432" y1="452" x2="618" y2="452"/></g>
+
+    <!-- right page: a note with a portrait -->
+    <text x="754" y="212" font-size="19" fill="#5a2a6e" text-anchor="middle">Program Notes</text>
+    <circle cx="684" cy="262" r="26" fill="#e98e86"/>
+    <circle cx="684" cy="254" r="10" fill="#fffefb"/>
+    <path d="M664 282 q20 -26 40 0 q-20 14 -40 0 z" fill="#fffefb"/>
+    <text x="722" y="252" font-size="12" fill="#262220" font-weight="700">Composer</text>
+    <text x="722" y="268" font-size="10" fill="#837b73" font-style="italic">a world premiere</text>
+    <g stroke="#e6ded2" stroke-width="5" stroke-linecap="round">
+      <line x1="660" y1="318" x2="846" y2="318"/><line x1="660" y1="336" x2="840" y2="336"/><line x1="660" y1="354" x2="846" y2="354"/>
+      <line x1="660" y1="372" x2="826" y2="372"/><line x1="660" y1="402" x2="846" y2="402"/><line x1="660" y1="420" x2="836" y2="420"/>
+      <line x1="660" y1="438" x2="846" y2="438"/><line x1="660" y1="456" x2="800" y2="456"/>
+    </g>
+    <!-- page-turn dots -->
+    <circle cx="736" cy="486" r="3" fill="#af7c3f"/><circle cx="748" cy="486" r="3" fill="#e6ded2"/><circle cx="760" cy="486" r="3" fill="#e6ded2"/><circle cx="772" cy="486" r="3" fill="#e6ded2"/>
+  </g>
+
+  <!-- ticket pill -->
+  <rect x="690" y="132" width="170" height="30" rx="15" fill="#9b5f44"/>
+  <text x="775" y="152" font-size="12.5" font-weight="600" text-anchor="middle" fill="#fffefb" font-family="Helvetica, Arial, sans-serif">Book Tickets &#8594;</text>
+</svg>
