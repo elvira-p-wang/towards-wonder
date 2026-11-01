@@ -43,7 +43,7 @@
   }
 
   window.DRAWINGS_DATA = {
-    totalCount: 56,
+    totalCount: 58,
     collections: [
       {
         id: "sketches",
@@ -68,31 +68,32 @@
         images: [
         { id: "illustrations-015", src: "../images/gallery/drawings/illustration/illustrations15.jpeg", alt: "", category: "illustrations", aspectRatio: "3000 / 1688" },
         { id: "illustrations-002", src: "../images/gallery/drawings/illustration/illustrations2.jpeg", alt: "", category: "illustrations", aspectRatio: "3000 / 1932" },
-        { id: "illustrations-003", src: "../images/gallery/drawings/illustration/illustrations3.jpeg", alt: "", category: "illustrations", aspectRatio: "3000 / 2250" },
+        { id: "illustrations-029", src: "../images/gallery/drawings/illustration/illustrations29.jpeg", alt: "", category: "illustrations", aspectRatio: "1086 / 724" },
+        { id: "illustrations-005", src: "../images/gallery/drawings/illustration/illustrations5.jpeg", alt: "", category: "illustrations", aspectRatio: "2143 / 3000" },
         { id: "illustrations-017", src: "../images/gallery/drawings/illustration/illustrations17.jpeg", alt: "", category: "illustrations", aspectRatio: "2121 / 3000" },
         { id: "illustrations-028", src: "../images/gallery/drawings/illustration/illustrations28.jpeg", alt: "", category: "illustrations", aspectRatio: "2121 / 3000" },
-        { id: "illustrations-004", src: "../images/gallery/drawings/illustration/illustrations4.jpeg", alt: "", category: "illustrations", aspectRatio: "1688 / 3000" },
+        { id: "illustrations-003", src: "../images/gallery/drawings/illustration/illustrations3.jpeg", alt: "", category: "illustrations", aspectRatio: "3000 / 2250" },
         { id: "illustrations-024", src: "../images/gallery/drawings/illustration/illustrations24.jpeg", alt: "", category: "illustrations", aspectRatio: "3000 / 2945" },
         { id: "illustrations-001", src: "../images/gallery/drawings/illustration/illustrations1.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-006", src: "../images/gallery/drawings/illustration/illustrations6.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-026", src: "../images/gallery/drawings/illustration/illustrations26.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-027", src: "../images/gallery/drawings/illustration/illustrations27.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-013", src: "../images/gallery/drawings/illustration/illustrations13.jpeg", alt: "", category: "illustrations", aspectRatio: "2250 / 3000" },
-        { id: "illustrations-005", src: "../images/gallery/drawings/illustration/illustrations5.jpeg", alt: "", category: "illustrations", aspectRatio: "2143 / 3000" },
+        { id: "illustrations-006", src: "../images/gallery/drawings/illustration/illustrations6.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-007", src: "../images/gallery/drawings/illustration/illustrations7.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-008", src: "../images/gallery/drawings/illustration/illustrations8.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-009", src: "../images/gallery/drawings/illustration/illustrations9.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-022", src: "../images/gallery/drawings/illustration/illustrations22.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-023", src: "../images/gallery/drawings/illustration/illustrations23.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-025", src: "../images/gallery/drawings/illustration/illustrations25.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-026", src: "../images/gallery/drawings/illustration/illustrations26.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-009", src: "../images/gallery/drawings/illustration/illustrations9.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-010", src: "../images/gallery/drawings/illustration/illustrations10.jpeg", alt: "", category: "illustrations", aspectRatio: "1905 / 1905" },
         { id: "illustrations-011", src: "../images/gallery/drawings/illustration/illustrations11.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-014", src: "../images/gallery/drawings/illustration/illustrations14.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-019", src: "../images/gallery/drawings/illustration/illustrations19.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-020", src: "../images/gallery/drawings/illustration/illustrations20.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-021", src: "../images/gallery/drawings/illustration/illustrations21.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-022", src: "../images/gallery/drawings/illustration/illustrations22.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-014", src: "../images/gallery/drawings/illustration/illustrations14.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-016", src: "../images/gallery/drawings/illustration/illustrations16.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
         { id: "illustrations-018", src: "../images/gallery/drawings/illustration/illustrations18.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
-        { id: "illustrations-019", src: "../images/gallery/drawings/illustration/illustrations19.jpeg", alt: "", category: "illustrations", aspectRatio: "2048 / 2048" },
+        { id: "illustrations-004", src: "../images/gallery/drawings/illustration/illustrations4.jpeg", alt: "", category: "illustrations", aspectRatio: "1688 / 3000" },
         { id: "illustrations-012", src: "../images/gallery/drawings/illustration/illustrations12.jpeg", alt: "", category: "illustrations", aspectRatio: "1688 / 3000" }
       ]
       },
@@ -106,9 +107,9 @@
         { id: "comics-003", src: "../images/gallery/drawings/comic/comics3.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
         { id: "comics-004", src: "../images/gallery/drawings/comic/comics4.jpeg", alt: "", category: "comics", aspectRatio: "1687 / 3000" },
         { id: "comics-005", src: "../images/gallery/drawings/comic/comics5.jpeg", alt: "", category: "comics", aspectRatio: "1255 / 3000" },
-        { id: "comics-006", src: "../images/gallery/drawings/comic/comics7.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
-        { id: "comics-007", src: "../images/gallery/drawings/comic/comics8.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
-        { id: "comics-008", src: "../images/gallery/drawings/comic/comics9.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" }
+        { id: "comics-006", src: "../images/gallery/drawings/comic/comics6.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
+        { id: "comics-007", src: "../images/gallery/drawings/comic/comics7.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" },
+        { id: "comics-008", src: "../images/gallery/drawings/comic/comics8.jpeg", alt: "", category: "comics", aspectRatio: "2000 / 3000" }
       ]
       },
       {
@@ -121,6 +122,7 @@
         { id: "graphic-designs-005", src: "../images/gallery/drawings/graphic design/graphic designs6.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
         { id: "graphic-designs-006", src: "../images/gallery/drawings/graphic design/graphic designs7.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
         { id: "graphic-designs-007", src: "../images/gallery/drawings/graphic design/graphic designs8.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1503 / 292" },
+        { id: "graphic-designs-008", src: "../images/gallery/drawings/graphic design/graphic designs9.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1586 / 1982" },
         { id: "graphic-designs-002", src: "../images/gallery/drawings/graphic design/graphic designs2.jpeg", alt: "", category: "graphic-designs", aspectRatio: "2121 / 3000" },
         { id: "graphic-designs-001", src: "../images/gallery/drawings/graphic design/graphic designs1.jpeg", alt: "", category: "graphic-designs", aspectRatio: "1050 / 1498" }
       ]
